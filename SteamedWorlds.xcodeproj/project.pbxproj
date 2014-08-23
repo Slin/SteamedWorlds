@@ -1,0 +1,325 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D52B142319A886BF00974FA6 /* SWApplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D52B142219A886BF00974FA6 /* SWApplication.cpp */; };
+		D52B142619A886BF00974FA6 /* SWWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D52B142519A886BF00974FA6 /* SWWorld.cpp */; };
+		D52B142A19A886BF00974FA6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D52B142919A886BF00974FA6 /* main.cpp */; };
+		D52B142D19A886BF00974FA6 /* SteamedWorlds-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = D52B142C19A886BF00974FA6 /* SteamedWorlds-Prefix.pch */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D52B141E19A886BF00974FA6 /* SteamedWorlds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SteamedWorlds.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D52B142219A886BF00974FA6 /* SWApplication.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = SWApplication.cpp; path = Classes/SWApplication.cpp; sourceTree = "<group>"; };
+		D52B142419A886BF00974FA6 /* SWApplication.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SWApplication.h; path = Classes/SWApplication.h; sourceTree = "<group>"; };
+		D52B142519A886BF00974FA6 /* SWWorld.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = SWWorld.cpp; path = Classes/SWWorld.cpp; sourceTree = "<group>"; };
+		D52B142719A886BF00974FA6 /* SWWorld.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SWWorld.h; path = Classes/SWWorld.h; sourceTree = "<group>"; };
+		D52B142919A886BF00974FA6 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = "Supporting files/main.cpp"; sourceTree = "<group>"; };
+		D52B142B19A886BF00974FA6 /* SteamedWorlds-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "SteamedWorlds-Info.plist"; path = "Supporting files/SteamedWorlds-Info.plist"; sourceTree = "<group>"; };
+		D52B142C19A886BF00974FA6 /* SteamedWorlds-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SteamedWorlds-Prefix.pch"; path = "Supporting files/SteamedWorlds-Prefix.pch"; sourceTree = "<group>"; };
+		D52B142F19A886BF00974FA6 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
+		D52B143019A886BF00974FA6 /* settings.json */ = {isa = PBXFileReference; lastKnownFileType = folder; name = settings.json; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D52B141A19A886BF00974FA6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D52B141419A886BF00974FA6 = {
+			isa = PBXGroup;
+			children = (
+				D52B142019A886BF00974FA6 /* SteamedWorlds */,
+				D52B141F19A886BF00974FA6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D52B141F19A886BF00974FA6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D52B141E19A886BF00974FA6 /* SteamedWorlds.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D52B142019A886BF00974FA6 /* SteamedWorlds */ = {
+			isa = PBXGroup;
+			children = (
+				D52B142E19A886BF00974FA6 /* Resources */,
+				D52B142119A886BF00974FA6 /* Classes */,
+				D52B142819A886BF00974FA6 /* Supporting files */,
+			);
+			path = SteamedWorlds;
+			sourceTree = "<group>";
+		};
+		D52B142119A886BF00974FA6 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				D52B142219A886BF00974FA6 /* SWApplication.cpp */,
+				D52B142419A886BF00974FA6 /* SWApplication.h */,
+				D52B142519A886BF00974FA6 /* SWWorld.cpp */,
+				D52B142719A886BF00974FA6 /* SWWorld.h */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		D52B142819A886BF00974FA6 /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				D52B142919A886BF00974FA6 /* main.cpp */,
+				D52B142B19A886BF00974FA6 /* SteamedWorlds-Info.plist */,
+				D52B142C19A886BF00974FA6 /* SteamedWorlds-Prefix.pch */,
+			);
+			name = "Supporting files";
+			sourceTree = "<group>";
+		};
+		D52B142E19A886BF00974FA6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D52B142F19A886BF00974FA6 /* manifest.json */,
+				D52B143019A886BF00974FA6 /* settings.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		D52B141B19A886BF00974FA6 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D52B142D19A886BF00974FA6 /* SteamedWorlds-Prefix.pch in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		D52B141D19A886BF00974FA6 /* SteamedWorlds */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D52B143319A886BF00974FA6 /* Build configuration list for PBXNativeTarget "SteamedWorlds" */;
+			buildPhases = (
+				D52B141919A886BF00974FA6 /* Sources */,
+				D52B141A19A886BF00974FA6 /* Frameworks */,
+				D52B141B19A886BF00974FA6 /* Headers */,
+				D52B141C19A886BF00974FA6 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SteamedWorlds;
+			productName = SteamedWorlds;
+			productReference = D52B141E19A886BF00974FA6 /* SteamedWorlds.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D52B141519A886BF00974FA6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = GoodyCow;
+				TargetAttributes = {
+					D52B141D19A886BF00974FA6 = {
+						CreatedOnToolsVersion = 6.0;
+					};
+				};
+			};
+			buildConfigurationList = D52B141819A886BF00974FA6 /* Build configuration list for PBXProject "SteamedWorlds" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D52B141419A886BF00974FA6;
+			productRefGroup = D52B141F19A886BF00974FA6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D52B141D19A886BF00974FA6 /* SteamedWorlds */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D52B141C19A886BF00974FA6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "OUTPUT_DIR=\"$BUILT_PRODUCTS_DIR/$CONTENTS_FOLDER_PATH/Resources/\"\nRESOURCES_DIR=\"$PROJECT_DIR/$TARGET_NAME/Resources/\"\n\nrsync -avz \"$RESOURCES_DIR\" \"$OUTPUT_DIR\"\n\t\t\t\t\t";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D52B141919A886BF00974FA6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D52B142319A886BF00974FA6 /* SWApplication.cpp in Sources */,
+				D52B142619A886BF00974FA6 /* SWWorld.cpp in Sources */,
+				D52B142A19A886BF00974FA6 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		D52B143119A886BF00974FA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+			};
+			name = Debug;
+		};
+		D52B143219A886BF00974FA6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+			};
+			name = Release;
+		};
+		D52B143419A886BF00974FA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SteamedWorlds/Supporting files/SteamedWorlds-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/include/rayne/,
+				);
+				INFOPLIST_FILE = "SteamedWorlds/Supporting files/SteamedWorlds-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/lib/,
+				);
+				OTHER_LDFLAGS = "-lRayne";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D52B143519A886BF00974FA6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SteamedWorlds/Supporting files/SteamedWorlds-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"NDEBUG=1",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/include/rayne/,
+				);
+				INFOPLIST_FILE = "SteamedWorlds/Supporting files/SteamedWorlds-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/lib/,
+				);
+				OTHER_LDFLAGS = "-lRayne";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D52B141819A886BF00974FA6 /* Build configuration list for PBXProject "SteamedWorlds" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D52B143119A886BF00974FA6 /* Debug */,
+				D52B143219A886BF00974FA6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D52B143319A886BF00974FA6 /* Build configuration list for PBXNativeTarget "SteamedWorlds" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D52B143419A886BF00974FA6 /* Debug */,
+				D52B143519A886BF00974FA6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D52B141519A886BF00974FA6 /* Project object */;
+}
