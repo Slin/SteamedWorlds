@@ -24,6 +24,13 @@ int main(int argc, char *argv[])
 	stream << path << "\\Rayne\\Engine Resources";
 
 	RN::FileManager::GetSharedInstance()->AddSearchPath(stream.str());
+	
+	TCHAR buffer[1025];
+	::GetCurrentDirectoryA(1024, buffer);
+	
+	std::string base(buffer);
+	
+	RN::FileManager::GetSharedInstance()->RemoveSearchPath(base);
 #endif
 	
 	try
