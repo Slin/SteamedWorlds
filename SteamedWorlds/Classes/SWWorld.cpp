@@ -20,6 +20,9 @@ namespace SW
 	void World::LoadOnThread(RN::Thread *thread, RN::Deserializer *deserializer)
 	{
 		_camera = new RN::Camera(RN::Vector2(), RN::Texture::Format::RGB888, RN::Camera::Flags::Defaults);
+		
+		RN::Model *islandStartModel = RN::Model::WithFile("Models/insel.sgm");
+		/*RN::Entity *islandStart = */new RN::Entity(islandStartModel);
 	}
 
 	void World::Update(float delta)
