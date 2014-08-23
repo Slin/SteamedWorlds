@@ -10,6 +10,8 @@
 
 namespace SW
 {
+	RNDefineMeta(World, RN::World)
+	
 	World::World() :
 		RN::World("GenericSceneManager")
 	{
@@ -22,6 +24,8 @@ namespace SW
 	
 	void World::LoadOnThread(RN::Thread *thread, RN::Deserializer *deserializer)
 	{
+		RN::World::LoadOnThread(thread, deserializer);
+		
 		//Create camera with effects and stuff
 		_camera = new RN::Camera(RN::Vector2(), RN::Texture::Format::RGB16F, RN::Camera::Flags::Defaults);
 		_camera->SetBlitShader(RN::Shader::WithFile("shader/rn_DrawFramebufferTonemap"));
@@ -53,6 +57,16 @@ namespace SW
 		
 		//Create player
 		new Player(_camera);
+	}
+	
+	void World::SaveOnThread(RN::Thread *thread, RN::Serializer *serializer)
+	{
+		World::SaveOnThread(thread, serializer);
+		
+		/*serializer->EncodeObject(_ground);
+		
+		serializer->EncodeVector3(_camera->GetWorldPosition());
+		serializer->EncodeQuarternion(_camera->GetWorldRotation());*/
 	}
 
 	void World::Update(float delta)

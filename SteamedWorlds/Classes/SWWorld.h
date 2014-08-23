@@ -25,11 +25,15 @@ namespace SW
 		~World() override;
 		
 		void LoadOnThread(RN::Thread *thread, RN::Deserializer *deserializer) override;
+		void SaveOnThread(RN::Thread *thread, RN::Serializer *serializer) override;
+		
 		void Update(float delta) override;
 		
 	private:
 		RN::Camera *_camera;
 		RN::bullet::PhysicsWorld *_physicsWorld;
+		
+		RNDeclareMeta(World)
 	};
 }
 
