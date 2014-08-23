@@ -24,12 +24,30 @@
     <ClCompile Include="SteamedWorlds\Supporting files\main.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="SteamedWorlds\Classes\SWFullscreenEffects.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="SteamedWorlds\Classes\SWPlayer.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="SteamedWorlds\Classes\SWStaticEntity.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SteamedWorlds\Classes\SWApplication.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="SteamedWorlds\Classes\SWWorld.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="SteamedWorlds\Classes\SWFullscreenEffects.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="SteamedWorlds\Classes\SWPlayer.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="SteamedWorlds\Classes\SWStaticEntity.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

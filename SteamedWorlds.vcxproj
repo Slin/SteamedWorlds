@@ -41,13 +41,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)\$(ProjectName)\Classes;$(ProgramFiles)\Rayne\include;$(ProjectDir)\$(ProjectName)\Modules\rayne-bullet\include;$(ProjectDir)\$(ProjectName)\Modules\rayne-openal\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)\$(ProjectName)\Classes;$(ProgramFiles)\Rayne\include;$(ProjectDir)\$(ProjectName)\Resources\Modules\rayne-bullet\include;$(ProjectDir)\$(ProjectName)\Resources\Modules\rayne-openal\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(ProgramFiles)\Rayne\$(Configuration);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(ProjectDir)\$(ProjectName)\Resources\Modules\rayne-bullet;$(ProjectDir)\$(ProjectName)\Resources\Modules\rayne-openal</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)\$(ProjectName)\Classes;$(ProgramFiles)\Rayne\include;$(ProjectDir)\$(ProjectName)\Modules\rayne-bullet\include;$(ProjectDir)\$(ProjectName)\Modules\rayne-openal\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProgramFiles)\Rayne\$(Configuration);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(ProjectDir)\$(ProjectName)\Modules\rayne-bullet;$(ProjectDir)\$(ProjectName)\Modules\rayne-openal</LibraryPath>
+    <IncludePath>$(ProjectDir)\$(ProjectName)\Classes;$(ProgramFiles)\Rayne\include;$(ProjectDir)\$(ProjectName)\Resources\Modules\rayne-bullet\include;$(ProjectDir)\$(ProjectName)\Resources\Modules\rayne-openal\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProgramFiles)\Rayne\$(Configuration);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(ProjectDir)\$(ProjectName)\Resources\Modules\rayne-bullet;$(ProjectDir)\$(ProjectName)\Resources\Modules\rayne-openal</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -83,11 +83,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="SteamedWorlds\Classes\SWApplication.cpp" />
+    <ClCompile Include="SteamedWorlds\Classes\SWFullscreenEffects.cpp" />
+    <ClCompile Include="SteamedWorlds\Classes\SWPlayer.cpp" />
+    <ClCompile Include="SteamedWorlds\Classes\SWStaticEntity.cpp" />
     <ClCompile Include="SteamedWorlds\Classes\SWWorld.cpp" />
     <ClCompile Include="SteamedWorlds\Supporting files\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SteamedWorlds\Classes\SWApplication.h" />
+    <ClInclude Include="SteamedWorlds\Classes\SWFullscreenEffects.h" />
+    <ClInclude Include="SteamedWorlds\Classes\SWPlayer.h" />
+    <ClInclude Include="SteamedWorlds\Classes\SWStaticEntity.h" />
     <ClInclude Include="SteamedWorlds\Classes\SWWorld.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
