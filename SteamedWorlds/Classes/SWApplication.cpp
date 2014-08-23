@@ -26,4 +26,17 @@ namespace SW
 	
 	void Application::WillExit()
 	{}
+	
+	void Application::KeyDown(RN::Event *event)
+	{
+		if(event->GetType() == RN::Event::Type::KeyDown)
+		{
+			char character = event->GetCharacter();
+			
+			if(character == '0')
+			{
+				RN::MessageCenter::GetSharedInstance()->PostMessage(RNCSTR("DPToggle"), nullptr, nullptr);
+			}
+		}
+	}
 }

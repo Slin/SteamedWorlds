@@ -22,6 +22,7 @@ namespace SW
 		
 		void Start() override;
 		void WillExit() override;
+		void KeyDown(RN::Event *event) override;
 	};
 }
 

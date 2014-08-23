@@ -23,7 +23,7 @@
 		D52B142B19A886BF00974FA6 /* SteamedWorlds-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "SteamedWorlds-Info.plist"; path = "Supporting files/SteamedWorlds-Info.plist"; sourceTree = "<group>"; };
 		D52B142C19A886BF00974FA6 /* SteamedWorlds-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SteamedWorlds-Prefix.pch"; path = "Supporting files/SteamedWorlds-Prefix.pch"; sourceTree = "<group>"; };
 		D52B142F19A886BF00974FA6 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
-		D52B143019A886BF00974FA6 /* settings.json */ = {isa = PBXFileReference; lastKnownFileType = folder; name = settings.json; sourceTree = "<group>"; };
+		D52B143019A886BF00974FA6 /* settings.json */ = {isa = PBXFileReference; lastKnownFileType = folder; path = settings.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,13 +263,22 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/include/rayne/,
+					"\"$(SRCROOT)/SteamedWorlds/Resources/Modules/rayne-openal/include\"",
+					"\"$(SRCROOT)/SteamedWorlds/Resources/Modules/rayne-bullet/include\"",
 				);
 				INFOPLIST_FILE = "SteamedWorlds/Supporting files/SteamedWorlds-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/lib/,
+					"\"$(SRCROOT)/SteamedWorlds/Resources/Modules/rayne-bullet\"",
+					"\"$(SRCROOT)/SteamedWorlds/Resources/Modules/rayne-openal\"",
 				);
-				OTHER_LDFLAGS = "-lRayne";
+				OTHER_LDFLAGS = (
+					"-lRayne",
+					"-lrayne-bullet",
+					"-lopenal.1.15.1",
+					"-lrayne-openal",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -287,13 +296,22 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/include/rayne/,
+					"\"$(SRCROOT)/SteamedWorlds/Resources/Modules/rayne-openal/include\"",
+					"\"$(SRCROOT)/SteamedWorlds/Resources/Modules/rayne-bullet/include\"",
 				);
 				INFOPLIST_FILE = "SteamedWorlds/Supporting files/SteamedWorlds-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/lib/,
+					"\"$(SRCROOT)/SteamedWorlds/Resources/Modules/rayne-bullet\"",
+					"\"$(SRCROOT)/SteamedWorlds/Resources/Modules/rayne-openal\"",
 				);
-				OTHER_LDFLAGS = "-lRayne";
+				OTHER_LDFLAGS = (
+					"-lRayne",
+					"-lrayne-bullet",
+					"-lopenal.1.15.1",
+					"-lrayne-openal",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -318,6 +336,7 @@
 				D52B143519A886BF00974FA6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
