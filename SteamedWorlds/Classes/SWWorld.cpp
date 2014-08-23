@@ -58,10 +58,10 @@ namespace SW
 			
 			//Load environment
 			StaticEntity *islandStart = new StaticEntity("Models/inselj.sgm");
-			StaticEntity *haus = new StaticEntity("Models/wohnhausj.sgm");
-			haus->SetWorldPosition(RN::Vector3(20.0f));
+			StaticEntity *haus = new StaticEntity("Models/wohnhaus.sgm");
+			haus->SetWorldPosition(RN::Vector3(20.0f, 1.0f, 0.0f));
 			
-			Vehicle *ship = new Vehicle("Models/schiff.sgm");
+			Vehicle *ship = new Vehicle("Models/schiff2.sgm");
 		}
 	}
 	
