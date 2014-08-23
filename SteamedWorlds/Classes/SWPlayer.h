@@ -30,10 +30,13 @@ namespace SW
 		~Player() override;
 		
 		void Update(float delta) override;
+		void SetPassable(bool passable);
 		
 	private:
 		RN::SceneNode *_camera;
 		RN::bullet::KinematicController *_controller;
+		
+		bool _isPassable;
 		
 		RNDeclareMeta(Player)
 		RNDeclareSingleton(Player)

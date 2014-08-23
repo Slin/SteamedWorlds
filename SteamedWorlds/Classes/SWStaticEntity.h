@@ -24,7 +24,6 @@ namespace SW
 		void Serialize(RN::Serializer *serializer) override;
 		
 	private:
-		std::string _fileName;
 		bool _collider;
 		
 		RNDeclareMeta(StaticEntity)

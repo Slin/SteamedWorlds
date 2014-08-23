@@ -18,8 +18,16 @@ namespace SW
 	{
 	public:
 		Vehicle(const std::string filename);
+		Vehicle(RN::Deserializer *deserializer);
+		
+		void Initialize();
+		void Serialize(RN::Serializer *serializer) override;
+		
+		void Update(float delta) override;
 		
 	private:
+		bool _isActive;
+		bool _hasToggled;
 		
 		RNDeclareMeta(Vehicle)
 	};

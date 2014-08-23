@@ -15,6 +15,7 @@
 #include "SWFullscreenEffects.h"
 #include "SWStaticEntity.h"
 #include "SWPlayer.h"
+#include "SWVehicle.h"
 
 namespace SW
 {

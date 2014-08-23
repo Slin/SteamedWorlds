@@ -24,25 +24,23 @@ namespace SW
 	RNDefineSingleton(Player)
 	
 	Player::Player(RN::SceneNode *camera) :
-		_camera(camera)
+		_camera(camera), _isPassable(true), _controller(nullptr)
 	{
 		MakeShared();
 		
 		SetFlags(GetFlags()|RN::SceneNode::Flags::NoSave);
 		
-		_controller = new RN::bullet::KinematicController(RN::bullet::CapsuleShape::WithRadius(0.5f, 1.0f), 0.7f);
-		_controller->SetJumpSpeed(3.4f);
+		SetPassable(false);
 		
-		AddAttachment(_controller);
 		AddChild(_camera);
 		
-		_camera->SetPosition(RN::Vector3(0.0f, 0.5f, 0.0f));
+		_camera->SetPosition(RN::Vector3(0.0f, 0.78f, 0.0f));
 	}
 	
 	Player::~Player()
 	{
 		ResignShared();
-		_controller->Release();
+		RN::SafeRelease(_controller);
 	}
 	
 	void Player::Update(float delta)
@@ -51,20 +49,54 @@ namespace SW
 		
 		RN::Input *input = RN::Input::GetSharedInstance();
 		
-		RN::Vector3 direction(input->IsKeyPressed('d')-input->IsKeyPressed('a'), 0.0f, input->IsKeyPressed('s')-input->IsKeyPressed('w'));
-		
 		RN::Vector3 rotationX(input->GetMouseDelta().x, 0.0f, 0.0f);
-		
 		Rotate(rotationX);
 		
-		direction = GetRotation().GetRotatedVector(direction);
-		direction *= 0.1f+0.1f*(input->GetModifierKeys() & RN::KeyModifier::KeyShift);
+		RN::Vector3 rotationY(0.0f, input->GetMouseDelta().y, 0.0f);
+		rotationY += _camera->GetRotation().GetEulerAngle();
+		rotationY.y = std::max(-80.0f, std::min(65.0f, rotationY.y));
+		_camera->SetRotation(rotationY);
 		
-		_controller->SetWalkDirection(direction);
-
-		if(input->IsKeyPressed(' ') && _controller->IsOnGround())
+		
+		if(_controller)
 		{
-			_controller->Jump();
+			RN::Vector3 direction(input->IsKeyPressed('d')-input->IsKeyPressed('a'), 0.0f, input->IsKeyPressed('s')-input->IsKeyPressed('w'));
+			
+			direction = GetRotation().GetRotatedVector(direction);
+			direction *= 0.1f+0.1f*(input->GetModifierKeys() & RN::KeyModifier::KeyShift);
+			
+			_controller->SetWalkDirection(direction);
+
+			if(input->IsKeyPressed(' ') && _controller->IsOnGround())
+			{
+				_controller->Jump();
+			}
 		}
+	}
+	
+	void Player::SetPassable(bool passable)
+	{
+		if(_isPassable == passable)
+		{
+			return;
+		}
+		
+		if(!passable && !_controller)
+		{
+			_controller = new RN::bullet::KinematicController(RN::bullet::CapsuleShape::WithRadius(0.25f, 1.22f), 0.4f);
+			_controller->SetJumpSpeed(3.4f);
+			
+			AddAttachment(_controller);
+		}
+		else
+		{
+			if(_controller)
+			{
+				RemoveAttachment(_controller);
+				RN::SafeRelease(_controller);
+			}
+		}
+		
+		_isPassable = passable;
 	}
 }

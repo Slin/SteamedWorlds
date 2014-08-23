@@ -42,7 +42,7 @@ namespace SW
 		_camera->SetSky(sky);
 		
 		RN::Renderer::GetSharedInstance()->SetHDRExposure(1.0f);
-		RN::Renderer::GetSharedInstance()->SetHDRWhitePoint(2.5f);
+		RN::Renderer::GetSharedInstance()->SetHDRWhitePoint(8.0f);
 		
 		FullscreenEffects::GetSharedInstance()->CreateBloomPipeline(_camera);
 		
@@ -58,7 +58,10 @@ namespace SW
 			
 			//Load environment
 			StaticEntity *islandStart = new StaticEntity("Models/inselj.sgm");
-			StaticEntity *blubb = new StaticEntity("Models/schiff.sgm");
+			StaticEntity *haus = new StaticEntity("Models/wohnhausj.sgm");
+			haus->SetWorldPosition(RN::Vector3(20.0f));
+			
+			Vehicle *ship = new Vehicle("Models/schiff.sgm");
 		}
 	}
 	
