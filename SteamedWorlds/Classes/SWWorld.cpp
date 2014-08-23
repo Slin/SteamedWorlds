@@ -41,8 +41,14 @@ namespace SW
 		
 		FullscreenEffects::GetSharedInstance()->CreateBloomPipeline(_camera);
 		
+		//Sun
+		RN::Light *sun = new RN::Light(RN::Light::Type::DirectionalLight);
+		sun->ActivateShadows(RN::ShadowParameter(_camera));
+		sun->SetRotation(RN::Vector3(60.0f, -60.0f, 0.0f));
+		
 		//Load environment
-		StaticEntity *islandStart = new StaticEntity("Models/insel.sgm");
+		StaticEntity *islandStart = new StaticEntity("Models/inselj.sgm");
+		StaticEntity *blubb = new StaticEntity("Models/schiff.sgm");
 		
 		//Create player
 		new Player(_camera);
