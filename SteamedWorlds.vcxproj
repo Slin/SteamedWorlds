@@ -86,6 +86,7 @@
     <ClCompile Include="SteamedWorlds\Classes\SWFullscreenEffects.cpp" />
     <ClCompile Include="SteamedWorlds\Classes\SWPlayer.cpp" />
     <ClCompile Include="SteamedWorlds\Classes\SWStaticEntity.cpp" />
+    <ClCompile Include="SteamedWorlds\Classes\SWVehicle.cpp" />
     <ClCompile Include="SteamedWorlds\Classes\SWWorld.cpp" />
     <ClCompile Include="SteamedWorlds\Supporting files\main.cpp" />
   </ItemGroup>
@@ -94,6 +95,7 @@
     <ClInclude Include="SteamedWorlds\Classes\SWFullscreenEffects.h" />
     <ClInclude Include="SteamedWorlds\Classes\SWPlayer.h" />
     <ClInclude Include="SteamedWorlds\Classes\SWStaticEntity.h" />
+    <ClInclude Include="SteamedWorlds\Classes\SWVehicle.h" />
     <ClInclude Include="SteamedWorlds\Classes\SWWorld.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
