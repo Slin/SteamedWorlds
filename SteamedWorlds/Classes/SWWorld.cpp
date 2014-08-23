@@ -62,6 +62,7 @@ namespace SW
 			haus->SetWorldPosition(RN::Vector3(20.0f, 1.0f, 0.0f));
 			
 			Vehicle *ship = new Vehicle("Models/schiff2.sgm");
+			ship->SetWorldPosition(ship->GetWorldPosition()+RN::Vector3(0.0f, ship->GetBoundingBox().maxExtend.y+5.0f, 0.0f));
 		}
 	}
 	

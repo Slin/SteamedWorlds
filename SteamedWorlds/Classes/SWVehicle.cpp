@@ -30,10 +30,18 @@ namespace SW
 	void Vehicle::Initialize()
 	{
 		_isActive = false;
+		AddDependency(Player::GetSharedInstance());
 		
 		RN::bullet::BoxShape *shape = new RN::bullet::BoxShape(GetBoundingBox().maxExtend);
 		RN::bullet::RigidBody *body = new RN::bullet::RigidBody(shape, 10.0f);
 		AddAttachment(body);
+		
+		body->SetGravity(RN::Vector3(0.0f));
+		body->SetDamping(0.6, 0.4);
+		body->GetBulletRigidBody()->setAngularFactor(btVector3(0.0f, 1.0f, 0.0f));
+		body->GetBulletCollisionObject()->setActivationState(DISABLE_DEACTIVATION);
+		
+		_body = body;
 	}
 	
 	void Vehicle::Serialize(RN::Serializer *serializer)
@@ -55,14 +63,16 @@ namespace SW
 					if(player->GetWorldPosition().GetDistance(GetWorldPosition()) < GetBoundingBox().maxExtend.GetLength()*1.2f)
 					{
 						player->SetPassable(true);
-						player->SetWorldPosition(GetWorldPosition());
+						RemoveDependency(player);
 						AddChild(player);
+						player->SetPosition(RN::Vector3(-1.5f, -3.5f, 0.0f));
 						_isActive = true;
 					}
 				}
 				else
 				{
 					RemoveChild(player);
+					AddDependency(player);
 					player->SetWorldPosition(GetWorldPosition()+GetBoundingBox().maxExtend*1.2f);
 					player->SetPassable(false);
 					_isActive = false;
@@ -74,6 +84,16 @@ namespace SW
 		else
 		{
 			_hasToggled = false;
+		}
+		
+		if(_isActive)
+		{
+			RN::Vector3 direction(input->IsKeyPressed('s')-input->IsKeyPressed('w'), input->IsKeyPressed('e')-input->IsKeyPressed('q'), 0.0f);
+			direction = GetWorldRotation().GetRotatedVector(direction);
+			_body->ApplyImpulse(direction*1.5f);
+			
+			float rotation = input->IsKeyPressed('a')-input->IsKeyPressed('d');
+			_body->ApplyTorqueImpulse(RN::Vector3(0.0f, rotation*0.5f, 0.0f));
 		}
 	}
 }

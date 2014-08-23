@@ -29,6 +29,8 @@ namespace SW
 		bool _isActive;
 		bool _hasToggled;
 		
+		class RN::bullet::RigidBody *_body;
+		
 		RNDeclareMeta(Vehicle)
 	};
 }
