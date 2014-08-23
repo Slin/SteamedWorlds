@@ -11,6 +11,12 @@
 		D52B142619A886BF00974FA6 /* SWWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D52B142519A886BF00974FA6 /* SWWorld.cpp */; };
 		D52B142A19A886BF00974FA6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D52B142919A886BF00974FA6 /* main.cpp */; };
 		D52B142D19A886BF00974FA6 /* SteamedWorlds-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = D52B142C19A886BF00974FA6 /* SteamedWorlds-Prefix.pch */; };
+		D5F8240019A8A75E00F1AE78 /* SWFullscreenEffects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5F823FE19A8A75E00F1AE78 /* SWFullscreenEffects.cpp */; };
+		D5F8240119A8A75E00F1AE78 /* SWFullscreenEffects.h in Headers */ = {isa = PBXBuildFile; fileRef = D5F823FF19A8A75E00F1AE78 /* SWFullscreenEffects.h */; };
+		D5F8240419A8A98C00F1AE78 /* SWStaticEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5F8240219A8A98C00F1AE78 /* SWStaticEntity.cpp */; };
+		D5F8240519A8A98C00F1AE78 /* SWStaticEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = D5F8240319A8A98C00F1AE78 /* SWStaticEntity.h */; };
+		D5F8240819A8AD2B00F1AE78 /* SWPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5F8240619A8AD2B00F1AE78 /* SWPlayer.cpp */; };
+		D5F8240919A8AD2B00F1AE78 /* SWPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = D5F8240719A8AD2B00F1AE78 /* SWPlayer.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +30,12 @@
 		D52B142C19A886BF00974FA6 /* SteamedWorlds-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SteamedWorlds-Prefix.pch"; path = "Supporting files/SteamedWorlds-Prefix.pch"; sourceTree = "<group>"; };
 		D52B142F19A886BF00974FA6 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
 		D52B143019A886BF00974FA6 /* settings.json */ = {isa = PBXFileReference; lastKnownFileType = folder; path = settings.json; sourceTree = "<group>"; };
+		D5F823FE19A8A75E00F1AE78 /* SWFullscreenEffects.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SWFullscreenEffects.cpp; path = Classes/SWFullscreenEffects.cpp; sourceTree = "<group>"; };
+		D5F823FF19A8A75E00F1AE78 /* SWFullscreenEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWFullscreenEffects.h; path = Classes/SWFullscreenEffects.h; sourceTree = "<group>"; };
+		D5F8240219A8A98C00F1AE78 /* SWStaticEntity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SWStaticEntity.cpp; path = Classes/SWStaticEntity.cpp; sourceTree = "<group>"; };
+		D5F8240319A8A98C00F1AE78 /* SWStaticEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWStaticEntity.h; path = Classes/SWStaticEntity.h; sourceTree = "<group>"; };
+		D5F8240619A8AD2B00F1AE78 /* SWPlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SWPlayer.cpp; path = Classes/SWPlayer.cpp; sourceTree = "<group>"; };
+		D5F8240719A8AD2B00F1AE78 /* SWPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWPlayer.h; path = Classes/SWPlayer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +82,12 @@
 				D52B142419A886BF00974FA6 /* SWApplication.h */,
 				D52B142519A886BF00974FA6 /* SWWorld.cpp */,
 				D52B142719A886BF00974FA6 /* SWWorld.h */,
+				D5F823FE19A8A75E00F1AE78 /* SWFullscreenEffects.cpp */,
+				D5F823FF19A8A75E00F1AE78 /* SWFullscreenEffects.h */,
+				D5F8240219A8A98C00F1AE78 /* SWStaticEntity.cpp */,
+				D5F8240319A8A98C00F1AE78 /* SWStaticEntity.h */,
+				D5F8240619A8AD2B00F1AE78 /* SWPlayer.cpp */,
+				D5F8240719A8AD2B00F1AE78 /* SWPlayer.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -100,7 +118,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5F8240119A8A75E00F1AE78 /* SWFullscreenEffects.h in Headers */,
 				D52B142D19A886BF00974FA6 /* SteamedWorlds-Prefix.pch in Headers */,
+				D5F8240519A8A98C00F1AE78 /* SWStaticEntity.h in Headers */,
+				D5F8240919A8AD2B00F1AE78 /* SWPlayer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,8 +198,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5F8240819A8AD2B00F1AE78 /* SWPlayer.cpp in Sources */,
 				D52B142319A886BF00974FA6 /* SWApplication.cpp in Sources */,
+				D5F8240019A8A75E00F1AE78 /* SWFullscreenEffects.cpp in Sources */,
 				D52B142619A886BF00974FA6 /* SWWorld.cpp in Sources */,
+				D5F8240419A8A98C00F1AE78 /* SWStaticEntity.cpp in Sources */,
 				D52B142A19A886BF00974FA6 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

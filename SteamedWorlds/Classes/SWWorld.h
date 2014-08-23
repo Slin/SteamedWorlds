@@ -10,6 +10,11 @@
 #define __SWWORLD_H__
 
 #include <Rayne/Rayne.h>
+#include <RBPhysicsWorld.h>
+
+#include "SWFullscreenEffects.h"
+#include "SWStaticEntity.h"
+#include "SWPlayer.h"
 
 namespace SW
 {
@@ -24,6 +29,7 @@ namespace SW
 		
 	private:
 		RN::Camera *_camera;
+		RN::bullet::PhysicsWorld *_physicsWorld;
 	};
 }
 

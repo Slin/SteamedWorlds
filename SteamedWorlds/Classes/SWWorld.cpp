@@ -12,17 +12,29 @@ namespace SW
 {
 	World::World() :
 		RN::World("GenericSceneManager")
-	{}
+	{
+		_physicsWorld = new RN::bullet::PhysicsWorld();
+		AddAttachment(_physicsWorld);
+	}
 	
 	World::~World()
 	{}
 	
 	void World::LoadOnThread(RN::Thread *thread, RN::Deserializer *deserializer)
 	{
-		_camera = new RN::Camera(RN::Vector2(), RN::Texture::Format::RGB888, RN::Camera::Flags::Defaults);
+		//Create camera with effects and stuff
+		_camera = new RN::Camera(RN::Vector2(), RN::Texture::Format::RGB16F, RN::Camera::Flags::Defaults);
+		_camera->SetBlitShader(RN::Shader::WithFile("shader/rn_DrawFramebufferTonemap"));
+		RN::Renderer::GetSharedInstance()->SetHDRExposure(1.0f);
+		RN::Renderer::GetSharedInstance()->SetHDRWhitePoint(2.5f);
 		
-		RN::Model *islandStartModel = RN::Model::WithFile("Models/insel.sgm");
-		/*RN::Entity *islandStart = */new RN::Entity(islandStartModel);
+		FullscreenEffects::GetSharedInstance()->CreateBloomPipeline(_camera);
+		
+		//Load environment
+		StaticEntity *islandStart = new StaticEntity("Models/insel.sgm");
+		
+		//Create player
+		new Player(_camera);
 	}
 
 	void World::Update(float delta)
