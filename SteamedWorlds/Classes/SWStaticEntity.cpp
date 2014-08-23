@@ -14,6 +14,8 @@ namespace SW
 	
 	StaticEntity::StaticEntity(const std::string filename, bool collider)
 	{
+		SetFlags(GetFlags()|RN::SceneNode::Flags::NoSave);
+		
 		RN::Model *model = RN::Model::WithFile(filename);
 		SetModel(model);
 		

@@ -17,6 +17,8 @@
 		D5F8240519A8A98C00F1AE78 /* SWStaticEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = D5F8240319A8A98C00F1AE78 /* SWStaticEntity.h */; };
 		D5F8240819A8AD2B00F1AE78 /* SWPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5F8240619A8AD2B00F1AE78 /* SWPlayer.cpp */; };
 		D5F8240919A8AD2B00F1AE78 /* SWPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = D5F8240719A8AD2B00F1AE78 /* SWPlayer.h */; };
+		D5F8240F19A8D14000F1AE78 /* SWVehicle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5F8240D19A8D14000F1AE78 /* SWVehicle.cpp */; };
+		D5F8241019A8D14000F1AE78 /* SWVehicle.h in Headers */ = {isa = PBXBuildFile; fileRef = D5F8240E19A8D14000F1AE78 /* SWVehicle.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		D5F8240319A8A98C00F1AE78 /* SWStaticEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWStaticEntity.h; path = Classes/SWStaticEntity.h; sourceTree = "<group>"; };
 		D5F8240619A8AD2B00F1AE78 /* SWPlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SWPlayer.cpp; path = Classes/SWPlayer.cpp; sourceTree = "<group>"; };
 		D5F8240719A8AD2B00F1AE78 /* SWPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWPlayer.h; path = Classes/SWPlayer.h; sourceTree = "<group>"; };
+		D5F8240D19A8D14000F1AE78 /* SWVehicle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SWVehicle.cpp; path = Classes/SWVehicle.cpp; sourceTree = "<group>"; };
+		D5F8240E19A8D14000F1AE78 /* SWVehicle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWVehicle.h; path = Classes/SWVehicle.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,8 @@
 				D5F8240319A8A98C00F1AE78 /* SWStaticEntity.h */,
 				D5F8240619A8AD2B00F1AE78 /* SWPlayer.cpp */,
 				D5F8240719A8AD2B00F1AE78 /* SWPlayer.h */,
+				D5F8240D19A8D14000F1AE78 /* SWVehicle.cpp */,
+				D5F8240E19A8D14000F1AE78 /* SWVehicle.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -118,6 +124,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5F8241019A8D14000F1AE78 /* SWVehicle.h in Headers */,
 				D5F8240119A8A75E00F1AE78 /* SWFullscreenEffects.h in Headers */,
 				D52B142D19A886BF00974FA6 /* SteamedWorlds-Prefix.pch in Headers */,
 				D5F8240519A8A98C00F1AE78 /* SWStaticEntity.h in Headers */,
@@ -200,6 +207,7 @@
 			files = (
 				D5F8240819A8AD2B00F1AE78 /* SWPlayer.cpp in Sources */,
 				D52B142319A886BF00974FA6 /* SWApplication.cpp in Sources */,
+				D5F8240F19A8D14000F1AE78 /* SWVehicle.cpp in Sources */,
 				D5F8240019A8A75E00F1AE78 /* SWFullscreenEffects.cpp in Sources */,
 				D52B142619A886BF00974FA6 /* SWWorld.cpp in Sources */,
 				D5F8240419A8A98C00F1AE78 /* SWStaticEntity.cpp in Sources */,

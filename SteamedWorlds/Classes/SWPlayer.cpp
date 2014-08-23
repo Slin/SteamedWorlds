@@ -28,6 +28,8 @@ namespace SW
 	{
 		MakeShared();
 		
+		SetFlags(GetFlags()|RN::SceneNode::Flags::NoSave);
+		
 		_controller = new RN::bullet::KinematicController(RN::bullet::CapsuleShape::WithRadius(0.5f, 1.0f), 0.7f);
 		_controller->SetJumpSpeed(3.4f);
 		

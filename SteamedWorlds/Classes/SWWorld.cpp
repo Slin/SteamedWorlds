@@ -25,6 +25,7 @@ namespace SW
 		//Create camera with effects and stuff
 		_camera = new RN::Camera(RN::Vector2(), RN::Texture::Format::RGB16F, RN::Camera::Flags::Defaults);
 		_camera->SetBlitShader(RN::Shader::WithFile("shader/rn_DrawFramebufferTonemap"));
+		_camera->SceneNode::SetFlags(RN::SceneNode::Flags::NoSave);
 		
 		RN::Model *sky = RN::Model::WithSkyCube();
 		for(int i = 0; i < sky->GetMeshCount(0); i++)
@@ -43,7 +44,7 @@ namespace SW
 		
 		//Sun
 		RN::Light *sun = new RN::Light(RN::Light::Type::DirectionalLight);
-		sun->ActivateShadows(RN::ShadowParameter(_camera));
+		sun->ActivateShadows(RN::ShadowParameter(_camera, 256));
 		sun->SetRotation(RN::Vector3(60.0f, -60.0f, 0.0f));
 		
 		//Load environment
