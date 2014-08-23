@@ -61,7 +61,7 @@ namespace SW
 	
 	void World::SaveOnThread(RN::Thread *thread, RN::Serializer *serializer)
 	{
-		World::SaveOnThread(thread, serializer);
+		RN::World::SaveOnThread(thread, serializer);
 		
 		/*serializer->EncodeObject(_ground);
 		

@@ -18,8 +18,14 @@ namespace SW
 	{
 	public:
 		StaticEntity(const std::string filename, bool collider=true);
+		StaticEntity(RN::Deserializer *deserializer);
+		
+		void Initialize();
+		void Serialize(RN::Serializer *serializer) override;
 		
 	private:
+		std::string _fileName;
+		bool _collider;
 		
 		RNDeclareMeta(StaticEntity)
 	};

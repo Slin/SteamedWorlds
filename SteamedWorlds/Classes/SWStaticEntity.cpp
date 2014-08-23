@@ -13,17 +13,37 @@ namespace SW
 	RNDefineMeta(StaticEntity, RN::Entity)
 	
 	StaticEntity::StaticEntity(const std::string filename, bool collider)
+	: _collider(collider), _fileName(filename)
 	{
-		SetFlags(GetFlags()|RN::SceneNode::Flags::NoSave);
+		Initialize();
+	}
+	
+	StaticEntity::StaticEntity(RN::Deserializer *deserializer)
+	: RN::Entity(deserializer)
+	{
+		_fileName = deserializer->DecodeString();
+		_collider = deserializer->DecodeBool();
 		
-		RN::Model *model = RN::Model::WithFile(filename);
+		Initialize();
+	}
+	
+	void StaticEntity::Initialize()
+	{
+		RN::Model *model = RN::Model::WithFile(_fileName);
 		SetModel(model);
 		
-		if(collider)
+		if(_collider)
 		{
 			RN::bullet::TriangleMeshShape *shape = new RN::bullet::TriangleMeshShape(model);
 			RN::bullet::RigidBody *body = new RN::bullet::RigidBody(shape, 0.0f);
 			AddAttachment(body);
 		}
+	}
+	
+	void StaticEntity::Serialize(RN::Serializer *serializer)
+	{
+		Entity::Serialize(serializer);
+		serializer->EncodeString(_fileName);
+		serializer->EncodeBool(_collider);
 	}
 }
