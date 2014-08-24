@@ -110,11 +110,12 @@ namespace SW
 			RN::Material * islandMaterial = islandStart->GetModel()->GetMaterialAtIndex(0, 0);
 			islandMaterial->RemoveTextures();
 			islandMaterial->AddTexture(RN::Texture::WithFile("Models/bodeeen.png"));
-			islandMaterial->AddTexture(RN::Texture::WithFile("Models/insel_rgba.png"));
+			islandMaterial->AddTexture(RN::Texture::WithFile("Models/booodeeen_rgb.png"));
 			islandMaterial->AddTexture(RN::Texture::WithFile("Models/grass.png"));
-			islandMaterial->AddTexture(RN::Texture::WithFile("Models/dirt.png"));
-			islandMaterial->AddTexture(RN::Texture::WithFile("Models/sand.png"));
+			islandMaterial->AddTexture(RN::Texture::WithFile("Models/forestground.png"));
 			islandMaterial->AddTexture(RN::Texture::WithFile("Models/stone1.png"));
+			islandMaterial->AddTexture(RN::Texture::WithFile("Models/sand.png"));
+			islandMaterial->AddTexture(RN::Texture::WithFile("Models/dirt3.png"));
 			islandMaterial->SetShader(RN::Shader::WithFile("Shaders/Island"));
 			
 			StaticEntity *haus = new StaticEntity("Models/wohnhaus.sgm");
@@ -122,8 +123,8 @@ namespace SW
 			
 			Vehicle *ship = new Vehicle("Models/airboat.sgm");
 			ship->SetWorldPosition(ship->GetWorldPosition()+RN::Vector3(0.0f, ship->GetBoundingBox().maxExtend.y+5.0f, 0.0f));
-			ship->GetModel()->GetMaterialAtIndex(0, 1)->Define("RN_SPECULARITY");
-			ship->GetModel()->GetMaterialAtIndex(0, 1)->SetSpecularColor(RN::Color(0.1f, 0.08f, 0.05f, 250.0f));
+			ship->GetModel()->GetMaterialAtIndex(0, 0)->Define("RN_SPECULARITY");
+			ship->GetModel()->GetMaterialAtIndex(0, 0)->SetSpecularColor(RN::Color(0.1f, 0.08f, 0.05f, 250.0f));
 			ship->GetModel()->GetMaterialAtIndex(0, 2)->Define("RN_SPECULARITY");
 			ship->GetModel()->GetMaterialAtIndex(0, 2)->SetSpecularColor(RN::Color(0.1f, 0.08f, 0.05f, 250.0f));
 		}

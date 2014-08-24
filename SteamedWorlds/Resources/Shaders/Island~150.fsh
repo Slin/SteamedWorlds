@@ -17,7 +17,7 @@ uniform sampler2D mTexture2;
 uniform sampler2D mTexture3;
 uniform sampler2D mTexture4;
 uniform sampler2D mTexture5;
-//uniform sampler2D mTexture6;
+uniform sampler2D mTexture6;
 
 #if defined(RN_SPECULARITY)
 	uniform vec4 specular;
@@ -39,12 +39,12 @@ void main()
 	vec3 colorRed = texture(mTexture3, tileCoords).rgb;
 	vec3 colorGreen = texture(mTexture4, tileCoords).rgb;
 	vec3 colorBlue = texture(mTexture5, tileCoords).rgb;
-//	vec3 colorAlpha = texture(mTexture6, tileCoords).rgb;
+	vec3 colorAlpha = texture(mTexture6, tileCoords).rgb;
 	
 	vec3 color = mix(colorBase, colorRed, colorSplatmap.r);
 	color = mix(color, colorGreen, colorSplatmap.g);
 	color = mix(color, colorBlue, colorSplatmap.b);
-//	color = mix(color, colorAlpha, colorSplatmap.a);
+	color = mix(color, colorAlpha, colorSplatmap.a);
 
 	color *= colorAO;
 
