@@ -104,7 +104,7 @@ namespace SW
 		{
 			//Sun
 			RN::Light *sun = new RN::Light(RN::Light::Type::DirectionalLight);
-			sun->ActivateShadows(RN::ShadowParameter( static_cast<RN::Camera*>(_camera), 2048));
+			//sun->ActivateShadows(RN::ShadowParameter( static_cast<RN::Camera*>(_camera), 2048));
 			sun->SetRotation(RN::Vector3(60.0f, -60.0f, 0.0f));
 			
 			//Load environment
@@ -126,6 +126,12 @@ namespace SW
 			islandMaterial->SetShader(RN::Shader::WithFile("Shaders/DiffuseAO"));
 			islandMaterial->Define("TILE_FACTOR", 30.0f);
 			
+			new StaticEntity("Models/stein.sgm");
+			StaticEntity *farn = new StaticEntity("Models/farn.sgm", false);
+			farn->GetModel()->GetMaterialAtIndex(0, 0)->SetDiscard(true);
+			farn->GetModel()->GetMaterialAtIndex(0, 1)->SetDiscard(true);
+			
+			new StaticEntity("Models/haus1.sgm");
 			StaticEntity *tree = new StaticEntity("Models/tree2.sgm");
 			tree->SetPosition(RN::Vector3(2.0f, -3.0f, 2.0f));
 			tree->GetModel()->GetMaterialAtIndex(0, 1)->SetDiscard(true);
@@ -161,7 +167,7 @@ namespace SW
 			new StaticEntity("Models/wohnhaus.sgm");
 			
 			Vehicle *ship = new Vehicle("Models/airboat.sgm", "Models/airboat_wheel.sgm");
-			ship->SetWorldPosition(ship->GetWorldPosition()+RN::Vector3(0.0f, ship->GetBoundingBox().maxExtend.y+5.0f, 0.0f));
+			ship->SetWorldPosition(ship->GetWorldPosition()+RN::Vector3(0.0f, ship->GetBoundingBox().maxExtend.y, 8.0f));
 			ship->GetModel()->GetMaterialAtIndex(0, 2)->Define("RN_SPECULARITY");
 			ship->GetModel()->GetMaterialAtIndex(0, 2)->SetSpecularColor(RN::Color(0.1f, 0.08f, 0.05f, 250.0f));
 			ship->GetModel()->GetMaterialAtIndex(0, 3)->Define("RN_SPECULARITY");

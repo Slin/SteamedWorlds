@@ -17,7 +17,7 @@ namespace SW
 {
 	RNDefineMeta(Vehicle, RN::Entity)
 	
-	Vehicle::Vehicle(const std::string filename, const std::string wheelfile, RN::Vector3 bounds, RN::Vector3 wheelpos)
+	Vehicle::Vehicle(const std::string filename, const std::string wheelfile, RN::Vector3 wheelpos)
 	{
 		RN::Model *model = RN::Model::WithFile(filename);
 		SetModel(model);
@@ -26,15 +26,12 @@ namespace SW
 		AddChild(_wheel);
 		_wheel->SetPosition(wheelpos);
 		
-		_bounds = bounds;
-		
 		Initialize();
 	}
 	
 	Vehicle::Vehicle(RN::Deserializer *deserializer)
 	: RN::Entity(deserializer)
 	{
-		_bounds = deserializer->DecodeVector3();
 		Initialize();
 	}
 	
@@ -43,15 +40,29 @@ namespace SW
 		_isActive = false;
 		AddDependency(Player::GetSharedInstance());
 		
-		RN::bullet::BoxShape *shape = new RN::bullet::BoxShape(_bounds);
-//		RN::bullet::CylinderShape *shape = new RN::bullet::CylinderShape();
+		RN::bullet::CompoundShape *shape = new RN::bullet::CompoundShape();
+		shape->Autorelease();
+		
+		shape->AddChild(RN::bullet::BoxShape::WithHalfExtents(RN::Vector3(1.8f, 0.555f, 1.36f)), RN::Vector3(-0.76f, -5.03f, 0.0f), RN::Vector3(0.0f, 0.0f, 0.0f));
+		shape->AddChild(RN::bullet::BoxShape::WithHalfExtents(RN::Vector3(1.15f, 0.555f, 1.36f)), RN::Vector3(2.11f, -4.53f, 0.0f), RN::Vector3(0.0f, 0.0f, 0.0f));
+		shape->AddChild(RN::bullet::BoxShape::WithHalfExtents(RN::Vector3(0.595f, 0.853f, 1.0f)), RN::Vector3(-2.81f, -3.76f, 0.0f), RN::Vector3(0.0f, 0.0f, 0.0f));
+		shape->AddChild(RN::bullet::BoxShape::WithHalfExtents(RN::Vector3(1.205f, 0.395f, 0.4505f)), RN::Vector3(-4.6f, -3.59f, 0.0f), RN::Vector3(0.0f, 0.0f, 0.0f));
+		shape->AddChild(RN::bullet::BoxShape::WithHalfExtents(RN::Vector3(0.77f, 0.555f, 0.452)), RN::Vector3(-0.02f, -4.27f, -1.64f), RN::Vector3(0.0f, 0.0f, 0.0f));
+		shape->AddChild(RN::bullet::BoxShape::WithHalfExtents(RN::Vector3(0.77f, 0.555f, 0.452)), RN::Vector3(-0.02f, -4.28f, -1.62f), RN::Vector3(0.0f, 0.0f, 0.0f));
+		shape->AddChild(RN::bullet::BoxShape::WithHalfExtents(RN::Vector3(0.11f, 0.555f, 1.36)), RN::Vector3(-0.12f, -4.06f, 1.24f), RN::Vector3(90.0f, 0.0f, 0.0f));
+		shape->AddChild(RN::bullet::BoxShape::WithHalfExtents(RN::Vector3(0.11f, 0.555f, 1.36)), RN::Vector3(-0.12f, -4.06f, -1.23f), RN::Vector3(90.0f, 0.0f, 0.0f));
+		shape->AddChild(RN::bullet::BoxShape::WithHalfExtents(RN::Vector3(0.11f, 0.555f, 1.36)), RN::Vector3(2.3f, -4.06f, -0.5f), RN::Vector3(56.8f, 0.0f, 0.0f));
+		shape->AddChild(RN::bullet::BoxShape::WithHalfExtents(RN::Vector3(0.11f, 0.555f, 1.36)), RN::Vector3(2.3f, -4.06f, 0.55f), RN::Vector3(121.5f, 0.0f, 0.0f));
+		shape->AddChild(RN::bullet::BoxShape::WithHalfExtents(RN::Vector3(0.11f, 0.555f, 0.495)), RN::Vector3(-1.88f, -4.06f, 1.05f), RN::Vector3(63.4f, 0.0f, 0.0f));
+		shape->AddChild(RN::bullet::BoxShape::WithHalfExtents(RN::Vector3(0.11f, 0.555f, 0.495)), RN::Vector3(-1.88f, -4.06f, -1.03f), RN::Vector3(114.7f, 0.0f, 0.0f));
+		shape->AddChild(RN::bullet::BoxShape::WithHalfExtents(RN::Vector3(7.235f, 3.125f, 3.125f)), RN::Vector3(-0.08f, 2.39f, 0.06f), RN::Vector3(0.0f, 0.0f, 0.0f));
+		
 		RN::bullet::RigidBody *body = new RN::bullet::RigidBody(shape, 10.0f);
 		AddAttachment(body);
 		
 		body->SetGravity(RN::Vector3(0.0f));
 		body->SetDamping(0.6, 0.4);
 		body->GetBulletRigidBody()->setAngularFactor(btVector3(0.0f, 1.0f, 0.0f));
-		body->GetBulletCollisionObject()->setActivationState(DISABLE_DEACTIVATION);
 		
 		_body = body;
 	}
@@ -59,8 +70,6 @@ namespace SW
 	void Vehicle::Serialize(RN::Serializer *serializer)
 	{
 		Entity::Serialize(serializer);
-		
-		serializer->EncodeVector3(_bounds);
 	}
 	
 	void Vehicle::Update(float delta)
@@ -74,9 +83,10 @@ namespace SW
 			{
 				if(!_isActive)
 				{
-					if(player->GetWorldPosition().GetDistance(GetWorldPosition()) < GetBoundingBox().maxExtend.GetLength()*1.2f)
+					if(player->GetWorldPosition().GetDistance(GetWorldPosition()) < GetBoundingBox().maxExtend.GetLength()*0.8f)
 					{
 						player->SetPassable(true);
+						_body->GetBulletCollisionObject()->forceActivationState(DISABLE_DEACTIVATION);
 						
 						_camera = player->GetCamera();
 						_oldCameraPosition = _camera->GetPosition();
@@ -94,8 +104,9 @@ namespace SW
 				{
 					RemoveChild(player);
 					AddDependency(player);
-					player->SetWorldPosition(GetWorldPosition()+GetBoundingBox().maxExtend*1.2f);
+					_body->GetBulletCollisionObject()->forceActivationState(DISABLE_SIMULATION);
 					
+					player->SetRotation(RN::Vector3(_camera->GetEulerAngle().x, 0.0f, 0.0f));
 					RemoveChild(_camera);
 					player->AddChild(_camera);
 					_camera->SetPosition(_oldCameraPosition);

@@ -43,6 +43,9 @@ namespace RN
 			void SetRange(float min, float max);
 			void SetSelfdestruct(bool selfdestruct);
 			
+			bool IsPlaying() { return _isPlaying; }
+			bool IsRepeating() { return _isRepeating; }
+			
 		private:
 			AudioWorld *_owner;
 			AudioResource *_asset;

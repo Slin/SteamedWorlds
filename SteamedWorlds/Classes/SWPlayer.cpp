@@ -80,6 +80,15 @@ namespace SW
 			if(!_footstepSource)
 			{
 				_footstepSource = GetWorld()->Downcast<SW::World>()->GetAudioWorld()->PlaySound(RN::AudioResource::WithFile("Audio/footstep_gravel_1.ogg"));
+				_footstepSource->SetSelfdestruct(false);
+			}
+			else
+			{
+				if(!_footstepSource->IsPlaying())
+				{
+					_footstepSource->RemoveFromWorld();
+					_footstepSource = nullptr;
+				}
 			}
 
 			if(input->IsKeyPressed(' ') && _controller->IsOnGround())
@@ -98,7 +107,7 @@ namespace SW
 		
 		if(!passable && !_controller)
 		{
-			_controller = new RN::bullet::KinematicController(RN::bullet::CapsuleShape::WithRadius(0.25f, 1.22f), 0.4f);
+			_controller = new RN::bullet::KinematicController(RN::bullet::CapsuleShape::WithRadius(0.25f, 1.22f), 0.4f, RN::bullet::CapsuleShape::WithRadius(0.22f, 1.22f));
 			_controller->SetJumpSpeed(3.4f);
 			
 			AddAttachment(_controller);

@@ -17,7 +17,7 @@ namespace SW
 	class Vehicle : public RN::Entity
 	{
 	public:
-		Vehicle(const std::string filename, const std::string wheelfile, RN::Vector3 bounds=RN::Vector3(3.0, 5.5, 1.6), RN::Vector3 wheelpos=RN::Vector3(-2.31, -3.65, 0.0f));
+		Vehicle(const std::string filename, const std::string wheelfile, RN::Vector3 wheelpos=RN::Vector3(-2.31, -3.65, 0.0f));
 		Vehicle(RN::Deserializer *deserializer);
 		
 		void Initialize();

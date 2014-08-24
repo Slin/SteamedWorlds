@@ -31,7 +31,7 @@ namespace RN
 		class KinematicController : public CollisionObject
 		{
 		public:
-			KinematicController(Shape *shape, float stepHeight);
+			KinematicController(Shape *shape, float stepHeight, Shape *ghostShape=nullptr);
 			~KinematicController() override;
 			
 			void SetWalkDirection(const Vector3 &direction);
