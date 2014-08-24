@@ -87,6 +87,7 @@ namespace SW
 					RemoveChild(_camera);
 					player->AddChild(_camera);
 					_camera->SetPosition(_oldCameraPosition);
+					_camera->SetRotation(RN::Vector3(0.0f, 0.0f, 0.0f));
 					
 					player->SetPassable(false);
 					_isActive = false;
