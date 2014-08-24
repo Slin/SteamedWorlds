@@ -9,21 +9,25 @@
 #version 150
 precision highp float;
 
+#if !defined(TILE_FACTOR)
+	#define TILE_FACTOR 1.0
+#endif
+
 #include <shader/rn_Lighting.fsh>
 
 uniform sampler2D mTexture0;
 uniform sampler2D mTexture1;
-uniform sampler2D mTexture2;
-uniform sampler2D mTexture3;
-uniform sampler2D mTexture4;
-uniform sampler2D mTexture5;
-uniform sampler2D mTexture6;
 
 #if defined(RN_SPECULARITY)
 	uniform vec4 specular;
 #endif
 
 in vec2 vertTexcoord;
+
+#if defined(SECOND_UV)
+in vec2 vertTexcoord2;
+#endif
+
 in vec3 vertNormal;
 in vec3 vertPosition;
 
@@ -31,10 +35,14 @@ out vec4 fragColor0;
 
 void main()
 {
-	vec2 tileCoords = vertTexcoord*30.0f;
-	
+#if !defined(SECOND_UV)
 	vec3 colorAO = texture(mTexture0, vertTexcoord).rgb;
-	vec3 color = texture(mTexture1, tileCoords).rgb;
+	vec3 color = texture(mTexture1, vertTexcoord*TILE_FACTOR).rgb;
+#else
+	vec3 colorAO = texture(mTexture0, vertTexcoord).rgb;
+	vec3 color = texture(mTexture1, vertTexcoord2*TILE_FACTOR).rgb;
+#endif
+
 	color *= colorAO;
 
 	vec4 color0 = vec4(color, 1.0);

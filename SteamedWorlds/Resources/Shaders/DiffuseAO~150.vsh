@@ -11,12 +11,22 @@ in vec2 attTexcoord0;
 in vec4 attTangent;
 
 out vec2 vertTexcoord;
+
+#if defined(SECOND_UV)
+in vec2 attTexcoord1;
+in vec2 vertTexcoord2;
+#endif
+
 out vec3 vertNormal;
 out vec3 vertPosition;
 
 void main()
 {
 	vertTexcoord = attTexcoord0;
+
+#if defined(SECOND_UV)
+	vertTexcoord2 = attTexcoord1;
+#endif
 	
 	vertNormal = (matModel * vec4(attNormal, 0.0)).xyz;
 	vertPosition = (matModel * vec4(attPosition, 1.0)).xyz;
