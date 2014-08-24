@@ -54,6 +54,7 @@ namespace SW
 		}
 		
 		//Create camera with effects and stuff
+#if RN_PLATFORM_MAC_OS
 		if(_hmd)
 		{
 			RO::Camera *tempCamera = new RO::Camera(RN::Texture::Format::RGB16F);
@@ -70,6 +71,7 @@ namespace SW
 			_camera = tempCamera;
 		}
 		else
+#endif
 		{
 			RN::Camera *tempCamera = new RN::Camera(RN::Vector2(), RN::Texture::Format::RGB16F);
 			tempCamera->SetBlitShader(RN::Shader::WithFile("shader/rn_DrawFramebufferTonemap"));
@@ -102,7 +104,7 @@ namespace SW
 		{
 			//Sun
 			RN::Light *sun = new RN::Light(RN::Light::Type::DirectionalLight);
-			//sun->ActivateShadows(RN::ShadowParameter(_camera, 2048));
+			sun->ActivateShadows(RN::ShadowParameter( static_cast<RN::Camera*>(_camera), 2048));
 			sun->SetRotation(RN::Vector3(60.0f, -60.0f, 0.0f));
 			
 			//Load environment
@@ -124,7 +126,36 @@ namespace SW
 			islandMaterial->SetShader(RN::Shader::WithFile("Shaders/DiffuseAO"));
 			islandMaterial->Define("TILE_FACTOR", 30.0f);
 			
-			new StaticEntity("Models/haus1.sgm");
+			StaticEntity *tree = new StaticEntity("Models/tree2.sgm");
+			tree->SetPosition(RN::Vector3(2.0f, -3.0f, 2.0f));
+			tree->GetModel()->GetMaterialAtIndex(0, 1)->SetDiscard(true);
+			tree->GetModel()->GetMaterialAtIndex(0, 1)->SetDiscardThreshold(0.9f);
+			tree->GetModel()->GetMaterialAtIndex(0, 1)->SetCullMode(RN::Material::CullMode::None);
+
+			StaticEntity *tree3 = new StaticEntity("Models/tree3.sgm");
+			tree3->SetPosition(RN::Vector3(5.0f, -3.0f, 5.0f));
+			tree3->GetModel()->GetMaterialAtIndex(0, 1)->SetDiscard(true);
+			tree3->GetModel()->GetMaterialAtIndex(0, 1)->SetDiscardThreshold(0.9f);
+			tree3->GetModel()->GetMaterialAtIndex(0, 1)->SetCullMode(RN::Material::CullMode::None);
+
+			StaticEntity *tree4 = new StaticEntity("Models/tree4.sgm");
+			tree4->SetPosition(RN::Vector3(15.0f, -3.0f, -15.0f));
+			tree4->GetModel()->GetMaterialAtIndex(0, 1)->SetDiscard(true);
+			tree4->GetModel()->GetMaterialAtIndex(0, 1)->SetDiscardThreshold(0.9f);
+			tree4->GetModel()->GetMaterialAtIndex(0, 1)->SetCullMode(RN::Material::CullMode::None);
+
+			StaticEntity *tree5 = new StaticEntity("Models/tree5.sgm");
+			tree5->SetPosition(RN::Vector3(-15.0f, -3.0f, -15.0f));
+			tree5->GetModel()->GetMaterialAtIndex(0, 1)->SetDiscard(true);
+			tree5->GetModel()->GetMaterialAtIndex(0, 1)->SetDiscardThreshold(0.9f);
+			tree5->GetModel()->GetMaterialAtIndex(0, 1)->SetCullMode(RN::Material::CullMode::None);
+
+			StaticEntity *tree6 = new StaticEntity("Models/tree6.sgm");
+			tree6->SetPosition(RN::Vector3(-30.0f, -3.0f, 15.0f));
+			tree6->GetModel()->GetMaterialAtIndex(0, 1)->SetDiscard(true);
+			tree6->GetModel()->GetMaterialAtIndex(0, 1)->SetDiscardThreshold(0.9f);
+			tree6->GetModel()->GetMaterialAtIndex(0, 1)->SetCullMode(RN::Material::CullMode::None);
+
 			StaticEntity *jetty = new StaticEntity("Models/jetty.sgm");
 			jetty->SetPosition(RN::Vector3(-6.815f, -9.343f, 55.183f));
 			new StaticEntity("Models/wohnhaus.sgm");

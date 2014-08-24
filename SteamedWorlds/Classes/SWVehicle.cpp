@@ -8,7 +8,10 @@
 
 #include "SWVehicle.h"
 #include "SWPlayer.h"
+
+#if RN_PLATFORM_MAC_OS
 #include <ROCamera.h>
+#endif
 
 namespace SW
 {
