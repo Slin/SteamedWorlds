@@ -20,6 +20,7 @@
 
 #include <Rayne/Rayne.h>
 #include <RBKinematicController.h>
+#include <RALAudioWorld.h>
 
 namespace SW
 {
@@ -31,10 +32,12 @@ namespace SW
 		
 		void Update(float delta) override;
 		void SetPassable(bool passable);
+		RN::SceneNode *GetCamera() const { return _camera; }
 		
 	private:
 		RN::SceneNode *_camera;
 		RN::bullet::KinematicController *_controller;
+		RN::openal::AudioSource *_footstepSource;
 		
 		bool _isPassable;
 		

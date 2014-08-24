@@ -20,7 +20,18 @@ namespace SW
 	{
 		SetTitle("Steamed Worlds");
 
-		RN::World *world = new World();
+		SW::World *world = new World();
+		
+#if RN_PLATFORM_MAC_OS
+		RO::HMD *hmd = RO::System::GetSharedInstance()->GetHMD(0);
+		if(hmd)
+		{
+			hmd->SetAsDisplay(false);
+		}
+		
+		world->SetHMD(hmd);
+#endif
+		
 		RN::WorldCoordinator::GetSharedInstance()->LoadWorld(world->Autorelease());
 	}
 	

@@ -11,6 +11,11 @@
 
 #include <Rayne/Rayne.h>
 #include <RBPhysicsWorld.h>
+#include <RALAudioWorld.h>
+
+#if RN_PLATFORM_MAC_OS
+	#include <ROCamera.h>
+#endif
 
 #include "SWFullscreenEffects.h"
 #include "SWStaticEntity.h"
@@ -30,9 +35,20 @@ namespace SW
 		
 		void Update(float delta) override;
 		
+#if RN_PLATFORM_MAC_OS
+		void SetHMD(RO::HMD *hmd);
+#endif
+		
+		RN::openal::AudioWorld *GetAudioWorld() const { return _audioWorld; }
+		
 	private:
-		RN::Camera *_camera;
+		RN::SceneNode *_camera;
 		RN::bullet::PhysicsWorld *_physicsWorld;
+		RN::openal::AudioWorld *_audioWorld;
+		
+#if RN_PLATFORM_MAC_OS
+		RO::HMD *_hmd;
+#endif
 		
 		RNDeclareMeta(World)
 	};

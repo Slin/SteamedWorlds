@@ -11,6 +11,10 @@
 		D52B142619A886BF00974FA6 /* SWWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D52B142519A886BF00974FA6 /* SWWorld.cpp */; };
 		D52B142A19A886BF00974FA6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D52B142919A886BF00974FA6 /* main.cpp */; };
 		D52B142D19A886BF00974FA6 /* SteamedWorlds-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = D52B142C19A886BF00974FA6 /* SteamedWorlds-Prefix.pch */; };
+		D5D5D70619AA024200D2206D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5D5D70519AA024200D2206D /* CoreGraphics.framework */; };
+		D5D5D70819AA024E00D2206D /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5D5D70719AA024E00D2206D /* IOKit.framework */; };
+		D5D5D70A19AA025500D2206D /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5D5D70919AA025500D2206D /* CoreFoundation.framework */; };
+		D5D5D70C19AA026100D2206D /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5D5D70B19AA026100D2206D /* OpenGL.framework */; };
 		D5F8240019A8A75E00F1AE78 /* SWFullscreenEffects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5F823FE19A8A75E00F1AE78 /* SWFullscreenEffects.cpp */; };
 		D5F8240119A8A75E00F1AE78 /* SWFullscreenEffects.h in Headers */ = {isa = PBXBuildFile; fileRef = D5F823FF19A8A75E00F1AE78 /* SWFullscreenEffects.h */; };
 		D5F8240419A8A98C00F1AE78 /* SWStaticEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5F8240219A8A98C00F1AE78 /* SWStaticEntity.cpp */; };
@@ -32,6 +36,10 @@
 		D52B142C19A886BF00974FA6 /* SteamedWorlds-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SteamedWorlds-Prefix.pch"; path = "Supporting files/SteamedWorlds-Prefix.pch"; sourceTree = "<group>"; };
 		D52B142F19A886BF00974FA6 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
 		D52B143019A886BF00974FA6 /* settings.json */ = {isa = PBXFileReference; lastKnownFileType = folder; path = settings.json; sourceTree = "<group>"; };
+		D5D5D70519AA024200D2206D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D5D5D70719AA024E00D2206D /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		D5D5D70919AA025500D2206D /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		D5D5D70B19AA026100D2206D /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		D5F823FE19A8A75E00F1AE78 /* SWFullscreenEffects.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SWFullscreenEffects.cpp; path = Classes/SWFullscreenEffects.cpp; sourceTree = "<group>"; };
 		D5F823FF19A8A75E00F1AE78 /* SWFullscreenEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWFullscreenEffects.h; path = Classes/SWFullscreenEffects.h; sourceTree = "<group>"; };
 		D5F8240219A8A98C00F1AE78 /* SWStaticEntity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SWStaticEntity.cpp; path = Classes/SWStaticEntity.cpp; sourceTree = "<group>"; };
@@ -47,6 +55,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5D5D70C19AA026100D2206D /* OpenGL.framework in Frameworks */,
+				D5D5D70A19AA025500D2206D /* CoreFoundation.framework in Frameworks */,
+				D5D5D70819AA024E00D2206D /* IOKit.framework in Frameworks */,
+				D5D5D70619AA024200D2206D /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +68,10 @@
 		D52B141419A886BF00974FA6 = {
 			isa = PBXGroup;
 			children = (
+				D5D5D70B19AA026100D2206D /* OpenGL.framework */,
+				D5D5D70919AA025500D2206D /* CoreFoundation.framework */,
+				D5D5D70719AA024E00D2206D /* IOKit.framework */,
+				D5D5D70519AA024200D2206D /* CoreGraphics.framework */,
 				D52B142019A886BF00974FA6 /* SteamedWorlds */,
 				D52B141F19A886BF00974FA6 /* Products */,
 			);
@@ -297,6 +313,7 @@
 					/usr/local/include/rayne/,
 					"\"$(SRCROOT)/SteamedWorlds/Resources/Modules/rayne-openal/include\"",
 					"\"$(SRCROOT)/SteamedWorlds/Resources/Modules/rayne-bullet/include\"",
+					"\"$(SRCROOT)/SteamedWorlds/Resources/Modules/oculus/include\"",
 				);
 				INFOPLIST_FILE = "SteamedWorlds/Supporting files/SteamedWorlds-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
@@ -304,12 +321,14 @@
 					/usr/local/lib/,
 					"\"$(SRCROOT)/SteamedWorlds/Resources/Modules/rayne-bullet\"",
 					"\"$(SRCROOT)/SteamedWorlds/Resources/Modules/rayne-openal\"",
+					"\"$(SRCROOT)/SteamedWorlds/Resources/Modules/oculus\"",
 				);
 				OTHER_LDFLAGS = (
 					"-lRayne",
 					"-lrayne-bullet",
 					"-lopenal.1.15.1",
 					"-lrayne-openal",
+					"-lrayne-oculus",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -330,6 +349,7 @@
 					/usr/local/include/rayne/,
 					"\"$(SRCROOT)/SteamedWorlds/Resources/Modules/rayne-openal/include\"",
 					"\"$(SRCROOT)/SteamedWorlds/Resources/Modules/rayne-bullet/include\"",
+					"\"$(SRCROOT)/SteamedWorlds/Resources/Modules/oculus/include\"",
 				);
 				INFOPLIST_FILE = "SteamedWorlds/Supporting files/SteamedWorlds-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
@@ -337,12 +357,14 @@
 					/usr/local/lib/,
 					"\"$(SRCROOT)/SteamedWorlds/Resources/Modules/rayne-bullet\"",
 					"\"$(SRCROOT)/SteamedWorlds/Resources/Modules/rayne-openal\"",
+					"\"$(SRCROOT)/SteamedWorlds/Resources/Modules/oculus\"",
 				);
 				OTHER_LDFLAGS = (
 					"-lRayne",
 					"-lrayne-bullet",
 					"-lopenal.1.15.1",
 					"-lrayne-openal",
+					"-lrayne-oculus",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

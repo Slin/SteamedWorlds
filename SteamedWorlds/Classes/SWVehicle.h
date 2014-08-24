@@ -30,6 +30,8 @@ namespace SW
 		bool _hasToggled;
 		
 		class RN::bullet::RigidBody *_body;
+		RN::SceneNode *_camera;
+		RN::Vector3 _oldCameraPosition;
 		
 		RNDeclareMeta(Vehicle)
 	};

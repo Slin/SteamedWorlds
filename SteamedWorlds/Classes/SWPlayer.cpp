@@ -16,7 +16,13 @@
 //
 
 #include "SWPlayer.h"
+#include "SWWorld.h"
+
 #include <RBPhysicsWorld.h>
+
+#if RN_PLATFORM_MAC_OS
+#include <ROCamera.h>
+#endif
 
 namespace SW
 {
@@ -24,7 +30,7 @@ namespace SW
 	RNDefineSingleton(Player)
 	
 	Player::Player(RN::SceneNode *camera) :
-		_camera(camera), _isPassable(true), _controller(nullptr)
+		_camera(camera), _isPassable(true), _controller(nullptr), _footstepSource(nullptr)
 	{
 		MakeShared();
 		
@@ -47,25 +53,34 @@ namespace SW
 	{
 		RN::Entity::Update(delta);
 		
-		RN::Input *input = RN::Input::GetSharedInstance();
-		
-		RN::Vector3 rotationX(input->GetMouseDelta().x, 0.0f, 0.0f);
-		Rotate(rotationX);
-		
-		RN::Vector3 rotationY(0.0f, input->GetMouseDelta().y, 0.0f);
-		rotationY += _camera->GetRotation().GetEulerAngle();
-		rotationY.y = std::max(-80.0f, std::min(65.0f, rotationY.y));
-		_camera->SetRotation(rotationY);
-		
-		
 		if(_controller)
 		{
+			RN::Input *input = RN::Input::GetSharedInstance();
+			
+			RN::Vector3 rotationX(input->GetMouseDelta().x, 0.0f, 0.0f);
+			Rotate(rotationX);
+			
+#if RN_PLATFORM_MAC_OS
+			if(!_camera->IsKindOfClass(RO::Camera::GetMetaClass()))
+#endif
+			{
+				RN::Vector3 rotationY(0.0f, input->GetMouseDelta().y, 0.0f);
+				rotationY += _camera->GetRotation().GetEulerAngle();
+				rotationY.y = std::max(-80.0f, std::min(65.0f, rotationY.y));
+				_camera->SetRotation(rotationY);
+			}
+			
 			RN::Vector3 direction(input->IsKeyPressed('d')-input->IsKeyPressed('a'), 0.0f, input->IsKeyPressed('s')-input->IsKeyPressed('w'));
 			
 			direction = GetRotation().GetRotatedVector(direction);
 			direction *= 0.1f+0.1f*(input->GetModifierKeys() & RN::KeyModifier::KeyShift);
 			
 			_controller->SetWalkDirection(direction);
+			
+			if(!_footstepSource)
+			{
+				_footstepSource = GetWorld()->Downcast<SW::World>()->GetAudioWorld()->PlaySound(RN::AudioResource::WithFile("Audio/footstep_gravel_1.ogg"));
+			}
 
 			if(input->IsKeyPressed(' ') && _controller->IsOnGround())
 			{

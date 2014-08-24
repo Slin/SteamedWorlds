@@ -8,6 +8,7 @@
 
 #include "SWVehicle.h"
 #include "SWPlayer.h"
+#include <ROCamera.h>
 
 namespace SW
 {
@@ -32,7 +33,8 @@ namespace SW
 		_isActive = false;
 		AddDependency(Player::GetSharedInstance());
 		
-		RN::bullet::BoxShape *shape = new RN::bullet::BoxShape(GetBoundingBox().maxExtend);
+		RN::bullet::BoxShape *shape = new RN::bullet::BoxShape(RN::Vector3(3.0, 5.5, 1.6));
+//		RN::bullet::CylinderShape *shape = new RN::bullet::CylinderShape();
 		RN::bullet::RigidBody *body = new RN::bullet::RigidBody(shape, 10.0f);
 		AddAttachment(body);
 		
@@ -63,6 +65,13 @@ namespace SW
 					if(player->GetWorldPosition().GetDistance(GetWorldPosition()) < GetBoundingBox().maxExtend.GetLength()*1.2f)
 					{
 						player->SetPassable(true);
+						
+						_camera = player->GetCamera();
+						_oldCameraPosition = _camera->GetPosition();
+						player->RemoveChild(_camera);
+						AddChild(_camera);
+						_camera->SetPosition(_oldCameraPosition + RN::Vector3(-1.5f, -3.5f, 0.0f));
+						
 						RemoveDependency(player);
 						AddChild(player);
 						player->SetPosition(RN::Vector3(-1.5f, -3.5f, 0.0f));
@@ -74,6 +83,11 @@ namespace SW
 					RemoveChild(player);
 					AddDependency(player);
 					player->SetWorldPosition(GetWorldPosition()+GetBoundingBox().maxExtend*1.2f);
+					
+					RemoveChild(_camera);
+					player->AddChild(_camera);
+					_camera->SetPosition(_oldCameraPosition);
+					
 					player->SetPassable(false);
 					_isActive = false;
 				}
@@ -88,6 +102,17 @@ namespace SW
 		
 		if(_isActive)
 		{
+#if RN_PLATFORM_MAC_OS
+			if(!_camera->IsKindOfClass(RO::Camera::GetMetaClass()))
+#endif
+			{
+				RN::Vector3 euler = _camera->GetEulerAngle();
+				euler.x += input->GetMouseDelta().x;
+				euler.y += input->GetMouseDelta().y;
+				euler.y = std::max(-80.0f, std::min(65.0f, euler.y));
+				_camera->SetRotation(euler);
+			}
+			
 			RN::Vector3 direction(input->IsKeyPressed('s')-input->IsKeyPressed('w'), input->IsKeyPressed('e')-input->IsKeyPressed('q'), 0.0f);
 			direction = GetWorldRotation().GetRotatedVector(direction);
 			_body->ApplyImpulse(direction*1.5f);
