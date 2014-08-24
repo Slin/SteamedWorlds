@@ -118,15 +118,23 @@ namespace SW
 			islandMaterial->AddTexture(RN::Texture::WithFile("Models/dirt3.png"));
 			islandMaterial->SetShader(RN::Shader::WithFile("Shaders/Island"));
 			
-			StaticEntity *haus = new StaticEntity("Models/wohnhaus.sgm");
-			haus->SetWorldPosition(RN::Vector3(20.0f, 1.0f, 0.0f));
+			islandMaterial = islandStart->GetModel()->GetMaterialAtIndex(0, 1);
+			islandMaterial->RemoveTextures();
+			islandMaterial->AddTexture(RN::Texture::WithFile("Models/stone1.png"));
+			islandMaterial->SetShader(RN::Shader::WithFile("Shaders/DiffuseAO"));
+			islandMaterial->Define("TILE_FACTOR", 30.0f);
 			
-			Vehicle *ship = new Vehicle("Models/airboat.sgm");
+			new StaticEntity("Models/haus1.sgm");
+			StaticEntity *jetty = new StaticEntity("Models/jetty.sgm");
+			jetty->SetPosition(RN::Vector3(-6.815f, -9.343f, 55.183f));
+			new StaticEntity("Models/wohnhaus.sgm");
+			
+			Vehicle *ship = new Vehicle("Models/airboat.sgm", "Models/airboat_wheel.sgm");
 			ship->SetWorldPosition(ship->GetWorldPosition()+RN::Vector3(0.0f, ship->GetBoundingBox().maxExtend.y+5.0f, 0.0f));
-			ship->GetModel()->GetMaterialAtIndex(0, 0)->Define("RN_SPECULARITY");
-			ship->GetModel()->GetMaterialAtIndex(0, 0)->SetSpecularColor(RN::Color(0.1f, 0.08f, 0.05f, 250.0f));
 			ship->GetModel()->GetMaterialAtIndex(0, 2)->Define("RN_SPECULARITY");
 			ship->GetModel()->GetMaterialAtIndex(0, 2)->SetSpecularColor(RN::Color(0.1f, 0.08f, 0.05f, 250.0f));
+			ship->GetModel()->GetMaterialAtIndex(0, 3)->Define("RN_SPECULARITY");
+			ship->GetModel()->GetMaterialAtIndex(0, 3)->SetSpecularColor(RN::Color(0.1f, 0.08f, 0.05f, 250.0f));
 		}
 	}
 	

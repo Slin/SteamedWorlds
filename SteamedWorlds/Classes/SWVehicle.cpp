@@ -14,10 +14,16 @@ namespace SW
 {
 	RNDefineMeta(Vehicle, RN::Entity)
 	
-	Vehicle::Vehicle(const std::string filename)
+	Vehicle::Vehicle(const std::string filename, const std::string wheelfile, RN::Vector3 bounds, RN::Vector3 wheelpos)
 	{
 		RN::Model *model = RN::Model::WithFile(filename);
 		SetModel(model);
+		
+		_wheel = new RN::Entity(RN::Model::WithFile(wheelfile));
+		AddChild(_wheel);
+		_wheel->SetPosition(wheelpos);
+		
+		_bounds = bounds;
 		
 		Initialize();
 	}
@@ -25,6 +31,7 @@ namespace SW
 	Vehicle::Vehicle(RN::Deserializer *deserializer)
 	: RN::Entity(deserializer)
 	{
+		_bounds = deserializer->DecodeVector3();
 		Initialize();
 	}
 	
@@ -33,7 +40,7 @@ namespace SW
 		_isActive = false;
 		AddDependency(Player::GetSharedInstance());
 		
-		RN::bullet::BoxShape *shape = new RN::bullet::BoxShape(RN::Vector3(3.0, 5.5, 1.6));
+		RN::bullet::BoxShape *shape = new RN::bullet::BoxShape(_bounds);
 //		RN::bullet::CylinderShape *shape = new RN::bullet::CylinderShape();
 		RN::bullet::RigidBody *body = new RN::bullet::RigidBody(shape, 10.0f);
 		AddAttachment(body);
@@ -49,6 +56,8 @@ namespace SW
 	void Vehicle::Serialize(RN::Serializer *serializer)
 	{
 		Entity::Serialize(serializer);
+		
+		serializer->EncodeVector3(_bounds);
 	}
 	
 	void Vehicle::Update(float delta)
@@ -87,6 +96,7 @@ namespace SW
 					RemoveChild(_camera);
 					player->AddChild(_camera);
 					_camera->SetPosition(_oldCameraPosition);
+					_camera->SetRotation(RN::Vector3(0.0f, 0.0f, 0.0f));
 					
 					player->SetPassable(false);
 					_isActive = false;
@@ -119,6 +129,13 @@ namespace SW
 			
 			float rotation = input->IsKeyPressed('a')-input->IsKeyPressed('d');
 			_body->ApplyTorqueImpulse(RN::Vector3(0.0f, rotation*0.5f, 0.0f));
+			
+			if(rotation != 0.0f)
+				_wheelRotation += rotation*delta*80.0f;
+			else
+				_wheelRotation -= _wheelRotation*delta*0.9f;
+				
+			_wheel->SetRotation(RN::Vector3(0.0f, _wheelRotation, 0.0f));
 		}
 	}
 }

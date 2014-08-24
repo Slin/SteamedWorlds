@@ -17,7 +17,7 @@ namespace SW
 	class Vehicle : public RN::Entity
 	{
 	public:
-		Vehicle(const std::string filename);
+		Vehicle(const std::string filename, const std::string wheelfile, RN::Vector3 bounds=RN::Vector3(3.0, 5.5, 1.6), RN::Vector3 wheelpos=RN::Vector3(-2.31, -3.65, 0.0f));
 		Vehicle(RN::Deserializer *deserializer);
 		
 		void Initialize();
@@ -28,10 +28,13 @@ namespace SW
 	private:
 		bool _isActive;
 		bool _hasToggled;
+		RN::Vector3 _bounds;
 		
 		class RN::bullet::RigidBody *_body;
 		RN::SceneNode *_camera;
 		RN::Vector3 _oldCameraPosition;
+		RN::SceneNode *_wheel;
+		float _wheelRotation;
 		
 		RNDeclareMeta(Vehicle)
 	};
