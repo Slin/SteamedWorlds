@@ -26,6 +26,11 @@ namespace SW
 		AddChild(_wheel);
 		_wheel->SetPosition(wheelpos);
 		
+		RN::openal::AudioSource *_engineLeft = new RN::openal::AudioSource(RN::AudioResource::WithFile("Audio/engine.ogg"));
+		_engineLeft->SetRepeat(true);
+		_engineLeft->Play();
+		AddChild(_engineLeft);
+		
 		Initialize();
 	}
 	

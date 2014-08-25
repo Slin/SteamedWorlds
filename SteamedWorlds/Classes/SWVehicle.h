@@ -11,6 +11,7 @@
 
 #include <Rayne/Rayne.h>
 #include <RBRigidBody.h>
+#include <RALAudioSource.h>
 
 namespace SW
 {
