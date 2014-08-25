@@ -53,6 +53,7 @@ namespace SW
 		
 		bool _isPassable;
 		float _isAnimating;
+		bool _playedIntro;
 		
 		RN::Skeleton *_skeleton;
 		
