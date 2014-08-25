@@ -37,6 +37,9 @@ namespace SW
 		RN::SceneNode *_wheel;
 		float _wheelRotation;
 		
+		RN::openal::AudioSource *_engineLeft;
+		RN::openal::AudioSource *_engineRight;
+		
 		RNDeclareMeta(Vehicle)
 	};
 }

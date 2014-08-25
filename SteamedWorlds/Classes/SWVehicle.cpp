@@ -26,10 +26,15 @@ namespace SW
 		AddChild(_wheel);
 		_wheel->SetPosition(wheelpos);
 		
-		RN::openal::AudioSource *_engineLeft = new RN::openal::AudioSource(RN::AudioResource::WithFile("Audio/engine.ogg"));
+		_engineLeft = new RN::openal::AudioSource(RN::AudioResource::WithFile("Audio/engine.ogg"));
 		_engineLeft->SetRepeat(true);
-		_engineLeft->Play();
 		AddChild(_engineLeft);
+		_engineLeft->SetPosition(RN::Vector3(-0.02f, -4.27f, 1.64f));
+		
+		_engineRight = new RN::openal::AudioSource(RN::AudioResource::WithFile("Audio/engine.ogg"));
+		_engineRight->SetRepeat(true);
+		AddChild(_engineRight);
+		_engineRight->SetPosition(RN::Vector3(-0.02f, -4.27f, -1.64f));
 		
 		Initialize();
 	}
@@ -53,7 +58,7 @@ namespace SW
 		shape->AddChild(RN::bullet::BoxShape::WithHalfExtents(RN::Vector3(0.595f, 0.853f, 1.0f)), RN::Vector3(-2.81f, -3.76f, 0.0f), RN::Vector3(0.0f, 0.0f, 0.0f));
 		shape->AddChild(RN::bullet::BoxShape::WithHalfExtents(RN::Vector3(1.205f, 0.395f, 0.4505f)), RN::Vector3(-4.6f, -3.59f, 0.0f), RN::Vector3(0.0f, 0.0f, 0.0f));
 		shape->AddChild(RN::bullet::BoxShape::WithHalfExtents(RN::Vector3(0.77f, 0.555f, 0.452)), RN::Vector3(-0.02f, -4.27f, -1.64f), RN::Vector3(0.0f, 0.0f, 0.0f));
-		shape->AddChild(RN::bullet::BoxShape::WithHalfExtents(RN::Vector3(0.77f, 0.555f, 0.452)), RN::Vector3(-0.02f, -4.28f, -1.62f), RN::Vector3(0.0f, 0.0f, 0.0f));
+		shape->AddChild(RN::bullet::BoxShape::WithHalfExtents(RN::Vector3(0.77f, 0.555f, 0.452)), RN::Vector3(-0.02f, -4.28f, 1.62f), RN::Vector3(0.0f, 0.0f, 0.0f));
 		shape->AddChild(RN::bullet::BoxShape::WithHalfExtents(RN::Vector3(0.11f, 0.555f, 1.36)), RN::Vector3(-0.12f, -4.06f, 1.24f), RN::Vector3(90.0f, 0.0f, 0.0f));
 		shape->AddChild(RN::bullet::BoxShape::WithHalfExtents(RN::Vector3(0.11f, 0.555f, 1.36)), RN::Vector3(-0.12f, -4.06f, -1.23f), RN::Vector3(90.0f, 0.0f, 0.0f));
 		shape->AddChild(RN::bullet::BoxShape::WithHalfExtents(RN::Vector3(0.11f, 0.555f, 1.36)), RN::Vector3(2.3f, -4.06f, -0.5f), RN::Vector3(56.8f, 0.0f, 0.0f));
@@ -103,6 +108,12 @@ namespace SW
 						AddChild(player);
 						player->SetPosition(RN::Vector3(-1.5f, -3.5f, 0.0f));
 						_isActive = true;
+						
+						_engineLeft->SetRepeat(true);
+						_engineLeft->Play();
+						
+						_engineRight->SetRepeat(true);
+						_engineRight->Play();
 					}
 				}
 				else
@@ -119,6 +130,9 @@ namespace SW
 					
 					player->SetPassable(false);
 					_isActive = false;
+					
+					_engineLeft->SetRepeat(false);
+					_engineRight->SetRepeat(false);
 				}
 				
 				_hasToggled = true;
@@ -141,6 +155,14 @@ namespace SW
 				euler.y = std::max(-80.0f, std::min(65.0f, euler.y));
 				_camera->SetRotation(euler);
 			}
+			
+			RN::Vector3 speed = _body->GetLinearVelocity();
+			float gain = speed.GetLength()*0.1f+0.1f;
+			float pitch = 0.2+std::min(speed.GetLength()*0.1f, 1.0f);
+			_engineRight->SetGain(gain);
+			_engineRight->SetPitch(pitch);
+			_engineLeft->SetPitch(pitch);
+			_engineLeft->SetGain(gain);
 			
 			RN::Vector3 direction(input->IsKeyPressed('s')-input->IsKeyPressed('w'), input->IsKeyPressed('e')-input->IsKeyPressed('q'), 0.0f);
 			direction = GetWorldRotation().GetRotatedVector(direction);
