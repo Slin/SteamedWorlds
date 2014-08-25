@@ -194,7 +194,7 @@ namespace SW
 			vulkan->SetPosition(RN::Vector3(500.0f, 200.0f, 1000.0f));
 			RN::Material * vulkanMaterial = vulkan->GetModel()->GetMaterialAtIndex(0, 0);
 			vulkanMaterial->RemoveTextures();
-			vulkanMaterial->AddTexture(RN::Texture::WithFile("Models/bodeeen.png"));
+			vulkanMaterial->AddTexture(RN::Texture::WithFile("Models/vulcano_ao.png"));
 			vulkanMaterial->AddTexture(RN::Texture::WithFile("Models/vulcano_splat.png"));
 			vulkanMaterial->AddTexture(RN::Texture::WithFile("Models/dirt.png"));
 			vulkanMaterial->AddTexture(RN::Texture::WithFile("Models/dirt3.png"));
