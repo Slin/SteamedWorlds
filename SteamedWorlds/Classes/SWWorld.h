@@ -22,6 +22,7 @@
 #include "SWPlayer.h"
 #include "SWVehicle.h"
 #include "SWTurm.h"
+#include "SWCrashingShip.h"
 
 namespace SW
 {
@@ -36,6 +37,8 @@ namespace SW
 		
 		void Update(float delta) override;
 		
+		void StartIntro();
+		
 #if RN_PLATFORM_MAC_OS
 		void SetHMD(RO::HMD *hmd);
 #endif
@@ -46,6 +49,9 @@ namespace SW
 		RN::SceneNode *_camera;
 		RN::bullet::PhysicsWorld *_physicsWorld;
 		RN::openal::AudioWorld *_audioWorld;
+		
+		CrashingShip *_crashingShip;
+		Turm *_turm;
 		
 #if RN_PLATFORM_MAC_OS
 		RO::HMD *_hmd;

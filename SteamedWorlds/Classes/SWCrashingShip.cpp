@@ -14,7 +14,7 @@ namespace SW
 	
 	CrashingShip::CrashingShip()
 	{
-		RN::Model *model = RN::Model::WithFile("Models/airship.sgm");
+		RN::Model *model = RN::Model::WithFile("Models/airboat_ani.sgm");
 		SetModel(model);
 		
 		Initialize();
@@ -28,7 +28,10 @@ namespace SW
 	
 	void CrashingShip::Initialize()
 	{
-		GetSkeleton()->SetAnimation("Armature.002Action");
+		_isStarted = false;
+		_startCounter = 0.0f;
+		SetRenderGroup(5);
+		GetSkeleton()->SetAnimation("idle");
 	}
 	
 	void CrashingShip::Serialize(RN::Serializer *serializer)
@@ -36,8 +39,21 @@ namespace SW
 		Entity::Serialize(serializer);
 	}
 	
+	void CrashingShip::StartAnimation()
+	{
+		_isStarted = true;
+	}
+	
 	void CrashingShip::Update(float delta)
 	{
-		GetSkeleton()->Update(delta*24.0f, false);
+		if(_isStarted)
+		{
+			_startCounter += delta;
+			if(_startCounter > 1.9f)
+			{
+				SetRenderGroup(0);
+				GetSkeleton()->Update(delta*24.0f, false);
+			}
+		}
 	}
 }
