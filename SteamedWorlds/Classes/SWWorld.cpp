@@ -176,9 +176,6 @@ namespace SW
 			StaticEntity *turmplatform = new StaticEntity("Models/geruest_platform.sgm");
 			turmplatform->GetModel()->GetMaterialAtIndex(0, 0)->SetCullMode(RN::Material::CullMode::None);
 			
-			StaticEntity *kristall = new StaticEntity("Models/diamond.sgm");
-			kristall->GetModel()->GetMaterialAtIndex(0, 0)->SetCullMode(RN::Material::CullMode::None);
-			
 			StaticEntity *zaun = new StaticEntity("Models/zaunacker.sgm");
 			zaun->GetModel()->GetMaterialAtIndex(0, 0)->SetCullMode(RN::Material::CullMode::None);
 		}
