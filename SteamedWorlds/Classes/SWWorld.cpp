@@ -13,7 +13,7 @@ namespace SW
 	RNDefineMeta(World, RN::World)
 	
 	World::World() :
-		RN::World("GenericSceneManager"), _hasPlayedIntro(false)
+		RN::World("GenericSceneManager")
 	
 #if RN_PLATFORM_MAC_OS
 	,_hmd(nullptr)
@@ -213,6 +213,8 @@ namespace SW
 			vulkanMaterial->SetShader(RN::Shader::WithFile("Shaders/Island"));
 			vulkanMaterial->Define("SPLAT_NO_ALPHA");
 		}
+		
+		StartIntro();
 	}
 	
 	void World::SaveOnThread(RN::Thread *thread, RN::Serializer *serializer)
@@ -227,10 +229,7 @@ namespace SW
 
 	void World::Update(float delta)
 	{
-		if(!_hasPlayedIntro)
-		{
-			StartIntro();
-		}
+		// Do something...
 	}
 	
 	void World::StartIntro()
@@ -238,6 +237,5 @@ namespace SW
 		_crashingShip->StartAnimation();
 		_turm->StartAnimation();
 		Player::GetSharedInstance()->StartAnimation();
-		_hasPlayedIntro = true;
 	}
 }
