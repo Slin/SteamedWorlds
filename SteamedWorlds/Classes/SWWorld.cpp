@@ -142,6 +142,15 @@ namespace SW
 			tree->GetModel()->GetMaterialAtIndex(0, 5)->SetDiscard(true);
 			tree->GetModel()->GetMaterialAtIndex(0, 5)->SetDiscardThreshold(0.9f);
 			tree->GetModel()->GetMaterialAtIndex(0, 5)->SetCullMode(RN::Material::CullMode::None);
+			tree->GetModel()->GetMaterialAtIndex(0, 7)->SetDiscard(true);
+			tree->GetModel()->GetMaterialAtIndex(0, 7)->SetDiscardThreshold(0.9f);
+			tree->GetModel()->GetMaterialAtIndex(0, 7)->SetCullMode(RN::Material::CullMode::None);
+			tree->GetModel()->GetMaterialAtIndex(0, 9)->SetDiscard(true);
+			tree->GetModel()->GetMaterialAtIndex(0, 9)->SetDiscardThreshold(0.9f);
+			tree->GetModel()->GetMaterialAtIndex(0, 9)->SetCullMode(RN::Material::CullMode::None);
+			tree->GetModel()->GetMaterialAtIndex(0, 11)->SetDiscard(true);
+			tree->GetModel()->GetMaterialAtIndex(0, 11)->SetDiscardThreshold(0.9f);
+			tree->GetModel()->GetMaterialAtIndex(0, 11)->SetCullMode(RN::Material::CullMode::None);
 
 			StaticEntity *jetty = new StaticEntity("Models/jetty.sgm");
 			jetty->SetPosition(RN::Vector3(-6.815f, -9.343f, 55.183f));
