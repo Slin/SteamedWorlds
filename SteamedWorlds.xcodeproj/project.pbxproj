@@ -11,6 +11,10 @@
 		D52B142619A886BF00974FA6 /* SWWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D52B142519A886BF00974FA6 /* SWWorld.cpp */; };
 		D52B142A19A886BF00974FA6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D52B142919A886BF00974FA6 /* main.cpp */; };
 		D52B142D19A886BF00974FA6 /* SteamedWorlds-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = D52B142C19A886BF00974FA6 /* SteamedWorlds-Prefix.pch */; };
+		D5A1063419ABD0F1008019C6 /* SWArea.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5A1063019ABD0F1008019C6 /* SWArea.cpp */; };
+		D5A1063519ABD0F1008019C6 /* SWArea.h in Headers */ = {isa = PBXBuildFile; fileRef = D5A1063119ABD0F1008019C6 /* SWArea.h */; };
+		D5A1063619ABD0F1008019C6 /* SWPickupEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5A1063219ABD0F1008019C6 /* SWPickupEntity.cpp */; };
+		D5A1063719ABD0F1008019C6 /* SWPickupEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = D5A1063319ABD0F1008019C6 /* SWPickupEntity.h */; };
 		D5D2839419AB4CD800166738 /* SWTurm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5D2839219AB4CD800166738 /* SWTurm.cpp */; };
 		D5D2839519AB4CD800166738 /* SWTurm.h in Headers */ = {isa = PBXBuildFile; fileRef = D5D2839319AB4CD800166738 /* SWTurm.h */; };
 		D5D2839819AB507C00166738 /* SWCrashingShip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5D2839619AB507C00166738 /* SWCrashingShip.cpp */; };
@@ -40,6 +44,10 @@
 		D52B142C19A886BF00974FA6 /* SteamedWorlds-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SteamedWorlds-Prefix.pch"; path = "Supporting files/SteamedWorlds-Prefix.pch"; sourceTree = "<group>"; };
 		D52B142F19A886BF00974FA6 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
 		D52B143019A886BF00974FA6 /* settings.json */ = {isa = PBXFileReference; lastKnownFileType = folder; path = settings.json; sourceTree = "<group>"; };
+		D5A1063019ABD0F1008019C6 /* SWArea.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SWArea.cpp; path = Classes/SWArea.cpp; sourceTree = "<group>"; };
+		D5A1063119ABD0F1008019C6 /* SWArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWArea.h; path = Classes/SWArea.h; sourceTree = "<group>"; };
+		D5A1063219ABD0F1008019C6 /* SWPickupEntity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SWPickupEntity.cpp; path = Classes/SWPickupEntity.cpp; sourceTree = "<group>"; };
+		D5A1063319ABD0F1008019C6 /* SWPickupEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWPickupEntity.h; path = Classes/SWPickupEntity.h; sourceTree = "<group>"; };
 		D5D2839219AB4CD800166738 /* SWTurm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SWTurm.cpp; path = Classes/SWTurm.cpp; sourceTree = "<group>"; };
 		D5D2839319AB4CD800166738 /* SWTurm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWTurm.h; path = Classes/SWTurm.h; sourceTree = "<group>"; };
 		D5D2839619AB507C00166738 /* SWCrashingShip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SWCrashingShip.cpp; path = Classes/SWCrashingShip.cpp; sourceTree = "<group>"; };
@@ -122,6 +130,10 @@
 				D5D2839319AB4CD800166738 /* SWTurm.h */,
 				D5D2839619AB507C00166738 /* SWCrashingShip.cpp */,
 				D5D2839719AB507C00166738 /* SWCrashingShip.h */,
+				D5A1063019ABD0F1008019C6 /* SWArea.cpp */,
+				D5A1063119ABD0F1008019C6 /* SWArea.h */,
+				D5A1063219ABD0F1008019C6 /* SWPickupEntity.cpp */,
+				D5A1063319ABD0F1008019C6 /* SWPickupEntity.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -153,6 +165,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5D2839919AB507C00166738 /* SWCrashingShip.h in Headers */,
+				D5A1063519ABD0F1008019C6 /* SWArea.h in Headers */,
+				D5A1063719ABD0F1008019C6 /* SWPickupEntity.h in Headers */,
 				D5D2839519AB4CD800166738 /* SWTurm.h in Headers */,
 				D5F8241019A8D14000F1AE78 /* SWVehicle.h in Headers */,
 				D5F8240119A8A75E00F1AE78 /* SWFullscreenEffects.h in Headers */,
@@ -239,9 +253,11 @@
 				D52B142319A886BF00974FA6 /* SWApplication.cpp in Sources */,
 				D5F8240F19A8D14000F1AE78 /* SWVehicle.cpp in Sources */,
 				D5F8240019A8A75E00F1AE78 /* SWFullscreenEffects.cpp in Sources */,
+				D5A1063419ABD0F1008019C6 /* SWArea.cpp in Sources */,
 				D52B142619A886BF00974FA6 /* SWWorld.cpp in Sources */,
 				D5D2839419AB4CD800166738 /* SWTurm.cpp in Sources */,
 				D5F8240419A8A98C00F1AE78 /* SWStaticEntity.cpp in Sources */,
+				D5A1063619ABD0F1008019C6 /* SWPickupEntity.cpp in Sources */,
 				D5D2839819AB507C00166738 /* SWCrashingShip.cpp in Sources */,
 				D52B142A19A886BF00974FA6 /* main.cpp in Sources */,
 			);
