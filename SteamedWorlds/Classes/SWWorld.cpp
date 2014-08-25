@@ -215,8 +215,8 @@ namespace SW
 			steeringWheel->SetWorldRotation(RN::Vector3(3.24f, -15.16f, -28.641f));
 
 			PickupEntity *bottle = new PickupEntity("Models/flasche.sgm", ITEM_TYPE::BOTTLE);
-			bottle->SetPosition(RN::Vector3(919.76f, -165.29f, -847.46f));
-			bottle->SetWorldRotation(RN::Vector3(3.24f, -15.16f, -28.641f));
+			bottle->SetPosition(RN::Vector3(910.741f, -165.248f, -851.592f));
+			bottle->SetScale(RN::Vector3(4.0f, 4.0f, 4.0f));
 
 			Area *dustArea = new Area(25.0f, AREA_TYPE::DESERT_DUST);
 			dustArea->SetPosition(RN::Vector3(1123.616f, -247.31f, 387.43f));

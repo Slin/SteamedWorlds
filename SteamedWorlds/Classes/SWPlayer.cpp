@@ -186,12 +186,13 @@ namespace SW
 			break;
 		case AREA_TYPE::VULCANO:
 			if (!_hasDust) {
-				// say: I need the special cometal dust to enable the anti-gravity forces of the diamond
+				;// say: I need the special cometal dust to enable the anti-gravity forces of the diamond
 			}
 			else {
 				// victory
 				static_cast<World*>(GetWorld())->GetAudioWorld()->PlaySound(RN::AudioResource::WithFile("Audio/talking-end.ogg"));
 			}
+			break;
 		}
 	}
 }
