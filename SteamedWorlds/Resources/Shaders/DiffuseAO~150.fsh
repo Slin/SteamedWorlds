@@ -22,6 +22,11 @@ uniform sampler2D mTexture1;
 	uniform vec4 specular;
 #endif
 
+#if defined(RN_FOG)
+	uniform vec2 fogPlanes;
+	uniform vec4 fogColor;
+#endif
+
 in vec2 vertTexcoord;
 
 #if defined(SECOND_UV)
@@ -56,6 +61,11 @@ void main()
 		#endif
 		vec3 normal = normalize(vertNormal);
 		rn_Lighting(color0, spec, normal, vertPosition);
+	#endif
+
+	#if defined(RN_FOG)
+		float camdist = max(min((length(vertPosition-viewPosition)-fogPlanes.x)*fogPlanes.y, 1.0), 0.0);
+		color0 = mix(color0, fogColor, camdist);
 	#endif
 	
 	fragColor0 = color0;

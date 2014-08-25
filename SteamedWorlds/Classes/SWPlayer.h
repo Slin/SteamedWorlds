@@ -34,12 +34,19 @@ namespace SW
 		void SetPassable(bool passable);
 		RN::SceneNode *GetCamera() const { return _camera; }
 		
+		void StartAnimation();
+		void TurnCameraTo(RN::Vector3 position, float time);
+		
 	private:
 		RN::SceneNode *_camera;
 		RN::bullet::KinematicController *_controller;
 		RN::openal::AudioSource *_footstepSource;
 		
 		bool _isPassable;
+		bool _isAnimating;
+		
+		RN::Skeleton *_skeleton;
+		
 		
 		RN::Random::MersenneTwister _random;
 		
