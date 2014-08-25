@@ -117,11 +117,12 @@ namespace SW
 
 							_camera = player->GetCamera();
 							_oldCameraPosition = _camera->GetPosition();
-							player->RemoveChild(_camera);
-							AddChild(_camera);
-							_camera->SetPosition(_oldCameraPosition + RN::Vector3(-1.5f, -3.5f, 0.0f));
+							//player->RemoveChild(_camera);
+							//AddChild(_camera);
+							//_camera->SetPosition(_oldCameraPosition + RN::Vector3(-1.5f, -3.5f, 0.0f));
 
 							RemoveDependency(player);
+							player->AddDependency(this);
 							AddChild(player);
 							player->SetPosition(RN::Vector3(-1.5f, -3.5f, 0.0f));
 							_isActive = true;
@@ -136,15 +137,16 @@ namespace SW
 				}
 				else
 				{
+					player->RemoveDependency(this);
 					RemoveChild(player);
 					AddDependency(player);
 					_body->GetBulletCollisionObject()->forceActivationState(DISABLE_SIMULATION);
 					
 					player->SetRotation(RN::Vector3(_camera->GetEulerAngle().x, 0.0f, 0.0f));
-					RemoveChild(_camera);
-					player->AddChild(_camera);
-					_camera->SetPosition(_oldCameraPosition);
-					_camera->SetRotation(RN::Vector3(0.0f, 0.0f, 0.0f));
+					//RemoveChild(_camera);
+					//player->AddChild(_camera);
+					//_camera->SetPosition(_oldCameraPosition);
+					//_camera->SetRotation(RN::Vector3(0.0f, 0.0f, 0.0f));
 					
 					player->SetPassable(false);
 					_isActive = false;
@@ -163,17 +165,6 @@ namespace SW
 		
 		if(_isActive)
 		{
-#if RN_PLATFORM_MAC_OS
-			if(!_camera->IsKindOfClass(RO::Camera::GetMetaClass()))
-#endif
-			{
-				RN::Vector3 euler = _camera->GetEulerAngle();
-				euler.x += input->GetMouseDelta().x;
-				euler.y += input->GetMouseDelta().y;
-				euler.y = std::max(-80.0f, std::min(65.0f, euler.y));
-				_camera->SetRotation(euler);
-			}
-			
 			RN::Vector3 speed = _body->GetLinearVelocity();
 			float gain = std::min(speed.GetLength()*0.1f+0.1f, 1.0f)*0.5f;
 			float pitch = 0.2+std::min(speed.GetLength()*0.1f, 1.0f);
@@ -196,6 +187,16 @@ namespace SW
 				
 			_wheel->SetRotation(RN::Vector3(0.0f, _wheelRotation, 0.0f));
 
+		}
+	}
+	
+	void Vehicle::DidUpdate(RN::SceneNode::ChangeSet changeSet)
+	{
+		Entity::DidUpdate(changeSet);
+		
+		if(changeSet == RN::SceneNode::ChangeSet::Position)
+		{
+			Player::GetSharedInstance()->UpdateCamera();
 		}
 	}
 }

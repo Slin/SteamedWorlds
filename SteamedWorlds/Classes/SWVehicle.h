@@ -27,6 +27,9 @@ namespace SW
 		
 		void Update(float delta) override;
 		
+	protected:
+		void DidUpdate(RN::SceneNode::ChangeSet changeSet) override;
+		
 	private:
 		bool _isRepaired;
 

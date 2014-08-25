@@ -38,9 +38,10 @@ namespace SW
 		SetFlags(GetFlags()|RN::SceneNode::Flags::NoSave);
 		
 		SetPassable(false);
-		AddChild(_camera);
+		//AddChild(_camera);
+		_camera->AddDependency(this);
 		
-		_camera->SetPosition(RN::Vector3(0.0f, 0.78f, 0.0f));
+		//_camera->SetPosition(RN::Vector3(0.0f, 0.78f, 0.0f));
 		
 //		_skeleton = RN::Skeleton::WithFile("Models/cameraent.sga");
 //		_skeleton->SetAnimation("cameraAction");
@@ -70,23 +71,22 @@ namespace SW
 		}
 		*/
 
+		RN::Input *input = RN::Input::GetSharedInstance();
+		RN::Vector3 rotationX(input->GetMouseDelta().x, 0.0f, 0.0f);
+		Rotate(rotationX);
+		
+#if RN_PLATFORM_MAC_OS
+		if(!_camera->IsKindOfClass(RO::Camera::GetMetaClass()))
+#endif
+		{
+			RN::Vector3 rotationY(0.0f, input->GetMouseDelta().y, 0.0f);
+			rotationY += _cameraRotation;
+			rotationY.y = std::max(-80.0f, std::min(65.0f, rotationY.y));
+			_cameraRotation = rotationY;
+		}
+		
 		if(_controller)
 		{
-			RN::Input *input = RN::Input::GetSharedInstance();
-			
-			RN::Vector3 rotationX(input->GetMouseDelta().x, 0.0f, 0.0f);
-			Rotate(rotationX);
-			
-#if RN_PLATFORM_MAC_OS
-			if(!_camera->IsKindOfClass(RO::Camera::GetMetaClass()))
-#endif
-			{
-				RN::Vector3 rotationY(0.0f, input->GetMouseDelta().y, 0.0f);
-				rotationY += _camera->GetRotation().GetEulerAngle();
-				rotationY.y = std::max(-80.0f, std::min(65.0f, rotationY.y));
-				_camera->SetRotation(rotationY);
-			}
-			
 			RN::Vector3 direction(input->IsKeyPressed('d')-input->IsKeyPressed('a'), 0.0f, input->IsKeyPressed('s')-input->IsKeyPressed('w'));
 			
 			direction = GetRotation().GetRotatedVector(direction);
@@ -118,6 +118,8 @@ namespace SW
 				_controller->Jump();
 			}
 		}
+		
+		UpdateCamera();
 	}
 	
 	void Player::SetPassable(bool passable)
@@ -194,5 +196,11 @@ namespace SW
 			}
 			break;
 		}
+	}
+	
+	void Player::UpdateCamera()
+	{
+		_camera->SetWorldPosition(GetWorldPosition()+RN::Vector3(0.0f, 0.78f, 0.0f));
+		_camera->SetRotation(_cameraRotation+GetWorldEulerAngle());
 	}
 }
