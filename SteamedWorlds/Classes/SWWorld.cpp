@@ -185,9 +185,6 @@ namespace SW
 			StaticEntity *zaun = new StaticEntity("Models/zaunacker.sgm");
 			zaun->GetModel()->GetMaterialAtIndex(0, 0)->SetCullMode(RN::Material::CullMode::None);
 			
-			
-			
-			
 			StaticEntity *wueste = new StaticEntity("Models/wueste.sgm");
 			wueste->SetPosition(RN::Vector3(1000.0f, -200.0f, 100.0f));
 			wueste->GetModel()->GetMaterialAtIndex(0, 0)->AddTexture(RN::Texture::WithFile("Models/dirt3.png"));
@@ -212,6 +209,10 @@ namespace SW
 			vulkanMaterial->AddTexture(RN::Texture::WithFile("Models/dirt.png"));
 			vulkanMaterial->SetShader(RN::Shader::WithFile("Shaders/Island"));
 			vulkanMaterial->Define("SPLAT_NO_ALPHA");
+			
+			PickupEntity *steeringWheel = new PickupEntity("Models/steeringwheel.sgm", ITEM_TYPE::STEERINGWHEEL);
+			steeringWheel->SetPosition(RN::Vector3(23.757f, -1.779f, 33.857f));
+			steeringWheel->SetWorldRotation(RN::Vector3(3.24f, -15.16f, -28.641f));
 		}
 		
 		StartIntro();
