@@ -38,21 +38,38 @@ namespace SW
 		SetFlags(GetFlags()|RN::SceneNode::Flags::NoSave);
 		
 		SetPassable(false);
-		
 		AddChild(_camera);
 		
 		_camera->SetPosition(RN::Vector3(0.0f, 0.78f, 0.0f));
+		
+//		_skeleton = RN::Skeleton::WithFile("Models/cameraent.sga");
+//		_skeleton->SetAnimation("cameraAction");
+//		_skeleton->Retain();
 	}
 	
 	Player::~Player()
 	{
 		ResignShared();
 		RN::SafeRelease(_controller);
+		RN::SafeRelease(_skeleton);
 	}
 	
 	void Player::Update(float delta)
 	{
 		RN::Entity::Update(delta);
+		
+		if(_isAnimating)
+		{
+//			_isAnimating = _skeleton->Update(delta*24.0f, false);
+//			RN::Bone *bone = _skeleton->GetBones("controller").front();
+//			_camera->SetWorldPosition(bone->position);
+//			_camera->SetWorldRotation(bone->rotation);
+			
+			if(!_isAnimating)
+				SetPassable(false);
+			
+			return;
+		}
 		
 		if(_controller)
 		{
@@ -128,5 +145,16 @@ namespace SW
 		}
 		
 		_isPassable = passable;
+	}
+	
+	void Player::StartAnimation()
+	{
+		_isAnimating = true;
+		SetPassable(true);
+	}
+	
+	void Player::TurnCameraTo(RN::Vector3 position, float time)
+	{
+		
 	}
 }

@@ -78,6 +78,9 @@ namespace SW
 			tempCamera->SetAmbientColor(RN::Color::WithHSV(0.0f, 0.0f, 1.5f));
 			tempCamera->SetSky(sky);
 			tempCamera->SetClipFar(50000.0f);
+			tempCamera->SetFogFar(5000.0f);
+			tempCamera->SetFogNear(100.0f);
+			tempCamera->SetFogColor(RN::Color(2.0f, 2.0f, 3.0f));
 			
 			FullscreenEffects::GetSharedInstance()->CreateBloomPipeline(tempCamera);
 			
@@ -227,5 +230,6 @@ namespace SW
 	{
 		_crashingShip->StartAnimation();
 		_turm->StartAnimation();
+		//Player::GetSharedInstance()->StartAnimation();
 	}
 }
