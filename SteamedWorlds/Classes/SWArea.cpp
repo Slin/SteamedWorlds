@@ -28,7 +28,7 @@ namespace SW
 	
 	void Area::Initialize()
 	{
-		
+		_isTriggered = false;
 	}
 	
 	void Area::Serialize(RN::Serializer *serializer)
@@ -40,8 +40,16 @@ namespace SW
 	{
 		if(GetWorldPosition().GetDistance(Player::GetSharedInstance()->GetWorldPosition()) < _radius)
 		{
-			Player::GetSharedInstance()->EnterArea(_type);
-			RemoveFromWorld();
+			if(!_isTriggered)
+			{
+				Player::GetSharedInstance()->EnterArea(_type);
+				_isTriggered = true;
+			}
+		}
+		
+		if(GetWorldPosition().GetDistance(Player::GetSharedInstance()->GetWorldPosition()) > _radius*2.0f)
+		{
+			_isTriggered = false;
 		}
 	}
 }

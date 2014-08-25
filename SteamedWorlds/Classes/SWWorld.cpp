@@ -233,7 +233,6 @@ namespace SW
 		}
 /*
 		// Cactus
-		/*
 		RN::Model *cactuse[] = {RN::Model::WithFile("Models/cactus.sgm"), RN::Model::WithFile("Models/cactus1.sgm"), RN::Model::WithFile("Models/cactus2.sgm")};
 		
 		RN::InstancingNode *cactusNode = new RN::InstancingNode();
