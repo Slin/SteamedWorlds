@@ -14,6 +14,7 @@ namespace SW
 	RNDefineMeta(PickupEntity, RN::Entity)
 	
 	PickupEntity::PickupEntity(const std::string filename, ITEM_TYPE type)
+	: _type(type)
 	{
 		RN::Model *model = RN::Model::WithFile(filename);
 		SetModel(model);
@@ -40,7 +41,7 @@ namespace SW
 	
 	void PickupEntity::Update(float delta)
 	{
-		if(GetWorldPosition().GetDistance(Player::GetSharedInstance()->GetWorldPosition()) > 2.0f)
+		if(GetWorldPosition().GetDistance(Player::GetSharedInstance()->GetWorldPosition()) < 2.0f)
 		{
 			// Pick up
 			RemoveFromWorld();

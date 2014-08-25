@@ -14,6 +14,7 @@ namespace SW
 	RNDefineMeta(Area, RN::SceneNode)
 	
 	Area::Area(AREA_TYPE type)
+	: _type(type)
 	{
 		Initialize();
 	}
