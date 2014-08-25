@@ -43,8 +43,6 @@ namespace SW
 		RN::openal::AudioSource *_engineLeft;
 		RN::openal::AudioSource *_engineRight;
 
-		RN::GenericParticleEmitter *smokeEmitter;
-
 		RNDeclareMeta(Vehicle)
 	};
 }

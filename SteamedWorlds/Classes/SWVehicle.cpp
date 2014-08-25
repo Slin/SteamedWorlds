@@ -76,27 +76,6 @@ namespace SW
 		body->GetBulletRigidBody()->setAngularFactor(btVector3(0.0f, 1.0f, 0.0f));
 		
 		_body = body;
-
-
-		//left
-		smokeEmitter = new RN::GenericParticleEmitter();
-		smokeEmitter->SetRenderGroup(0);
-		smokeEmitter->SetSpawnRate(0.02f);
-		smokeEmitter->SetStartColor(RN::Color(250, 250, 250));
-		smokeEmitter->SetEndColor(RN::Color(200, 200, 200));
-		smokeEmitter->SetStartSize(RN::Vector2(0.5f, 0.5f));
-		smokeEmitter->SetEndSize(RN::Vector2(0.1f, 0.1f));
-		smokeEmitter->SetGravity(RN::Vector3(0.0f,0.5f,0.0f));
-		smokeEmitter->SetVelocityRandomizeMax(RN::Vector3(0.01f, 0.01f, 0.01f));
-		smokeEmitter->SetVelocityRandomizeMin(RN::Vector3(-0.01f, 0.0f, -0.01f));
-		smokeEmitter->SetPositionRandomizeMax(RN::Vector3());
-		smokeEmitter->SetPositionRandomizeMin(RN::Vector3());
-		smokeEmitter->SetPosition(RN::Vector3(0.58f, -4.078f, 1.79f));
-		smokeEmitter->SetRotation(RN::Vector3(0.0f, 0.0f, 1.0f));
-		smokeEmitter->SetLifeSpan(RN::Vector2(2.0f,0.0f));
-
-
-		AddChild(smokeEmitter);
 	}
 	
 	void Vehicle::Serialize(RN::Serializer *serializer)
