@@ -14,7 +14,7 @@ out vec2 vertTexcoord;
 
 #if defined(SECOND_UV)
 in vec2 attTexcoord1;
-in vec2 vertTexcoord2;
+out vec2 vertTexcoord2;
 #endif
 
 out vec3 vertNormal;

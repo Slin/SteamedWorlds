@@ -21,6 +21,7 @@
 #include "SWStaticEntity.h"
 #include "SWPlayer.h"
 #include "SWVehicle.h"
+#include "SWTurm.h"
 
 namespace SW
 {

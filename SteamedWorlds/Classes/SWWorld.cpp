@@ -126,7 +126,10 @@ namespace SW
 			islandMaterial->SetShader(RN::Shader::WithFile("Shaders/DiffuseAO"));
 			islandMaterial->Define("TILE_FACTOR", 30.0f);
 			
-			new StaticEntity("Models/stein.sgm");
+			StaticEntity *stein = new StaticEntity("Models/stein.sgm");
+			stein->GetModel()->GetMaterialAtIndex(0, 0)->SetShader(RN::Shader::WithFile("Shaders/DiffuseAO"));
+			stein->GetModel()->GetMaterialAtIndex(0, 0)->Define("TILE_FACTOR", 10.0f);
+			
 			StaticEntity *farn = new StaticEntity("Models/farn.sgm", false);
 			farn->GetModel()->GetMaterialAtIndex(0, 0)->SetDiscard(true);
 			farn->GetModel()->GetMaterialAtIndex(0, 1)->SetDiscard(true);
@@ -163,7 +166,18 @@ namespace SW
 			ship->GetModel()->GetMaterialAtIndex(0, 3)->Define("RN_SPECULARITY");
 			ship->GetModel()->GetMaterialAtIndex(0, 3)->SetSpecularColor(RN::Color(0.1f, 0.08f, 0.05f, 250.0f));
 			
-			StaticEntity *turm = new StaticEntity("Models/geruest.sgm");
+			Turm *turm = new Turm();
+			turm->GetModel()->GetMaterialAtIndex(0, 0)->SetCullMode(RN::Material::CullMode::None);
+			
+			
+			StaticEntity *turmplatform = new StaticEntity("Models/geruest_platform.sgm");
+			turmplatform->GetModel()->GetMaterialAtIndex(0, 0)->SetCullMode(RN::Material::CullMode::None);
+			
+			StaticEntity *kristall = new StaticEntity("Models/diamond.sgm");
+			kristall->GetModel()->GetMaterialAtIndex(0, 0)->SetCullMode(RN::Material::CullMode::None);
+			
+			StaticEntity *zaun = new StaticEntity("Models/zaunacker.sgm");
+			zaun->GetModel()->GetMaterialAtIndex(0, 0)->SetCullMode(RN::Material::CullMode::None);
 		}
 	}
 	
