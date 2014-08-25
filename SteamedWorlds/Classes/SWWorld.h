@@ -50,6 +50,8 @@ namespace SW
 		RN::bullet::PhysicsWorld *_physicsWorld;
 		RN::openal::AudioWorld *_audioWorld;
 		
+		bool _hasPlayedIntro;
+		
 		CrashingShip *_crashingShip;
 		Turm *_turm;
 		
