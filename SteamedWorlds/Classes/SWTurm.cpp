@@ -28,7 +28,8 @@ namespace SW
 	
 	void Turm::Initialize()
 	{
-		GetSkeleton()->SetAnimation("Armature.002Action");
+		_isStarted = false;
+		GetSkeleton()->SetAnimation("kill");
 	}
 	
 	void Turm::Serialize(RN::Serializer *serializer)
@@ -36,8 +37,14 @@ namespace SW
 		Entity::Serialize(serializer);
 	}
 	
+	void Turm::StartAnimation()
+	{
+		_isStarted = true;
+	}
+	
 	void Turm::Update(float delta)
 	{
-		GetSkeleton()->Update(delta*24.0f, false);
+		if(_isStarted)
+			GetSkeleton()->Update(delta*24.0f, false);
 	}
 }

@@ -23,10 +23,12 @@ namespace SW
 		void Initialize();
 		void Serialize(RN::Serializer *serializer) override;
 		
+		void StartAnimation();
 		void Update(float delta) override;
 		
 	private:
-		
+		float _startCounter;
+		bool _isStarted;
 		RNDeclareMeta(CrashingShip)
 	};
 }

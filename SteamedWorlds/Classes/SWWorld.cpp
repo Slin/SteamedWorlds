@@ -166,9 +166,10 @@ namespace SW
 			ship->GetModel()->GetMaterialAtIndex(0, 3)->Define("RN_SPECULARITY");
 			ship->GetModel()->GetMaterialAtIndex(0, 3)->SetSpecularColor(RN::Color(0.1f, 0.08f, 0.05f, 250.0f));
 			
-			Turm *turm = new Turm();
-			turm->GetModel()->GetMaterialAtIndex(0, 0)->SetCullMode(RN::Material::CullMode::None);
+			_turm = new Turm();
+			_turm->GetModel()->GetMaterialAtIndex(0, 0)->SetCullMode(RN::Material::CullMode::None);
 			
+			_crashingShip = new CrashingShip();
 			
 			StaticEntity *turmplatform = new StaticEntity("Models/geruest_platform.sgm");
 			turmplatform->GetModel()->GetMaterialAtIndex(0, 0)->SetCullMode(RN::Material::CullMode::None);
@@ -179,6 +180,8 @@ namespace SW
 			StaticEntity *zaun = new StaticEntity("Models/zaunacker.sgm");
 			zaun->GetModel()->GetMaterialAtIndex(0, 0)->SetCullMode(RN::Material::CullMode::None);
 		}
+		
+		StartIntro();
 	}
 	
 	void World::SaveOnThread(RN::Thread *thread, RN::Serializer *serializer)
@@ -194,5 +197,11 @@ namespace SW
 	void World::Update(float delta)
 	{
 		// Do something...
+	}
+	
+	void World::StartIntro()
+	{
+		_crashingShip->StartAnimation();
+		_turm->StartAnimation();
 	}
 }
