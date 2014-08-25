@@ -162,7 +162,7 @@ namespace SW
 			new StaticEntity("Models/home.sgm");
 			
 			Vehicle *ship = new Vehicle("Models/airboat.sgm", "Models/airboat_wheel.sgm");
-			ship->SetWorldPosition(ship->GetWorldPosition()+RN::Vector3(0.0f, ship->GetBoundingBox().maxExtend.y, 8.0f));
+			ship->SetWorldPosition(RN::Vector3(-15.21, -13.62, 113.27));
 			ship->GetModel()->GetMaterialAtIndex(0, 2)->Define("RN_SPECULARITY");
 			ship->GetModel()->GetMaterialAtIndex(0, 2)->SetSpecularColor(RN::Color(0.1f, 0.08f, 0.05f, 250.0f));
 			ship->GetModel()->GetMaterialAtIndex(0, 3)->Define("RN_SPECULARITY");
