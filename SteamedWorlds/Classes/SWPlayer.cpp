@@ -30,7 +30,8 @@ namespace SW
 	RNDefineSingleton(Player)
 	
 	Player::Player(RN::SceneNode *camera) :
-	_camera(camera), _isPassable(true), _controller(nullptr), _footstepSource(nullptr), _hasBottle(false), _hasSteeringwheel(false), _hasDust(false)
+	_camera(camera), _isPassable(true), _controller(nullptr), _footstepSource(nullptr), _hasBottle(false), _hasSteeringwheel(false), _hasDust(false),
+_playedIntro(false)
 	{
 		MakeShared();
 	
@@ -61,6 +62,12 @@ namespace SW
 		if(_isAnimating > 0.0f)
 		{
 			_isAnimating -= delta;
+			
+			if(_isAnimating < 5.0f && !_playedIntro)
+			{
+				static_cast<World*>(GetWorld())->GetAudioWorld()->PlaySound(RN::AudioResource::WithFile("Audio/talking-intro2.ogg"));
+				_playedIntro = true;
+			}
 			
 			if(_isAnimating < 0.0f)
 				SetPassable(false);
@@ -150,6 +157,7 @@ namespace SW
 		SetPassable(true);
 		SetPosition(RN::Vector3(-6.6f, -1.5f, 28.0f));
 		SetRotation(RN::Vector3(102.0f, 0.0f, 0.0f));
+	static_cast<World*>(GetWorld())->GetAudioWorld()->PlaySound(RN::AudioResource::WithFile("Audio/talking-intro1.ogg"));
 	}
 
 	void Player::PickUpItem(ITEM_TYPE type) {
