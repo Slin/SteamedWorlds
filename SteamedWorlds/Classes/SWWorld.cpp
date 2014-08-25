@@ -119,7 +119,7 @@ namespace SW
 			islandMaterial->AddTexture(RN::Texture::WithFile("Models/forestground.png"));
 			islandMaterial->AddTexture(RN::Texture::WithFile("Models/rock.png"));
 			islandMaterial->AddTexture(RN::Texture::WithFile("Models/sand.png"));
-			islandMaterial->AddTexture(RN::Texture::WithFile("Models/dirt3.png"));
+			islandMaterial->AddTexture(RN::Texture::WithFile("Models/dirt.png"));
 			islandMaterial->SetShader(RN::Shader::WithFile("Shaders/Island"));
 			
 			islandMaterial = islandStart->GetModel()->GetMaterialAtIndex(0, 1);
