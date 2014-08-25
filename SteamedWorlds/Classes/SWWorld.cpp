@@ -104,7 +104,9 @@ namespace SW
 		{
 			//Sun
 			RN::Light *sun = new RN::Light(RN::Light::Type::DirectionalLight);
-			//sun->ActivateShadows(RN::ShadowParameter( static_cast<RN::Camera*>(_camera), 2048));
+#ifndef RN_PLATFORM_MAC_OS
+			sun->ActivateShadows(RN::ShadowParameter(static_cast<RN::Camera*>(_camera), 2048));
+#endif
 			sun->SetRotation(RN::Vector3(60.0f, -60.0f, 0.0f));
 			
 			//Load environment
