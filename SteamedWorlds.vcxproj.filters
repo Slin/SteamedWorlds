@@ -36,6 +36,12 @@
     <ClCompile Include="SteamedWorlds\Classes\SWVehicle.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="SteamedWorlds\Classes\SWTurm.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="SteamedWorlds\Classes\SWCrashingShip.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SteamedWorlds\Classes\SWApplication.h">
@@ -54,6 +60,12 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="SteamedWorlds\Classes\SWVehicle.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="SteamedWorlds\Classes\SWTurm.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="SteamedWorlds\Classes\SWCrashingShip.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
