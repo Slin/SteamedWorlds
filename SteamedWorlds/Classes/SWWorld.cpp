@@ -228,8 +228,7 @@ namespace SW
 			Area *vulcano = new Area(7.0f, AREA_TYPE::VULCANO);
 			vulcano->SetPosition(RN::Vector3(489.34f, -205.83f, 958.28f));
 		}
-		
-		
+/*
 		// Cactus
 		/*
 		RN::Model *cactuse[] = {RN::Model::WithFile("Models/cactus.sgm"), RN::Model::WithFile("Models/cactus1.sgm"), RN::Model::WithFile("Models/cactus2.sgm")};
@@ -237,7 +236,17 @@ namespace SW
 		RN::InstancingNode *cactusNode = new RN::InstancingNode();
 		cactusNode->SetModels(RN::Array::WithObjects(cactuse[0], cactuse[1], cactuse[2]));
 		cactusNode->SetFlags(cactusNode->GetFlags() | RN::SceneNode::Flags::NoSave);
-		cactusNode->SetPivot(_camera->Downcast<RN::Camera>());
+		
+#if RN_PLATFORM_MAC_OS
+		if(_hmd)
+		{
+			cactusNode->SetPivot(_camera->Downcast<RO::Camera>()->GetLeftCamera());
+		}
+		else
+#endif
+		{
+			cactusNode->SetPivot(_camera->Downcast<RN::Camera>());
+		}
 		cactusNode->SetMode(RN::InstancingNode::Mode::Thinning | RN::InstancingNode::Mode::Clipping);
 		cactusNode->SetCellSize(128.0f);
 		cactusNode->SetClippingRange(256.0f);
