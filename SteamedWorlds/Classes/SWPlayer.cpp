@@ -33,7 +33,8 @@ namespace SW
 		_camera(camera), _isPassable(true), _controller(nullptr), _footstepSource(nullptr)
 	{
 		MakeShared();
-		
+	
+		_random.Seed(0x1024);
 		SetFlags(GetFlags()|RN::SceneNode::Flags::NoSave);
 		
 		SetPassable(false);
@@ -77,14 +78,19 @@ namespace SW
 			
 			_controller->SetWalkDirection(direction);
 			
-			if(!_footstepSource)
+			if(!_footstepSource && direction.GetLength() > 0.0f)
 			{
-				_footstepSource = GetWorld()->Downcast<SW::World>()->GetAudioWorld()->PlaySound(RN::AudioResource::WithFile("Audio/footstep_gravel_1.ogg"));
+				std::string filename("Audio/footstep_gravel_");
+				filename += std::to_string(_random.GetRandomInt32Range(1, 2));
+				filename += ".ogg";
+				_footstepSource = GetWorld()->Downcast<SW::World>()->GetAudioWorld()->PlaySound(RN::AudioResource::WithFile(filename));
 				_footstepSource->SetSelfdestruct(false);
+				_footstepSource->SetPitch(_random.GetRandomFloatRange(0.7f, 1.0f)*(input->GetModifierKeys() & RN::KeyModifier::KeyShift)?2.0f:1.0f);
+				_footstepSource->SetGain(_random.GetRandomFloatRange(0.8f, 1.0f));
 			}
 			else
 			{
-				if(!_footstepSource->IsPlaying())
+				if(_footstepSource && !_footstepSource->IsPlaying())
 				{
 					_footstepSource->RemoveFromWorld();
 					_footstepSource = nullptr;

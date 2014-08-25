@@ -41,6 +41,8 @@ namespace SW
 		
 		bool _isPassable;
 		
+		RN::Random::MersenneTwister _random;
+		
 		RNDeclareMeta(Player)
 		RNDeclareSingleton(Player)
 	};

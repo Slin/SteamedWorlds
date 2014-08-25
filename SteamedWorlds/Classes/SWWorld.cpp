@@ -132,35 +132,16 @@ namespace SW
 			farn->GetModel()->GetMaterialAtIndex(0, 1)->SetDiscard(true);
 			
 			new StaticEntity("Models/haus1.sgm");
-			StaticEntity *tree = new StaticEntity("Models/tree2.sgm");
-			tree->SetPosition(RN::Vector3(2.0f, -3.0f, 2.0f));
+			StaticEntity *tree = new StaticEntity("Models/trees.sgm");
 			tree->GetModel()->GetMaterialAtIndex(0, 1)->SetDiscard(true);
 			tree->GetModel()->GetMaterialAtIndex(0, 1)->SetDiscardThreshold(0.9f);
 			tree->GetModel()->GetMaterialAtIndex(0, 1)->SetCullMode(RN::Material::CullMode::None);
-
-			StaticEntity *tree3 = new StaticEntity("Models/tree3.sgm");
-			tree3->SetPosition(RN::Vector3(5.0f, -3.0f, 5.0f));
-			tree3->GetModel()->GetMaterialAtIndex(0, 1)->SetDiscard(true);
-			tree3->GetModel()->GetMaterialAtIndex(0, 1)->SetDiscardThreshold(0.9f);
-			tree3->GetModel()->GetMaterialAtIndex(0, 1)->SetCullMode(RN::Material::CullMode::None);
-
-			StaticEntity *tree4 = new StaticEntity("Models/tree4.sgm");
-			tree4->SetPosition(RN::Vector3(15.0f, -3.0f, -15.0f));
-			tree4->GetModel()->GetMaterialAtIndex(0, 1)->SetDiscard(true);
-			tree4->GetModel()->GetMaterialAtIndex(0, 1)->SetDiscardThreshold(0.9f);
-			tree4->GetModel()->GetMaterialAtIndex(0, 1)->SetCullMode(RN::Material::CullMode::None);
-
-			StaticEntity *tree5 = new StaticEntity("Models/tree5.sgm");
-			tree5->SetPosition(RN::Vector3(-15.0f, -3.0f, -15.0f));
-			tree5->GetModel()->GetMaterialAtIndex(0, 1)->SetDiscard(true);
-			tree5->GetModel()->GetMaterialAtIndex(0, 1)->SetDiscardThreshold(0.9f);
-			tree5->GetModel()->GetMaterialAtIndex(0, 1)->SetCullMode(RN::Material::CullMode::None);
-
-			StaticEntity *tree6 = new StaticEntity("Models/tree6.sgm");
-			tree6->SetPosition(RN::Vector3(-30.0f, -3.0f, 15.0f));
-			tree6->GetModel()->GetMaterialAtIndex(0, 1)->SetDiscard(true);
-			tree6->GetModel()->GetMaterialAtIndex(0, 1)->SetDiscardThreshold(0.9f);
-			tree6->GetModel()->GetMaterialAtIndex(0, 1)->SetCullMode(RN::Material::CullMode::None);
+			tree->GetModel()->GetMaterialAtIndex(0, 3)->SetDiscard(true);
+			tree->GetModel()->GetMaterialAtIndex(0, 3)->SetDiscardThreshold(0.9f);
+			tree->GetModel()->GetMaterialAtIndex(0, 3)->SetCullMode(RN::Material::CullMode::None);
+			tree->GetModel()->GetMaterialAtIndex(0, 5)->SetDiscard(true);
+			tree->GetModel()->GetMaterialAtIndex(0, 5)->SetDiscardThreshold(0.9f);
+			tree->GetModel()->GetMaterialAtIndex(0, 5)->SetCullMode(RN::Material::CullMode::None);
 
 			StaticEntity *jetty = new StaticEntity("Models/jetty.sgm");
 			jetty->SetPosition(RN::Vector3(-6.815f, -9.343f, 55.183f));

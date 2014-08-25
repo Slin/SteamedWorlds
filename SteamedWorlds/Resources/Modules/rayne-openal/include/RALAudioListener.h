@@ -34,7 +34,7 @@ namespace RN
 			AudioListener();
 			~AudioListener() override;
 			
-			void Update(float delta);
+			void Update(float delta) override;
 			
 		protected:
 			void DidUpdate(SceneNode::ChangeSet changeSet) override;
@@ -43,7 +43,7 @@ namespace RN
 			
 			void ReInsertIntoWorld();
 			virtual void InsertIntoWorld(AudioWorld *world);
-			virtual void RemoveFromWorld(AudioWorld *world);
+			virtual void RemoveFromWorld();
 			
 		private:
 			AudioWorld *_owner;
