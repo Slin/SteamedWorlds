@@ -52,7 +52,7 @@ namespace SW
 		RN::openal::AudioSource *_footstepSource;
 		
 		bool _isPassable;
-		bool _isAnimating;
+		float _isAnimating;
 		
 		RN::Skeleton *_skeleton;
 		

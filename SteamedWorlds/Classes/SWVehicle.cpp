@@ -191,7 +191,7 @@ namespace SW
 			}
 			
 			RN::Vector3 speed = _body->GetLinearVelocity();
-			float gain = speed.GetLength()*0.1f+0.1f;
+			float gain = std::min(speed.GetLength()*0.1f+0.1f, 1.0f)*0.5f;
 			float pitch = 0.2+std::min(speed.GetLength()*0.1f, 1.0f);
 			_engineRight->SetGain(gain);
 			_engineRight->SetPitch(pitch);

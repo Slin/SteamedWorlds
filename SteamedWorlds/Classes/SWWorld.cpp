@@ -111,7 +111,7 @@ namespace SW
 #ifndef RN_PLATFORM_MAC_OS
 			sun->ActivateShadows(RN::ShadowParameter(static_cast<RN::Camera*>(_camera), 2048));
 #endif
-			sun->SetRotation(RN::Vector3(60.0f, -60.0f, 0.0f));
+			sun->SetRotation(RN::Vector3(60.0f, -20.0f, 0.0f));
 			
 			//Load environment
 			StaticEntity *islandStart = new StaticEntity("Models/insel.sgm");
@@ -165,6 +165,8 @@ namespace SW
 			jetty->SetPosition(RN::Vector3(-6.815f, -9.343f, 55.183f));
 			new StaticEntity("Models/home.sgm");
 			
+			new StaticEntity("Models/insel_kleinemodelle.sgm");
+			
 			Vehicle *ship = new Vehicle("Models/airboat.sgm", "Models/airboat_wheel.sgm");
 			ship->SetWorldPosition(RN::Vector3(-15.21, -13.62, 113.27));
 			ship->GetModel()->GetMaterialAtIndex(0, 2)->Define("RN_SPECULARITY");
@@ -188,10 +190,14 @@ namespace SW
 			
 			StaticEntity *wueste = new StaticEntity("Models/wueste.sgm");
 			wueste->SetPosition(RN::Vector3(1000.0f, -200.0f, 100.0f));
-			wueste->GetModel()->GetMaterialAtIndex(0, 4)->AddTexture(RN::Texture::WithFile("Models/dirt3.png"));
-			wueste->GetModel()->GetMaterialAtIndex(0, 4)->SetShader(RN::Shader::WithFile("Shaders/Island"));
-			wueste->GetModel()->GetMaterialAtIndex(0, 4)->Define("TILE_FACTOR", 100.0f);
+			wueste->GetModel()->GetMaterialAtIndex(0, 0)->AddTexture(RN::Texture::WithFile("Models/dirt3.png"));
+			wueste->GetModel()->GetMaterialAtIndex(0, 0)->SetShader(RN::Shader::WithFile("Shaders/Island"));
+			wueste->GetModel()->GetMaterialAtIndex(0, 0)->Define("TILE_FACTOR", 100.0f);
 			
+			StaticEntity *wuesteHauser = new StaticEntity("Models/wuestenhaueser.sgm");
+			wuesteHauser->SetPosition(RN::Vector3(1000.0f, -200.0f, 100.0f));
+			StaticEntity *wuesteObjekte = new StaticEntity("Models/wuesteobjekte.sgm");
+			wuesteObjekte->SetPosition(RN::Vector3(1000.0f, -200.0f, 100.0f));
 			
 			StaticEntity *vulkan = new StaticEntity("Models/vulcano.sgm");
 			vulkan->SetPosition(RN::Vector3(500.0f, 200.0f, 1000.0f));
@@ -230,6 +236,6 @@ namespace SW
 	{
 		_crashingShip->StartAnimation();
 		_turm->StartAnimation();
-		//Player::GetSharedInstance()->StartAnimation();
+		Player::GetSharedInstance()->StartAnimation();
 	}
 }
