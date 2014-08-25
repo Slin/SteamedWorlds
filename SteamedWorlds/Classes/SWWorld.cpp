@@ -165,8 +165,6 @@ namespace SW
 			jetty->SetPosition(RN::Vector3(-6.815f, -9.343f, 55.183f));
 			new StaticEntity("Models/home.sgm");
 			
-			new StaticEntity("Models/insel_kleinemodelle.sgm");
-			
 			Vehicle *ship = new Vehicle("Models/airboat.sgm", "Models/airboat_wheel.sgm");
 			ship->SetWorldPosition(RN::Vector3(-15.21, -13.62, 113.27));
 			ship->GetModel()->GetMaterialAtIndex(0, 2)->Define("RN_SPECULARITY");
@@ -191,10 +189,16 @@ namespace SW
 			wueste->GetModel()->GetMaterialAtIndex(0, 0)->SetShader(RN::Shader::WithFile("Shaders/Island"));
 			wueste->GetModel()->GetMaterialAtIndex(0, 0)->Define("TILE_FACTOR", 100.0f);
 			
-			StaticEntity *wuesteHauser = new StaticEntity("Models/wuestenhaueser.sgm");
-			wuesteHauser->SetPosition(RN::Vector3(1000.0f, -200.0f, 100.0f));
-			StaticEntity *wuesteObjekte = new StaticEntity("Models/wuesteobjekte.sgm");
-			wuesteObjekte->SetPosition(RN::Vector3(1000.0f, -200.0f, 100.0f));
+			StaticEntity *desertHouse = new StaticEntity("Models/huette_fixed.sgm");
+			desertHouse->SetPosition(RN::Vector3(920.262f, -165.618f, -850.0f));
+
+			StaticEntity *desertHouseRuin = new StaticEntity("Models/huette2.sgm");
+			desertHouseRuin->SetPosition(RN::Vector3(912.768f, -166.144f, -843.665f));
+			desertHouseRuin->SetRotation(RN::Vector3(8.184f, 0.0f, 0.0f));
+
+			StaticEntity *desertHouseBig = new StaticEntity("Models/huette3.sgm");
+			desertHouseBig->SetPosition(RN::Vector3(894.02f, -166.528f, -845.12f));
+			desertHouseBig->SetRotation(RN::Vector3(-29.24f, 0.0f, 0.0f));
 			
 			StaticEntity *vulkan = new StaticEntity("Models/vulcano.sgm");
 			vulkan->SetPosition(RN::Vector3(500.0f, 200.0f, 1000.0f));
@@ -227,6 +231,7 @@ namespace SW
 		
 		
 		// Cactus
+		/*
 		RN::Model *cactuse[] = {RN::Model::WithFile("Models/cactus.sgm"), RN::Model::WithFile("Models/cactus1.sgm"), RN::Model::WithFile("Models/cactus2.sgm")};
 		
 		RN::InstancingNode *cactusNode = new RN::InstancingNode();
@@ -262,6 +267,7 @@ namespace SW
 			
 			cactusNode->AddChild(entity);
 		}
+		*/
 	}
 	
 	void World::SaveOnThread(RN::Thread *thread, RN::Serializer *serializer)
