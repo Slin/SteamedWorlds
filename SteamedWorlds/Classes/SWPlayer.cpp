@@ -58,14 +58,11 @@ namespace SW
 	{
 		RN::Entity::Update(delta);
 		
-		if(_isAnimating)
+		if(_isAnimating > 0.0f)
 		{
-//			_isAnimating = _skeleton->Update(delta*24.0f, false);
-//			RN::Bone *bone = _skeleton->GetBones("controller").front();
-//			_camera->SetWorldPosition(bone->position);
-//			_camera->SetWorldRotation(bone->rotation);
+			_isAnimating -= delta;
 			
-			if(!_isAnimating)
+			if(_isAnimating < 0.0f)
 				SetPassable(false);
 			
 			return;
@@ -149,12 +146,9 @@ namespace SW
 	
 	void Player::StartAnimation()
 	{
-		_isAnimating = true;
+		_isAnimating = 15.0f;
 		SetPassable(true);
-	}
-	
-	void Player::TurnCameraTo(RN::Vector3 position, float time)
-	{
-		
+		SetPosition(RN::Vector3(-6.6f, -1.5f, 28.0f));
+		SetRotation(RN::Vector3(102.0f, 0.0f, 0.0f));
 	}
 }
