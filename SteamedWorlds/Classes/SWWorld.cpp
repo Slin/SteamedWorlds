@@ -228,8 +228,8 @@ namespace SW
 			Area *dustArea = new Area(25.0f, AREA_TYPE::DESERT_DUST);
 			dustArea->SetPosition(RN::Vector3(1123.616f, -247.31f, 387.43f));
 
-			Area *vulcano = new Area(20.0f, AREA_TYPE::VULCANO);
-			vulcano->SetPosition(RN::Vector3(489.34f, -205.83f, 958.28f));
+			Area *vulcano = new Area(10.0f, AREA_TYPE::VULCANO);
+			vulcano->SetPosition(RN::Vector3(489.34f, 206.0f, 958.28f));
 		}
 /*
 		// Cactus
