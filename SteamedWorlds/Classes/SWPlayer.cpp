@@ -150,6 +150,7 @@ namespace SW
 		SetPassable(true);
 		SetPosition(RN::Vector3(-6.6f, -1.5f, 28.0f));
 		SetRotation(RN::Vector3(102.0f, 0.0f, 0.0f));
+		static_cast<World*>(GetWorld())->GetAudioWorld()->PlaySound(RN::AudioResource::WithFile("Audio/talking-intro.ogg"));
 	}
 
 	void Player::PickUpItem(ITEM_TYPE type) {

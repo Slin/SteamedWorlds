@@ -12,7 +12,7 @@
 #include <Rayne/Rayne.h>
 #include <RBRigidBody.h>
 #include <RALAudioSource.h>
-#include <SWWorld.h>
+#include "SWWorld.h"
 
 namespace SW
 {

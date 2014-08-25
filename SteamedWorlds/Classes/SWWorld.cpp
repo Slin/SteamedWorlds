@@ -13,7 +13,7 @@ namespace SW
 	RNDefineMeta(World, RN::World)
 	
 	World::World() :
-		RN::World("GenericSceneManager")
+		RN::World("GenericSceneManager"), _hasPlayedIntro(false)
 	
 #if RN_PLATFORM_MAC_OS
 	,_hmd(nullptr)
@@ -214,8 +214,6 @@ namespace SW
 			steeringWheel->SetPosition(RN::Vector3(23.757f, -1.779f, 33.857f));
 			steeringWheel->SetWorldRotation(RN::Vector3(3.24f, -15.16f, -28.641f));
 		}
-		
-		StartIntro();
 	}
 	
 	void World::SaveOnThread(RN::Thread *thread, RN::Serializer *serializer)
@@ -230,7 +228,10 @@ namespace SW
 
 	void World::Update(float delta)
 	{
-		// Do something...
+		if(!_hasPlayedIntro)
+		{
+			StartIntro();
+		}
 	}
 	
 	void World::StartIntro()
@@ -238,5 +239,6 @@ namespace SW
 		_crashingShip->StartAnimation();
 		_turm->StartAnimation();
 		Player::GetSharedInstance()->StartAnimation();
+		_hasPlayedIntro = true;
 	}
 }
