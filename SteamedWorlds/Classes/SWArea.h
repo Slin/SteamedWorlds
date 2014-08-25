@@ -18,7 +18,7 @@ namespace SW
 	class Area : public RN::SceneNode
 	{
 	public:
-		Area(AREA_TYPE type);
+		Area(float radius, AREA_TYPE type);
 		Area(RN::Deserializer *deserializer);
 		
 		void Initialize();
@@ -28,6 +28,7 @@ namespace SW
 		
 	private:
 		AREA_TYPE _type;
+		float _radius;
 		
 		RNDeclareMeta(Area)
 	};

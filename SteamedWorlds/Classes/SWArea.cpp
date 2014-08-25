@@ -13,8 +13,8 @@ namespace SW
 {
 	RNDefineMeta(Area, RN::SceneNode)
 	
-	Area::Area(AREA_TYPE type)
-	: _type(type)
+	Area::Area(float radius, AREA_TYPE type)
+	: _type(type), _radius(radius)
 	{
 		Initialize();
 	}
@@ -38,7 +38,7 @@ namespace SW
 	
 	void Area::Update(float delta)
 	{
-		if(GetWorldPosition().GetDistance(Player::GetSharedInstance()->GetWorldPosition()) > 2.0f)
+		if(GetWorldPosition().GetDistance(Player::GetSharedInstance()->GetWorldPosition()) < _radius)
 		{
 			Player::GetSharedInstance()->EnterArea(_type);
 		}

@@ -41,7 +41,7 @@ namespace SW
 	
 	void PickupEntity::Update(float delta)
 	{
-		if(GetWorldPosition().GetDistance(Player::GetSharedInstance()->GetWorldPosition()) < 2.0f)
+		if(GetWorldPosition().GetDistance(Player::GetSharedInstance()->GetWorldPosition()) < 1.0f)
 		{
 			// Pick up
 			RemoveFromWorld();
