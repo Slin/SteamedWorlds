@@ -30,7 +30,7 @@ namespace SW
 	RNDefineSingleton(Player)
 	
 	Player::Player(RN::SceneNode *camera) :
-		_camera(camera), _isPassable(true), _controller(nullptr), _footstepSource(nullptr)
+	_camera(camera), _isPassable(true), _controller(nullptr), _footstepSource(nullptr), _hasBottle(false), _hasSteeringwheel(false), _hasDust(false)
 	{
 		MakeShared();
 	
@@ -156,5 +156,40 @@ namespace SW
 	void Player::TurnCameraTo(RN::Vector3 position, float time)
 	{
 		
+	}
+
+	void Player::PickUpItem(ITEM_TYPE type) {
+		switch (type) {
+		case ITEM_TYPE::BOTTLE:
+			_hasBottle = true;
+			
+			break;
+
+		case ITEM_TYPE::STEERINGWHEEL:
+			_hasSteeringwheel = true;
+			
+			break;
+
+		default:
+			break;
+		}
+	}
+
+	void Player::EnterArea(AREA_TYPE area) {
+		switch (area) {
+		case AREA_TYPE::DESERT_DUST:
+			if (!_hasBottle) {
+				// say: I need a bottle to pick up this special cometal dust
+			}
+			else {
+				_hasDust = true;
+				// say: That's gonna be useful. I'll pick it up with the bottle.
+			}
+			break;
+		case AREA_TYPE::VULCANO:
+			if (!_hasDust) {
+				// say: I need the special cometal dust to enable the anti-gravity forces of the diamond
+			}
+		}
 	}
 }

@@ -83,8 +83,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="SteamedWorlds\Classes\SWApplication.cpp" />
+    <ClCompile Include="SteamedWorlds\Classes\SWArea.cpp" />
     <ClCompile Include="SteamedWorlds\Classes\SWCrashingShip.cpp" />
     <ClCompile Include="SteamedWorlds\Classes\SWFullscreenEffects.cpp" />
+    <ClCompile Include="SteamedWorlds\Classes\SWPickupEntity.cpp" />
     <ClCompile Include="SteamedWorlds\Classes\SWPlayer.cpp" />
     <ClCompile Include="SteamedWorlds\Classes\SWStaticEntity.cpp" />
     <ClCompile Include="SteamedWorlds\Classes\SWTurm.cpp" />
@@ -94,8 +96,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SteamedWorlds\Classes\SWApplication.h" />
+    <ClInclude Include="SteamedWorlds\Classes\SWArea.h" />
     <ClInclude Include="SteamedWorlds\Classes\SWCrashingShip.h" />
     <ClInclude Include="SteamedWorlds\Classes\SWFullscreenEffects.h" />
+    <ClInclude Include="SteamedWorlds\Classes\SWPickupEntity.h" />
     <ClInclude Include="SteamedWorlds\Classes\SWPlayer.h" />
     <ClInclude Include="SteamedWorlds\Classes\SWStaticEntity.h" />
     <ClInclude Include="SteamedWorlds\Classes\SWTurm.h" />

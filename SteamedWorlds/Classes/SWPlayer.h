@@ -21,6 +21,8 @@
 #include <Rayne/Rayne.h>
 #include <RBKinematicController.h>
 #include <RALAudioWorld.h>
+#include "SWPickupEntity.h"
+#include "SWArea.h"
 
 namespace SW
 {
@@ -36,6 +38,13 @@ namespace SW
 		
 		void StartAnimation();
 		void TurnCameraTo(RN::Vector3 position, float time);
+
+		void PickUpItem(ITEM_TYPE type);
+		void EnterArea(AREA_TYPE type);
+
+		bool HasSteeringWheel() {
+			return _hasSteeringwheel;
+		};
 		
 	private:
 		RN::SceneNode *_camera;
@@ -47,9 +56,10 @@ namespace SW
 		
 		RN::Skeleton *_skeleton;
 		
-		
 		RN::Random::MersenneTwister _random;
 		
+		bool _hasBottle, _hasSteeringwheel, _hasDust;
+
 		RNDeclareMeta(Player)
 		RNDeclareSingleton(Player)
 	};

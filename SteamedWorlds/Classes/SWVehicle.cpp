@@ -48,6 +48,7 @@ namespace SW
 	void Vehicle::Initialize()
 	{
 		_isActive = false;
+		_isRepaired = false;
 		AddDependency(Player::GetSharedInstance());
 		
 		RN::bullet::CompoundShape *shape = new RN::bullet::CompoundShape();
@@ -75,6 +76,27 @@ namespace SW
 		body->GetBulletRigidBody()->setAngularFactor(btVector3(0.0f, 1.0f, 0.0f));
 		
 		_body = body;
+
+
+		//left
+		smokeEmitter = new RN::GenericParticleEmitter();
+		smokeEmitter->SetRenderGroup(0);
+		smokeEmitter->SetSpawnRate(0.02f);
+		smokeEmitter->SetStartColor(RN::Color(250, 250, 250));
+		smokeEmitter->SetEndColor(RN::Color(200, 200, 200));
+		smokeEmitter->SetStartSize(RN::Vector2(0.5f, 0.5f));
+		smokeEmitter->SetEndSize(RN::Vector2(0.1f, 0.1f));
+		smokeEmitter->SetGravity(RN::Vector3(0.0f,0.5f,0.0f));
+		smokeEmitter->SetVelocityRandomizeMax(RN::Vector3(0.01f, 0.01f, 0.01f));
+		smokeEmitter->SetVelocityRandomizeMin(RN::Vector3(-0.01f, 0.0f, -0.01f));
+		smokeEmitter->SetPositionRandomizeMax(RN::Vector3());
+		smokeEmitter->SetPositionRandomizeMin(RN::Vector3());
+		smokeEmitter->SetPosition(RN::Vector3(0.58f, -4.078f, 1.79f));
+		smokeEmitter->SetRotation(RN::Vector3(0.0f, 0.0f, 1.0f));
+		smokeEmitter->SetLifeSpan(RN::Vector2(2.0f,0.0f));
+
+
+		AddChild(smokeEmitter);
 	}
 	
 	void Vehicle::Serialize(RN::Serializer *serializer)
@@ -84,6 +106,7 @@ namespace SW
 	
 	void Vehicle::Update(float delta)
 	{
+		
 		RN::Input *input = RN::Input::GetSharedInstance();
 		Player *player = Player::GetSharedInstance();
 		
@@ -95,25 +118,36 @@ namespace SW
 				{
 					if(player->GetWorldPosition().GetDistance(GetWorldPosition()) < GetBoundingBox().maxExtend.GetLength()*0.8f)
 					{
-						player->SetPassable(true);
-						_body->GetBulletCollisionObject()->forceActivationState(DISABLE_DEACTIVATION);
-						
-						_camera = player->GetCamera();
-						_oldCameraPosition = _camera->GetPosition();
-						player->RemoveChild(_camera);
-						AddChild(_camera);
-						_camera->SetPosition(_oldCameraPosition + RN::Vector3(-1.5f, -3.5f, 0.0f));
-						
-						RemoveDependency(player);
-						AddChild(player);
-						player->SetPosition(RN::Vector3(-1.5f, -3.5f, 0.0f));
-						_isActive = true;
-						
-						_engineLeft->SetRepeat(true);
-						_engineLeft->Play();
-						
-						_engineRight->SetRepeat(true);
-						_engineRight->Play();
+						if (player->HasSteeringWheel()) {
+							_isRepaired = true;
+							// say: that
+						}
+
+						if (!_isRepaired) {
+							// ich brauch steering wheel
+							//static_cast<World*>(GetWorld())->GetAudioWorld()->PlaySound(RN::AudioResource::WithFile(""));
+
+						} else {
+							player->SetPassable(true);
+							_body->GetBulletCollisionObject()->forceActivationState(DISABLE_DEACTIVATION);
+
+							_camera = player->GetCamera();
+							_oldCameraPosition = _camera->GetPosition();
+							player->RemoveChild(_camera);
+							AddChild(_camera);
+							_camera->SetPosition(_oldCameraPosition + RN::Vector3(-1.5f, -3.5f, 0.0f));
+
+							RemoveDependency(player);
+							AddChild(player);
+							player->SetPosition(RN::Vector3(-1.5f, -3.5f, 0.0f));
+							_isActive = true;
+
+							_engineLeft->SetRepeat(true);
+							_engineLeft->Play();
+
+							_engineRight->SetRepeat(true);
+							_engineRight->Play();
+						}
 					}
 				}
 				else
@@ -166,7 +200,7 @@ namespace SW
 			
 			RN::Vector3 direction(input->IsKeyPressed('s')-input->IsKeyPressed('w'), input->IsKeyPressed('e')-input->IsKeyPressed('q'), 0.0f);
 			direction = GetWorldRotation().GetRotatedVector(direction);
-			_body->ApplyImpulse(direction*(1.5f+(input->GetModifierKeys()&RN::KeyModifier::KeyShift)));
+			_body->ApplyImpulse(direction*(21.5f+(input->GetModifierKeys()&RN::KeyModifier::KeyShift)));
 			
 			float rotation = input->IsKeyPressed('a')-input->IsKeyPressed('d');
 			_body->ApplyTorqueImpulse(RN::Vector3(0.0f, rotation*0.5f, 0.0f));
@@ -177,6 +211,9 @@ namespace SW
 				_wheelRotation -= _wheelRotation*delta*0.9f;
 				
 			_wheel->SetRotation(RN::Vector3(0.0f, _wheelRotation, 0.0f));
+
+			smokeEmitter->SetLifeSpan(RN::Vector2(2.5f, 1.0f));
+			smokeEmitter->SetSpawnRate(0.02f);
 		}
 	}
 }

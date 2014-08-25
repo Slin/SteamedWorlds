@@ -12,6 +12,7 @@
 #include <Rayne/Rayne.h>
 #include <RBRigidBody.h>
 #include <RALAudioSource.h>
+#include <SWWorld.h>
 
 namespace SW
 {
@@ -27,6 +28,8 @@ namespace SW
 		void Update(float delta) override;
 		
 	private:
+		bool _isRepaired;
+
 		bool _isActive;
 		bool _hasToggled;
 		RN::Vector3 _bounds;
@@ -39,7 +42,9 @@ namespace SW
 		
 		RN::openal::AudioSource *_engineLeft;
 		RN::openal::AudioSource *_engineRight;
-		
+
+		RN::GenericParticleEmitter *smokeEmitter;
+
 		RNDeclareMeta(Vehicle)
 	};
 }
