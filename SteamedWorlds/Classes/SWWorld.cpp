@@ -224,6 +224,44 @@ namespace SW
 			Area *vulcano = new Area(7.0f, AREA_TYPE::VULCANO);
 			vulcano->SetPosition(RN::Vector3(489.34f, -205.83f, 958.28f));
 		}
+		
+		
+		// Cactus
+		RN::Model *cactuse[] = {RN::Model::WithFile("Models/cactus.sgm"), RN::Model::WithFile("Models/cactus1.sgm"), RN::Model::WithFile("Models/cactus2.sgm")};
+		
+		RN::InstancingNode *cactusNode = new RN::InstancingNode();
+		cactusNode->SetModels(RN::Array::WithObjects(cactuse[0], cactuse[1], cactuse[2]));
+		cactusNode->SetFlags(cactusNode->GetFlags() | RN::SceneNode::Flags::NoSave);
+		cactusNode->SetPivot(_camera->Downcast<RN::Camera>());
+		cactusNode->SetMode(RN::InstancingNode::Mode::Thinning | RN::InstancingNode::Mode::Clipping);
+		cactusNode->SetCellSize(128.0f);
+		cactusNode->SetClippingRange(256.0f);
+		cactusNode->SetThinningRange(256.0f);
+		cactusNode->Release();
+		
+		RN::Random::MersenneTwister random;
+		random.Seed(0x1024);
+		for(int i = 0; i < 7000; i ++)
+		{
+			RN::Vector3 pos(random.GetRandomFloatRange(-800.0f, 1200.0f), 500.0f, random.GetRandomFloatRange(-1200.0f, 1200.0f));
+			pos += RN::Vector3(1000.0f, -200.0f, 100.0f);
+			
+			RN::Hit hit = _physicsWorld->CastRay(pos, RN::Vector3(pos.x, pos.y-1000.0f, pos.z));
+			if(hit.distance <= 0.0f)
+				continue;
+			
+			pos.y -= hit.distance;
+			
+			int32 index = random.GetRandomInt32Range(0, 2);
+			
+			RN::Entity *entity = new RN::Entity(cactuse[index], pos);
+			entity->SetFlags(entity->GetFlags() | RN::SceneNode::Flags::Static | RN::SceneNode::Flags::NoSave);
+			entity->SetScale(RN::Vector3(random.GetRandomFloatRange(0.2f, 0.3f)));
+			entity->SetRotation(RN::Vector3(random.GetRandomFloatRange(0, 360.0f), 0.0f, 0.0f));
+			entity->Release();
+			
+			cactusNode->AddChild(entity);
+		}
 	}
 	
 	void World::SaveOnThread(RN::Thread *thread, RN::Serializer *serializer)

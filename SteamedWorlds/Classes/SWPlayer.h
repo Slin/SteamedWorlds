@@ -46,6 +46,8 @@ namespace SW
 			return _hasSteeringwheel;
 		};
 		
+		void UpdateCamera();
+		
 	private:
 		RN::SceneNode *_camera;
 		RN::bullet::KinematicController *_controller;
@@ -57,6 +59,7 @@ namespace SW
 		RN::Skeleton *_skeleton;
 		
 		RN::Random::MersenneTwister _random;
+		RN::Vector3 _cameraRotation;
 		
 		bool _hasBottle, _hasSteeringwheel, _hasDust;
 
