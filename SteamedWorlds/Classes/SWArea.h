@@ -29,6 +29,7 @@ namespace SW
 	private:
 		AREA_TYPE _type;
 		float _radius;
+		bool _isTriggered;
 		
 		RNDeclareMeta(Area)
 	};
