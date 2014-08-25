@@ -189,6 +189,9 @@ namespace SW
 			wueste->GetModel()->GetMaterialAtIndex(0, 0)->SetShader(RN::Shader::WithFile("Shaders/Island"));
 			wueste->GetModel()->GetMaterialAtIndex(0, 0)->Define("TILE_FACTOR", 100.0f);
 			
+			StaticEntity *wuesteObjekte = new StaticEntity("Models/wuesteobjekte.sgm");
+			wuesteObjekte->SetPosition(RN::Vector3(1000.0f, -200.0f, 100.0f));
+			
 			StaticEntity *desertHouse = new StaticEntity("Models/huette_fixed.sgm");
 			desertHouse->SetPosition(RN::Vector3(920.262f, -165.618f, -850.0f));
 
