@@ -41,6 +41,7 @@ namespace SW
 		if(GetWorldPosition().GetDistance(Player::GetSharedInstance()->GetWorldPosition()) < _radius)
 		{
 			Player::GetSharedInstance()->EnterArea(_type);
+			RemoveFromWorld();
 		}
 	}
 }

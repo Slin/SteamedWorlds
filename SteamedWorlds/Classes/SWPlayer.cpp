@@ -58,6 +58,7 @@ namespace SW
 	{
 		RN::Entity::Update(delta);
 		
+		/*
 		if(_isAnimating > 0.0f)
 		{
 			_isAnimating -= delta;
@@ -67,7 +68,8 @@ namespace SW
 			
 			return;
 		}
-		
+		*/
+
 		if(_controller)
 		{
 			RN::Input *input = RN::Input::GetSharedInstance();
@@ -147,7 +149,7 @@ namespace SW
 	void Player::StartAnimation()
 	{
 		_isAnimating = 15.0f;
-		SetPassable(true);
+		//SetPassable(true);
 		SetPosition(RN::Vector3(-6.6f, -1.5f, 28.0f));
 		SetRotation(RN::Vector3(102.0f, 0.0f, 0.0f));
 		static_cast<World*>(GetWorld())->GetAudioWorld()->PlaySound(RN::AudioResource::WithFile("Audio/talking-intro.ogg"));
@@ -157,12 +159,13 @@ namespace SW
 		switch (type) {
 		case ITEM_TYPE::BOTTLE:
 			_hasBottle = true;
-			
+			static_cast<World*>(GetWorld())->GetAudioWorld()->PlaySound(RN::AudioResource::WithFile("Audio/talking-willdo.ogg"));
 			break;
 
 		case ITEM_TYPE::STEERINGWHEEL:
 			_hasSteeringwheel = true;
-			
+			// say: what a nice steering wheel
+
 			break;
 
 		default:
@@ -174,16 +177,20 @@ namespace SW
 		switch (area) {
 		case AREA_TYPE::DESERT_DUST:
 			if (!_hasBottle) {
-				// say: I need a bottle to pick up this special cometal dust
+				static_cast<World*>(GetWorld())->GetAudioWorld()->PlaySound(RN::AudioResource::WithFile("Audio/talking-missingbottle.ogg"));
 			}
 			else {
 				_hasDust = true;
-				// say: That's gonna be useful. I'll pick it up with the bottle.
+				static_cast<World*>(GetWorld())->GetAudioWorld()->PlaySound(RN::AudioResource::WithFile("Audio/talking-gotovulcano.ogg"));
 			}
 			break;
 		case AREA_TYPE::VULCANO:
 			if (!_hasDust) {
 				// say: I need the special cometal dust to enable the anti-gravity forces of the diamond
+			}
+			else {
+				// victory
+				static_cast<World*>(GetWorld())->GetAudioWorld()->PlaySound(RN::AudioResource::WithFile("Audio/talking-end.ogg"));
 			}
 		}
 	}

@@ -25,7 +25,8 @@ namespace SW
 		_wheel = new RN::Entity(RN::Model::WithFile(wheelfile));
 		AddChild(_wheel);
 		_wheel->SetPosition(wheelpos);
-		
+		_wheel->SetRenderGroup(5);
+
 		_engineLeft = new RN::openal::AudioSource(RN::AudioResource::WithFile("Audio/engine.ogg"));
 		_engineLeft->SetRepeat(true);
 		AddChild(_engineLeft);
@@ -99,12 +100,16 @@ namespace SW
 					{
 						if (player->HasSteeringWheel()) {
 							_isRepaired = true;
-							// say: that
+							// display steering wheel
+							_wheel->SetRenderGroup(0);
+
+							// say: woohaaaa..! let's start the engines!
+							
 						}
 
 						if (!_isRepaired) {
-							// ich brauch steering wheel
-							//static_cast<World*>(GetWorld())->GetAudioWorld()->PlaySound(RN::AudioResource::WithFile(""));
+							// need steering wheel
+							static_cast<World*>(GetWorld())->GetAudioWorld()->PlaySound(RN::AudioResource::WithFile("Audio/talking-steeringwheel.ogg"));
 
 						} else {
 							player->SetPassable(true);
@@ -191,8 +196,6 @@ namespace SW
 				
 			_wheel->SetRotation(RN::Vector3(0.0f, _wheelRotation, 0.0f));
 
-			smokeEmitter->SetLifeSpan(RN::Vector2(2.5f, 1.0f));
-			smokeEmitter->SetSpawnRate(0.02f);
 		}
 	}
 }

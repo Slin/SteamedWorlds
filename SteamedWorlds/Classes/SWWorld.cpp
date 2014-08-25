@@ -213,6 +213,16 @@ namespace SW
 			PickupEntity *steeringWheel = new PickupEntity("Models/steeringwheel.sgm", ITEM_TYPE::STEERINGWHEEL);
 			steeringWheel->SetPosition(RN::Vector3(23.757f, -1.779f, 33.857f));
 			steeringWheel->SetWorldRotation(RN::Vector3(3.24f, -15.16f, -28.641f));
+
+			PickupEntity *bottle = new PickupEntity("Models/flasche.sgm", ITEM_TYPE::BOTTLE);
+			bottle->SetPosition(RN::Vector3(919.76f, -165.29f, -847.46f));
+			bottle->SetWorldRotation(RN::Vector3(3.24f, -15.16f, -28.641f));
+
+			Area *dustArea = new Area(25.0f, AREA_TYPE::DESERT_DUST);
+			dustArea->SetPosition(RN::Vector3(1123.616f, -247.31f, 387.43f));
+
+			Area *vulcano = new Area(7.0f, AREA_TYPE::VULCANO);
+			vulcano->SetPosition(RN::Vector3(489.34f, -205.83f, 958.28f));
 		}
 	}
 	
