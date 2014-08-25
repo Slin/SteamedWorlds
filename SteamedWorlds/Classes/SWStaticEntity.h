@@ -23,6 +23,8 @@ namespace SW
 		void Initialize();
 		void Serialize(RN::Serializer *serializer) override;
 		
+		void Update(float delta) override;
+		
 	private:
 		bool _collider;
 		

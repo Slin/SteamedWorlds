@@ -74,7 +74,7 @@ namespace SW
 			RN::Vector3 direction(input->IsKeyPressed('d')-input->IsKeyPressed('a'), 0.0f, input->IsKeyPressed('s')-input->IsKeyPressed('w'));
 			
 			direction = GetRotation().GetRotatedVector(direction);
-			direction *= 0.1f+0.1f*(input->GetModifierKeys() & RN::KeyModifier::KeyShift);
+			direction *= 0.05f+0.05f*(input->GetModifierKeys() & RN::KeyModifier::KeyShift);
 			
 			_controller->SetWalkDirection(direction);
 			

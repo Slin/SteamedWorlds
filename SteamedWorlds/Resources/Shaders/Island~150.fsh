@@ -11,6 +11,10 @@ precision highp float;
 
 #include <shader/rn_Lighting.fsh>
 
+#if !defined(TILE_FACTOR)
+	#define TILE_FACTOR 30.0
+#endif
+
 uniform sampler2D mTexture0;
 uniform sampler2D mTexture1;
 uniform sampler2D mTexture2;
@@ -31,7 +35,7 @@ out vec4 fragColor0;
 
 void main()
 {
-	vec2 tileCoords = vertTexcoord*30.0f;
+	vec2 tileCoords = vertTexcoord*TILE_FACTOR;
 	
 	vec3 colorAO = texture(mTexture0, vertTexcoord).rgb;
 	vec4 colorSplatmap = texture(mTexture1, vertTexcoord);
@@ -39,12 +43,15 @@ void main()
 	vec3 colorRed = texture(mTexture3, tileCoords).rgb;
 	vec3 colorGreen = texture(mTexture4, tileCoords).rgb;
 	vec3 colorBlue = texture(mTexture5, tileCoords).rgb;
-	vec3 colorAlpha = texture(mTexture6, tileCoords).rgb;
 	
 	vec3 color = mix(colorBase, colorRed, colorSplatmap.r);
 	color = mix(color, colorGreen, colorSplatmap.g);
 	color = mix(color, colorBlue, colorSplatmap.b);
+
+	#if !defined(SPLAT_NO_ALPHA)
+	vec3 colorAlpha = texture(mTexture6, tileCoords).rgb;
 	color = mix(color, colorAlpha, colorSplatmap.a);
+	#endif
 
 	color *= colorAO;
 

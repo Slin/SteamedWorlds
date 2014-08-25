@@ -77,6 +77,7 @@ namespace SW
 			tempCamera->SetBlitShader(RN::Shader::WithFile("shader/rn_DrawFramebufferTonemap"));
 			tempCamera->SetAmbientColor(RN::Color::WithHSV(0.0f, 0.0f, 1.5f));
 			tempCamera->SetSky(sky);
+			tempCamera->SetClipFar(50000.0f);
 			
 			FullscreenEffects::GetSharedInstance()->CreateBloomPipeline(tempCamera);
 			
@@ -178,6 +179,30 @@ namespace SW
 			
 			StaticEntity *zaun = new StaticEntity("Models/zaunacker.sgm");
 			zaun->GetModel()->GetMaterialAtIndex(0, 0)->SetCullMode(RN::Material::CullMode::None);
+			
+			
+			
+			
+			StaticEntity *wueste = new StaticEntity("Models/wueste.sgm");
+			wueste->SetPosition(RN::Vector3(1000.0f, -200.0f, 100.0f));
+			wueste->GetModel()->GetMaterialAtIndex(0, 4)->AddTexture(RN::Texture::WithFile("Models/dirt3.png"));
+			wueste->GetModel()->GetMaterialAtIndex(0, 4)->SetShader(RN::Shader::WithFile("Shaders/Island"));
+			wueste->GetModel()->GetMaterialAtIndex(0, 4)->Define("TILE_FACTOR", 100.0f);
+			
+			
+			StaticEntity *vulkan = new StaticEntity("Models/vulcano.sgm");
+			vulkan->SetPosition(RN::Vector3(500.0f, 200.0f, 1000.0f));
+			RN::Material * vulkanMaterial = vulkan->GetModel()->GetMaterialAtIndex(0, 0);
+			vulkanMaterial->RemoveTextures();
+			vulkanMaterial->AddTexture(RN::Texture::WithFile("Models/bodeeen.png"));
+			vulkanMaterial->AddTexture(RN::Texture::WithFile("Models/vulcano_splat.png"));
+			vulkanMaterial->AddTexture(RN::Texture::WithFile("Models/dirt.png"));
+			vulkanMaterial->AddTexture(RN::Texture::WithFile("Models/dirt3.png"));
+			vulkanMaterial->AddTexture(RN::Texture::WithFile("Models/dirt2.png"));
+			vulkanMaterial->AddTexture(RN::Texture::WithFile("Models/dirt4.png"));
+			vulkanMaterial->AddTexture(RN::Texture::WithFile("Models/dirt.png"));
+			vulkanMaterial->SetShader(RN::Shader::WithFile("Shaders/Island"));
+			vulkanMaterial->Define("SPLAT_NO_ALPHA");
 		}
 		
 		StartIntro();

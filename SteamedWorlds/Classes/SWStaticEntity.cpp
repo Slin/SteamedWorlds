@@ -7,6 +7,7 @@
 //
 
 #include "SWStaticEntity.h"
+#include "SWPlayer.h"
 
 namespace SW
 {
@@ -42,5 +43,20 @@ namespace SW
 	{
 		Entity::Serialize(serializer);
 		serializer->EncodeBool(_collider);
+	}
+	
+	void StaticEntity::Update(float delta)
+	{
+		if(_collider)
+			return;
+		
+		if(GetWorldPosition().GetDistance(Player::GetSharedInstance()->GetWorldPosition()) > 500.0f)
+		{
+			SetRenderGroup(5);
+		}
+		else
+		{
+			SetRenderGroup(0);
+		}
 	}
 }
