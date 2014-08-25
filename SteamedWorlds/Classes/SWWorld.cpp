@@ -132,7 +132,7 @@ namespace SW
 			farn->GetModel()->GetMaterialAtIndex(0, 1)->SetDiscard(true);
 			
 			new StaticEntity("Models/haus1.sgm");
-			StaticEntity *tree = new StaticEntity("Models/trees.sgm");
+			StaticEntity *tree = new StaticEntity("Models/trees.sgm", false);
 			tree->GetModel()->GetMaterialAtIndex(0, 1)->SetDiscard(true);
 			tree->GetModel()->GetMaterialAtIndex(0, 1)->SetDiscardThreshold(0.9f);
 			tree->GetModel()->GetMaterialAtIndex(0, 1)->SetCullMode(RN::Material::CullMode::None);
@@ -154,7 +154,7 @@ namespace SW
 
 			StaticEntity *jetty = new StaticEntity("Models/jetty.sgm");
 			jetty->SetPosition(RN::Vector3(-6.815f, -9.343f, 55.183f));
-			new StaticEntity("Models/wohnhaus.sgm");
+			new StaticEntity("Models/home.sgm");
 			
 			Vehicle *ship = new Vehicle("Models/airboat.sgm", "Models/airboat_wheel.sgm");
 			ship->SetWorldPosition(ship->GetWorldPosition()+RN::Vector3(0.0f, ship->GetBoundingBox().maxExtend.y, 8.0f));
@@ -162,6 +162,8 @@ namespace SW
 			ship->GetModel()->GetMaterialAtIndex(0, 2)->SetSpecularColor(RN::Color(0.1f, 0.08f, 0.05f, 250.0f));
 			ship->GetModel()->GetMaterialAtIndex(0, 3)->Define("RN_SPECULARITY");
 			ship->GetModel()->GetMaterialAtIndex(0, 3)->SetSpecularColor(RN::Color(0.1f, 0.08f, 0.05f, 250.0f));
+			
+			StaticEntity *turm = new StaticEntity("Models/geruest.sgm");
 		}
 	}
 	
