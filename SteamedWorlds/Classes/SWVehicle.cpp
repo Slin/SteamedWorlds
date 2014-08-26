@@ -175,7 +175,7 @@ namespace SW
 			
 			RN::Vector3 direction(input->IsKeyPressed('s')-input->IsKeyPressed('w'), input->IsKeyPressed('e')-input->IsKeyPressed('q'), 0.0f);
 			direction = GetWorldRotation().GetRotatedVector(direction);
-			_body->ApplyImpulse(direction*(21.5f+(input->GetModifierKeys()&RN::KeyModifier::KeyShift)));
+			_body->ApplyImpulse(direction*(1.5f+(input->GetModifierKeys()&RN::KeyModifier::KeyShift)));
 			
 			float rotation = input->IsKeyPressed('a')-input->IsKeyPressed('d');
 			_body->ApplyTorqueImpulse(RN::Vector3(0.0f, rotation*0.5f, 0.0f));
