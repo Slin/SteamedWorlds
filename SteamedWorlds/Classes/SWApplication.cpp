@@ -32,10 +32,11 @@ namespace SW
 		world->SetHMD(hmd);
 #endif
 		
-	/*	RN::Window *window = RN::Window::GetSharedInstance();
-		RN::WindowConfiguration *configuration = new RN::WindowConfiguration(window->GetMainScreen()->GetWidth()*0.5f, window->GetMainScreen()->GetHeight()*0.5f);
-		window->ActivateConfiguration(configuration, RN::Window::Mask::Fullscreen);*/
-		
+		RN::Window *window = RN::Window::GetSharedInstance();
+		RN::WindowConfiguration *configuration = new RN::WindowConfiguration(window->GetMainScreen()->GetWidth(), window->GetMainScreen()->GetHeight());
+		window->ActivateConfiguration(configuration, RN::Window::Mask::Fullscreen);
+		RN::Window::GetSharedInstance()->HideCursor();
+
 		RN::WorldCoordinator::GetSharedInstance()->LoadWorld(world->Autorelease());
 	}
 	
