@@ -230,6 +230,22 @@ namespace SW
 
 			Area *vulcano = new Area(10.0f, AREA_TYPE::VULCANO);
 			vulcano->SetPosition(RN::Vector3(489.34f, 206.0f, 958.28f));
+
+			_leftEmitter = new RN::GenericParticleEmitter();
+			_leftEmitter->SetRenderGroup(0);
+			_leftEmitter->SetSpawnRate(0.02f);
+			_leftEmitter->SetLifeSpan(RN::Vector2(6.0f, 10.0f));
+			_leftEmitter->SetStartColor(RN::Color(200,20,20));
+			_leftEmitter->SetEndColor(RN::Color(255,255,40));
+			_leftEmitter->SetStartSize(RN::Vector2(1.0f, 2.0f));
+			_leftEmitter->SetEndSize(RN::Vector2(0.5f, 1.0f));
+			_leftEmitter->SetGravity(RN::Vector3(0.0f, 1.1f, 0.0f));
+			_leftEmitter->SetVelocityRandomizeMax(RN::Vector3(1.01f, 1.01f, 1.01f));
+			_leftEmitter->SetVelocityRandomizeMin(RN::Vector3(-1.01f, 0.0f, -1.01f));
+			_leftEmitter->SetPositionRandomizeMax(RN::Vector3());
+			_leftEmitter->SetPositionRandomizeMin(RN::Vector3());
+			_leftEmitter->SetPosition(RN::Vector3(490.0f, 198.0f, 958.0f));
+			_leftEmitter->SetRotation(RN::Vector3(0.0f, 0.0f, 0.0f));
 		}
 /*
 		// Cactus

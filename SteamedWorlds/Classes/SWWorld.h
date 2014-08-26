@@ -55,6 +55,8 @@ namespace SW
 		CrashingShip *_crashingShip;
 		Turm *_turm;
 		
+		RN::GenericParticleEmitter *_leftEmitter;
+
 #if RN_PLATFORM_MAC_OS
 		RO::HMD *_hmd;
 #endif
