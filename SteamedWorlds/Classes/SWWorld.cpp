@@ -13,11 +13,7 @@ namespace SW
 	RNDefineMeta(World, RN::World)
 	
 	World::World() :
-		RN::World("GenericSceneManager"), _hasPlayedIntro(false)
-	
-#if RN_PLATFORM_MAC_OS
-	,_hmd(nullptr)
-#endif
+		RN::World("GenericSceneManager"), _hasPlayedIntro(false), _hmd(nullptr)
 	{
 		_physicsWorld = new RN::bullet::PhysicsWorld();
 		AddAttachment(_physicsWorld);
@@ -29,7 +25,6 @@ namespace SW
 	World::~World()
 	{}
 	
-#if RN_PLATFORM_MAC_OS
 	void World::SetHMD(RO::HMD *hmd)
 	{
 		if(_hmd)
@@ -37,7 +32,6 @@ namespace SW
 		
 		_hmd = hmd;
 	}
-#endif
 	
 	void World::LoadOnThread(RN::Thread *thread, RN::Deserializer *deserializer)
 	{
@@ -54,7 +48,6 @@ namespace SW
 		}
 		
 		//Create camera with effects and stuff
-#if RN_PLATFORM_MAC_OS
 		if(_hmd)
 		{
 			RO::Camera *tempCamera = new RO::Camera(RN::Texture::Format::RGB16F);
@@ -71,13 +64,12 @@ namespace SW
 			_camera = tempCamera;
 		}
 		else
-#endif
 		{
 			RN::Camera *tempCamera = new RN::Camera(RN::Vector2(), RN::Texture::Format::RGB16F);
 			tempCamera->SetBlitShader(RN::Shader::WithFile("shader/rn_DrawFramebufferTonemap"));
 			tempCamera->SetAmbientColor(RN::Color::WithHSV(0.0f, 0.0f, 1.5f));
 			tempCamera->SetSky(sky);
-			tempCamera->SetClipFar(50000.0f);
+			tempCamera->SetClipFar(5000.0f);
 			tempCamera->SetFogFar(5000.0f);
 			tempCamera->SetFogNear(100.0f);
 			tempCamera->SetFogColor(RN::Color(2.0f, 2.0f, 3.0f));
@@ -108,8 +100,13 @@ namespace SW
 		{
 			//Sun
 			RN::Light *sun = new RN::Light(RN::Light::Type::DirectionalLight);
-#ifndef RN_PLATFORM_MAC_OS
-			sun->ActivateShadows(RN::ShadowParameter(static_cast<RN::Camera*>(_camera), 2048));
+#if RN_PLATFORM_MAC_OS == 0
+			if(!_hmd)
+			{
+				RN::ShadowParameter shadowParameter(static_cast<RN::Camera*>(_camera), 2048);
+				shadowParameter.distanceBlendFactor = 0.004f;
+				sun->ActivateShadows(shadowParameter);
+			}
 #endif
 			sun->SetRotation(RN::Vector3(60.0f, -20.0f, 0.0f));
 			
@@ -231,21 +228,21 @@ namespace SW
 			Area *vulcano = new Area(10.0f, AREA_TYPE::VULCANO);
 			vulcano->SetPosition(RN::Vector3(489.34f, 206.0f, 958.28f));
 
-			_leftEmitter = new RN::GenericParticleEmitter();
-			_leftEmitter->SetRenderGroup(0);
-			_leftEmitter->SetSpawnRate(0.02f);
-			_leftEmitter->SetLifeSpan(RN::Vector2(6.0f, 10.0f));
-			_leftEmitter->SetStartColor(RN::Color(200,20,20));
-			_leftEmitter->SetEndColor(RN::Color(255,255,40));
-			_leftEmitter->SetStartSize(RN::Vector2(1.0f, 2.0f));
-			_leftEmitter->SetEndSize(RN::Vector2(0.5f, 1.0f));
-			_leftEmitter->SetGravity(RN::Vector3(0.0f, 1.1f, 0.0f));
-			_leftEmitter->SetVelocityRandomizeMax(RN::Vector3(1.01f, 1.01f, 1.01f));
-			_leftEmitter->SetVelocityRandomizeMin(RN::Vector3(-1.01f, 0.0f, -1.01f));
-			_leftEmitter->SetPositionRandomizeMax(RN::Vector3());
-			_leftEmitter->SetPositionRandomizeMin(RN::Vector3());
-			_leftEmitter->SetPosition(RN::Vector3(490.0f, 198.0f, 958.0f));
-			_leftEmitter->SetRotation(RN::Vector3(0.0f, 0.0f, 0.0f));
+			_vulcanoEmitter = new RN::GenericParticleEmitter();
+			_vulcanoEmitter->SetRenderGroup(0);
+			_vulcanoEmitter->SetSpawnRate(0.02f);
+			_vulcanoEmitter->SetLifeSpan(RN::Vector2(6.0f, 10.0f));
+			_vulcanoEmitter->SetStartColor(RN::Color(200, 20, 20));
+			_vulcanoEmitter->SetEndColor(RN::Color(255, 255, 40));
+			_vulcanoEmitter->SetStartSize(RN::Vector2(1.0f, 2.0f));
+			_vulcanoEmitter->SetEndSize(RN::Vector2(0.5f, 1.0f));
+			_vulcanoEmitter->SetGravity(RN::Vector3(0.0f, 1.1f, 0.0f));
+			_vulcanoEmitter->SetVelocityRandomizeMax(RN::Vector3(1.01f, 1.01f, 1.01f));
+			_vulcanoEmitter->SetVelocityRandomizeMin(RN::Vector3(-1.01f, 0.0f, -1.01f));
+			_vulcanoEmitter->SetPositionRandomizeMax(RN::Vector3());
+			_vulcanoEmitter->SetPositionRandomizeMin(RN::Vector3());
+			_vulcanoEmitter->SetPosition(RN::Vector3(490.0f, 198.0f, 958.0f));
+			_vulcanoEmitter->SetRotation(RN::Vector3(0.0f, 0.0f, 0.0f));
 		}
 /*
 		// Cactus

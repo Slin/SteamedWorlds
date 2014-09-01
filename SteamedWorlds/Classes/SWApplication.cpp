@@ -22,7 +22,6 @@ namespace SW
 
 		SW::World *world = new World();
 		
-#if RN_PLATFORM_MAC_OS
 		RO::HMD *hmd = RO::System::GetSharedInstance()->GetHMD(0);
 		if(hmd)
 		{
@@ -30,12 +29,11 @@ namespace SW
 		}
 		
 		world->SetHMD(hmd);
-#endif
 		
-		RN::Window *window = RN::Window::GetSharedInstance();
+/*		RN::Window *window = RN::Window::GetSharedInstance();
 		RN::WindowConfiguration *configuration = new RN::WindowConfiguration(window->GetMainScreen()->GetWidth(), window->GetMainScreen()->GetHeight());
 		window->ActivateConfiguration(configuration, RN::Window::Mask::Fullscreen);
-		RN::Window::GetSharedInstance()->HideCursor();
+		RN::Window::GetSharedInstance()->HideCursor();*/
 
 		RN::WorldCoordinator::GetSharedInstance()->LoadWorld(world->Autorelease());
 	}

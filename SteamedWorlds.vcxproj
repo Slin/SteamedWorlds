@@ -41,13 +41,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)\$(ProjectName)\Classes;$(ProgramFiles)\Rayne\include;$(ProjectDir)\$(ProjectName)\Resources\Modules\rayne-bullet\include;$(ProjectDir)\$(ProjectName)\Resources\Modules\rayne-openal\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProgramFiles)\Rayne\$(Configuration);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(ProjectDir)\$(ProjectName)\Resources\Modules\rayne-bullet;$(ProjectDir)\$(ProjectName)\Resources\Modules\rayne-openal</LibraryPath>
+    <IncludePath>$(ProjectDir)\$(ProjectName)\Classes;$(ProgramFiles)\Rayne\include;$(ProjectDir)\$(ProjectName)\Resources\Modules\rayne-bullet\include;$(ProjectDir)\$(ProjectName)\Resources\Modules\rayne-openal\include;$(ProjectDir)\$(ProjectName)\Resources\Modules\oculus\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProgramFiles)\Rayne\$(Configuration);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(ProjectDir)\$(ProjectName)\Resources\Modules\rayne-bullet;$(ProjectDir)\$(ProjectName)\Resources\Modules\rayne-openal;$(ProjectDir)\$(ProjectName)\Resources\Modules\oculus</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)\$(ProjectName)\Classes;$(ProgramFiles)\Rayne\include;$(ProjectDir)\$(ProjectName)\Resources\Modules\rayne-bullet\include;$(ProjectDir)\$(ProjectName)\Resources\Modules\rayne-openal\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProgramFiles)\Rayne\$(Configuration);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(ProjectDir)\$(ProjectName)\Resources\Modules\rayne-bullet;$(ProjectDir)\$(ProjectName)\Resources\Modules\rayne-openal</LibraryPath>
+    <IncludePath>$(ProjectDir)\$(ProjectName)\Classes;$(ProgramFiles)\Rayne\include;$(ProjectDir)\$(ProjectName)\Resources\Modules\rayne-bullet\include;$(ProjectDir)\$(ProjectName)\Resources\Modules\rayne-openal\include;$(ProjectDir)\$(ProjectName)\Resources\Modules\oculus\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProgramFiles)\Rayne\$(Configuration);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(ProjectDir)\$(ProjectName)\Resources\Modules\rayne-bullet;$(ProjectDir)\$(ProjectName)\Resources\Modules\rayne-openal;$(ProjectDir)\$(ProjectName)\Resources\Modules\oculus</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -60,7 +60,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Rayne.lib;librayne-bullet~debug.lib;librayne-openal~debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Rayne.lib;librayne-bullet~debug.lib;librayne-openal~debug.lib;%(AdditionalDependencies);</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -78,7 +78,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>Rayne.lib;librayne-bullet.lib;librayne-openal.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Rayne.lib;librayne-bullet.lib;librayne-openal.lib;librayne-oculus.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

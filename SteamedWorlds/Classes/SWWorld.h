@@ -12,10 +12,7 @@
 #include <Rayne/Rayne.h>
 #include <RBPhysicsWorld.h>
 #include <RALAudioWorld.h>
-
-#if RN_PLATFORM_MAC_OS
-	#include <ROCamera.h>
-#endif
+#include <ROCamera.h>
 
 #include "SWFullscreenEffects.h"
 #include "SWStaticEntity.h"
@@ -38,10 +35,8 @@ namespace SW
 		void Update(float delta) override;
 		
 		void StartIntro();
-		
-#if RN_PLATFORM_MAC_OS
+
 		void SetHMD(RO::HMD *hmd);
-#endif
 		
 		RN::openal::AudioWorld *GetAudioWorld() const { return _audioWorld; }
 		
@@ -55,11 +50,8 @@ namespace SW
 		CrashingShip *_crashingShip;
 		Turm *_turm;
 		
-		RN::GenericParticleEmitter *_leftEmitter;
-
-#if RN_PLATFORM_MAC_OS
+		RN::GenericParticleEmitter *_vulcanoEmitter;
 		RO::HMD *_hmd;
-#endif
 		
 		RNDeclareMeta(World)
 	};
