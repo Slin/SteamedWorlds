@@ -86,6 +86,7 @@ namespace SW
 	
 	void Vehicle::Update(float delta)
 	{
+		RN::Entity::Update(delta);
 		
 		RN::Input *input = RN::Input::GetSharedInstance();
 		Player *player = Player::GetSharedInstance();
@@ -117,12 +118,9 @@ namespace SW
 
 							_camera = player->GetCamera();
 							_oldCameraPosition = _camera->GetPosition();
-							//player->RemoveChild(_camera);
-							//AddChild(_camera);
-							//_camera->SetPosition(_oldCameraPosition + RN::Vector3(-1.5f, -3.5f, 0.0f));
 
 							RemoveDependency(player);
-							player->AddDependency(this);
+							//player->AddDependency(this);
 							AddChild(player);
 							player->SetPosition(RN::Vector3(-1.5f, -3.5f, 0.0f));
 							_isActive = true;
@@ -137,16 +135,12 @@ namespace SW
 				}
 				else
 				{
-					player->RemoveDependency(this);
+					//player->RemoveDependency(this);
 					RemoveChild(player);
 					AddDependency(player);
 					_body->GetBulletCollisionObject()->forceActivationState(DISABLE_SIMULATION);
 					
 					player->SetRotation(RN::Vector3(_camera->GetEulerAngle().x, 0.0f, 0.0f));
-					//RemoveChild(_camera);
-					//player->AddChild(_camera);
-					//_camera->SetPosition(_oldCameraPosition);
-					//_camera->SetRotation(RN::Vector3(0.0f, 0.0f, 0.0f));
 					
 					player->SetPassable(false);
 					_isActive = false;
@@ -187,16 +181,6 @@ namespace SW
 				
 			_wheel->SetRotation(RN::Vector3(0.0f, _wheelRotation, 0.0f));
 
-		}
-	}
-	
-	void Vehicle::DidUpdate(RN::SceneNode::ChangeSet changeSet)
-	{
-		Entity::DidUpdate(changeSet);
-		
-		if(changeSet == RN::SceneNode::ChangeSet::Position)
-		{
-			Player::GetSharedInstance()->UpdateCamera();
 		}
 	}
 }
