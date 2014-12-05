@@ -47,6 +47,8 @@ namespace SW
 			material->Define("RN_ATMOSPHERE");
 		}
 		
+		RN::openal::AudioListener *audioListener = new RN::openal::AudioListener();
+		
 		//Create camera with effects and stuff
 		if(_hmd)
 		{
@@ -62,6 +64,7 @@ namespace SW
 			FullscreenEffects::GetSharedInstance()->CreateGammaPipeline(tempCamera->GetRightCamera());
 			
 			_camera = tempCamera;
+			tempCamera->GetHead()->AddAttachment(audioListener);
 		}
 		else
 		{
@@ -77,6 +80,7 @@ namespace SW
 			FullscreenEffects::GetSharedInstance()->CreateBloomPipeline(tempCamera);
 			
 			_camera = tempCamera;
+			_camera->AddAttachment(audioListener);
 		}
 		_camera->SetFlags(_camera->GetFlags()|RN::SceneNode::Flags::NoSave);
 		
@@ -84,9 +88,6 @@ namespace SW
 		RN::Renderer::GetSharedInstance()->SetHDRWhitePoint(8.0f);
 		
 		// Background ambient
-		RN::openal::AudioListener *audioListener = new RN::openal::AudioListener();
-		_camera->AddAttachment(audioListener);
-		
 		RN::AudioResource *audio = RN::AudioResource::WithFile("/Audio/wind_in_trees.ogg");
 		RN::openal::AudioSource *audioSource = _audioWorld->PlaySound(audio);
 		audioSource->SetRepeat(true);
