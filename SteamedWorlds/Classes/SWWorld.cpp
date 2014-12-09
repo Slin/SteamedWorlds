@@ -58,9 +58,9 @@ namespace SW
 			tempCamera->GetLeftCamera()->SetSky(sky);
 			tempCamera->GetRightCamera()->SetSky(sky);
 			
-			FullscreenEffects::GetSharedInstance()->CreateBloomPipeline(tempCamera->GetLeftCamera());
+//			FullscreenEffects::GetSharedInstance()->CreateBloomPipeline(tempCamera->GetLeftCamera());
 			FullscreenEffects::GetSharedInstance()->CreateGammaPipeline(tempCamera->GetLeftCamera());
-			FullscreenEffects::GetSharedInstance()->CreateBloomPipeline(tempCamera->GetRightCamera());
+//			FullscreenEffects::GetSharedInstance()->CreateBloomPipeline(tempCamera->GetRightCamera());
 			FullscreenEffects::GetSharedInstance()->CreateGammaPipeline(tempCamera->GetRightCamera());
 			
 			_camera = tempCamera;
@@ -293,6 +293,13 @@ namespace SW
 			cactusNode->AddChild(entity);
 		}
 		*/
+
+		if(_hmd)
+		{
+			RN::Timer::ScheduledTimerWithDuration(std::chrono::seconds(6), [this] {
+				_hmd->DismissSafetyWarning();
+			}, false);
+		}
 	}
 	
 	void World::SaveOnThread(RN::Thread *thread, RN::Serializer *serializer)

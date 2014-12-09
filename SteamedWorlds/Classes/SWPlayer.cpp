@@ -38,10 +38,9 @@ namespace SW
 		SetFlags(GetFlags()|RN::SceneNode::Flags::NoSave);
 		
 		SetPassable(false);
-		//AddChild(_camera);
-		_camera->AddDependency(this);
+		AddChild(_camera);
 		
-		//_camera->SetPosition(RN::Vector3(0.0f, 0.78f, 0.0f));
+		_camera->SetPosition(RN::Vector3(0.0f, 0.78f, 0.0f));
 		
 //		_skeleton = RN::Skeleton::WithFile("Models/cameraent.sga");
 //		_skeleton->SetAnimation("cameraAction");
@@ -75,14 +74,13 @@ namespace SW
 		RN::Vector3 rotationX(input->GetMouseDelta().x, 0.0f, 0.0f);
 		Rotate(rotationX);
 		
-#if RN_PLATFORM_MAC_OS
 		if(!_camera->IsKindOfClass(RO::Camera::GetMetaClass()))
-#endif
 		{
 			RN::Vector3 rotationY(0.0f, input->GetMouseDelta().y, 0.0f);
 			rotationY += _cameraRotation;
 			rotationY.y = std::max(-80.0f, std::min(65.0f, rotationY.y));
 			_cameraRotation = rotationY;
+			_camera->SetRotation(_cameraRotation);
 		}
 		
 		if(_controller)
@@ -118,8 +116,6 @@ namespace SW
 				_controller->Jump();
 			}
 		}
-		
-		UpdateCamera();
 	}
 	
 	void Player::SetPassable(bool passable)
@@ -196,11 +192,5 @@ namespace SW
 			}
 			break;
 		}
-	}
-	
-	void Player::UpdateCamera()
-	{
-		_camera->SetWorldPosition(GetWorldPosition()+RN::Vector3(0.0f, 0.78f, 0.0f));
-		_camera->SetRotation(_cameraRotation+GetWorldEulerAngle());
 	}
 }

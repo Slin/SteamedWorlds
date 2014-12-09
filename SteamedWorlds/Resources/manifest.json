@@ -1,5 +1,5 @@
 {
 	"RNUIStyle": "ui/rn_uistyle.json",
-	"RNModules": ["Modules/Downpour/libDownpour", "Modules/rayne-ogg/librayne-ogg"],
+	"RNModules": ["Modules/rayne-ogg/librayne-ogg"],
 	"RNApplication": "SteamedWorlds"
 }

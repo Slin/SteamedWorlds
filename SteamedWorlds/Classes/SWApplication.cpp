@@ -11,7 +11,8 @@
 namespace SW
 {
 	Application::Application()
-	{}
+	{
+	}
 	Application::~Application()
 	{}
 	
@@ -26,14 +27,15 @@ namespace SW
 		if(hmd)
 		{
 			hmd->SetAsDisplay(false);
+			world->SetHMD(hmd);
 		}
-		
-		world->SetHMD(hmd);
-		
-		RN::Window *window = RN::Window::GetSharedInstance();
-		RN::WindowConfiguration *configuration = new RN::WindowConfiguration(window->GetMainScreen()->GetWidth(), window->GetMainScreen()->GetHeight());
-		window->ActivateConfiguration(configuration, RN::Window::Mask::Fullscreen);
-		RN::Window::GetSharedInstance()->HideCursor();
+		else
+		{
+			RN::Window *window = RN::Window::GetSharedInstance();
+			RN::WindowConfiguration *configuration = new RN::WindowConfiguration(window->GetMainScreen()->GetWidth(), window->GetMainScreen()->GetHeight());
+			window->ActivateConfiguration(configuration, RN::Window::Mask::Fullscreen);
+			RN::Window::GetSharedInstance()->HideCursor();
+		}
 
 		RN::WorldCoordinator::GetSharedInstance()->LoadWorld(world->Autorelease());
 	}
